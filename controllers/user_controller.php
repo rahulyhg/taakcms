@@ -4,7 +4,7 @@ class user_controller extends controller
   public function login()
   {
 	 $this->_setView("login");
-	 $this->_view->set('title', 'Login User'); 
+	 $this->_view->set('title', ''); 
 	 return $this->_view->output(); 
   }
 //.............
@@ -16,7 +16,7 @@ class user_controller extends controller
 	  if ($row )
 	  {
 	     $_SESSION['uname']=$row['username'];
-		 header('location:index.php?stud/index');
+		 header('location:index.php?products/index');
 		 exit;
 	  }
 	  else 
