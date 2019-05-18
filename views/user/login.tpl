@@ -2,11 +2,11 @@
 
 
   <div class="page-container">
-      <h1>ورود به پنل محتوای تاک</h1>
+      <h1><?php echo STRINGS['enter_taak_cms'];?></h1>
       <form action="index.php?id=user/check" method="post">
-          <input type="text" name="uname" class="username" placeholder="نام کاربری">
-          <input type="password" name="upass" class="password" placeholder="رمز عبور">
-          <button type="submit">وارد شوید</button>
+          <input type="text" name="uname" class="username" placeholder="<?php echo STRINGS['username'];?>">
+          <input type="password" name="upass" class="password" placeholder="<?php echo STRINGS['password'];?>">
+          <button type="submit"><?php echo STRINGS['enter'];?></button>
           <div class="error"><span>+</span></div>
       </form>
       <div class="connect">

@@ -2,9 +2,13 @@
 $strings = [
     "products" => "محصولات",
     "categories" => "دسته‌بندی‌ها",
-    "add_product" => "افزودن محصول جدید",
+    "add_product" => "محصول جدید",
     "edit_product" => "ویرایش محصول جدید",
-    "username" => "ویرایش  جدید",
+    "username" => "نام کاربری",
+    "password" => "رمز ورود",
+    "enter" => "وارد شوید",
+    "enter_taak_cms" => "ورود به پنل محتوای تاک",
+    "please_select_a_product" => "لطفاً یک سرویس را انتخاب نمایید.",
 ];
 
 define ('STRINGS', $strings);

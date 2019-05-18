@@ -2,27 +2,57 @@
 
 
 <div class="content">
-  <a href="index.php?id=product/add">Add Product</a>
+  <div class="flexColumn">
+    <h1 style="margin:auto;"><?php echo STRINGS['please_select_a_product'] ?></h1>
+    <div class="app_container" >
 
-  <table width="611" border="0">
-    <tr>
-      <td width="45"> ID </td>
-      <td width="307">Title</td>
-      <td width="76"> LOGO</td>
-      <td width="104">&nbsp;</td>
-    </tr>
-  <?php foreach($rows as $row) { ?> 
-    <tr>
-      <td><?php echo $row['id']; ?> </td>
-      <td><?php echo $row['title']; ?> </td>
-      <td><?php echo $row['logo']; ?> </td>
-      <td>
-        <a href="index.php?id=product/delete/<?php echo $row['id']; ?>">delete</a> 
-          |    
-        <a href="index.php?id=product/edit/<?php echo $row['id']; ?>">edit</a>   </td>
-    </tr>
-  <?php } ?>
-  </table>
+        <?php foreach($rows as $row) { ?> 
+
+          <div class="app_item" onclick="view_product(<?php echo $row['id']; ?>);">
+            <div class="app_title"><?php echo $row['title']; ?></div>
+            <div class="app_logo" style="background-image:url('<?php echo $row['logo']; ?>')"></div>
+            <div class="app_actions">
+                <a class="fas fa-edit" onclick="edit_product(<?php echo $row['id']; ?>)" ></a>
+                <a class="fas fa-trash-alt"  onclick="delete_product(<?php echo $row['id']; ?>);" ></a>
+            </div>
+          </div>
+
+        <?php } ?>
+        <div class="app_item" onclick="add_product();">
+          <div class="app_title"><?php echo STRINGS['add_product']; ?></div>
+          <div class="app_logo" style="background-image:url('<?php echo $row['logo']; ?>')"></div>
+          <div style="height:24px;">
+            
+          </div>
+        </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  function view_product(id){
+    
+    alert(id);
+  }
+
+  function edit_product(id){
+    var e = window.event;
+    e.cancelBubble = true;
+    if (e.stopPropagation) e.stopPropagation();
+    window.location.href = "index.php?id=product/edit/"+ id;
+  }
+
+  function delete_product(id){
+    var e = window.event;
+    e.cancelBubble = true;
+    if (e.stopPropagation) e.stopPropagation();
+    window.location.href = "index.php?id=product/delete/"+ id;
+  }
+
+  function add_product(){
+    window.location.href = "index.php?id=product/add";
+  }
+
+</script>
 
 <?php include('views/footer.tpl');?>

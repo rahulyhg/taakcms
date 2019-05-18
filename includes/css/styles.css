@@ -16,8 +16,86 @@ body{
     direction: rtl;
 }
 
+.flexColumn{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .content{
     margin-top:56px;
     background-color: antiquewhite;
     height: calc(100vh - 56px);
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+.app_container{
+    width: 90%;
+    margin-top:0px;
+    margin-bottom: auto;
+    display: flex;
+    flex-flow:row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+a:not([href]):not([tabindex]) {
+    color: black;
+    
+}
+
+a:not([href]):not([tabindex]):hover {
+    color: blue;
+    
+}
+.app_item{
+    width: 200px;
+    align-content: center;
+    text-align: left;
+    background-color: rgba(168, 252, 252, 0.5);
+    cursor: pointer;
+    margin: 10px;
+    display: flex;
+    flex-flow: column;
+    border: 1px solid gray;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+
+.app_item:hover{
+    cursor: pointer;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+.app_actions{
+    padding:0px 10px;
+}
+
+.app_title{
+    text-align: center;
+    margin:10px;
+    font-size: 2em;
+}
+
+.app_logo{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: auto; 
+    text-align: center;
+    background-color: white;
+}
+
+
+.hoverable{
+    cursor: pointer;
+}
+
+.hoverable:hover{
+    cursor: pointer;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
