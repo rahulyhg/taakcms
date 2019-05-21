@@ -4,7 +4,7 @@ class user_controller extends controller
   public function login()
   {
 	 $this->_setView("login");
-	 $this->_view->set('title', ''); 
+	 $this->_view->set('page_title', ''); 
 	 return $this->_view->output(); 
   }
 //.............

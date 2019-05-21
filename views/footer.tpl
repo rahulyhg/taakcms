@@ -3,7 +3,7 @@
         
         
         <?php 
-            if ($title == ""){
+            if ($page_title == ""){
                 echo '<script src="includes/js/supersized.3.2.7.min.js"></script>';
                 echo '<script src="includes/js/supersized-init.js"></script>';
                 echo '<script src="includes/js/scripts.js"></script>';

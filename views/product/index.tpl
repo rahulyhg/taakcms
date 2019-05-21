@@ -31,7 +31,6 @@
 
 <script>
   function view_product(id){
-    
     alert(id);
   }
 
