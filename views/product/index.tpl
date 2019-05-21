@@ -3,24 +3,22 @@
 
 <div class="content">
   <div class="flexColumn">
-    <h1 style="margin:auto;"><?php echo STRINGS['please_select_a_product'] ?></h1>
+    <h1 style="margin:auto;"><?php echo STRINGS['please_select_a_product']; ?></h1>
     <div class="app_container" >
 
         <?php foreach($rows as $row) { ?> 
-
           <div class="app_item" onclick="view_product(<?php echo $row['id']; ?>);">
             <div class="app_title"><?php echo $row['title']; ?></div>
-            <div class="app_logo" style="background-image:url('<?php echo $row['logo']; ?>')"></div>
+            <div class="app_logo" ></div>
             <div class="app_actions">
                 <a class="fas fa-edit" onclick="edit_product(<?php echo $row['id']; ?>)" ></a>
                 <a class="fas fa-trash-alt"  onclick="delete_product(<?php echo $row['id']; ?>);" ></a>
             </div>
           </div>
-
         <?php } ?>
         <div class="app_item" onclick="add_product();">
           <div class="app_title"><?php echo STRINGS['add_product']; ?></div>
-          <div class="app_logo" style="background-image:url('<?php echo $row['logo']; ?>')"></div>
+          <div class="app_logo" ></div>
           <div style="height:24px;">
             
           </div>
