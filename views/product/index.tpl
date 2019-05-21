@@ -6,8 +6,8 @@
     <h1 style="margin:auto;"><?php echo STRINGS['please_select_a_product']; ?></h1>
     <div class="app_container" >
 
-        <?php foreach($rows as $row) { ?> 
-          <div class="app_item" onclick="view_product(<?php echo $row['id']; ?>);">
+        <?php foreach($rows as $row) { $color = $row['color'] == '' ? '#a8fcfc80' : $row['color']; ?> 
+          <div class="app_item" style="background-color:var(--<?php echo $color; ?>)" onclick="view_product(<?php echo $row['id']; ?>);">
             <div class="app_title"><?php echo $row['title']; ?></div>
             <div class="app_logo" ></div>
             <div class="app_actions">

@@ -20,16 +20,34 @@ class product_model extends model
 	   $this->execQuery($sql);
 	}	
 //.................
-	public function insert($title,$logo)
+	public function insert($title,$logo,$color, $terms_and_conditions, $about, $banner_id)
 	{
-      $sql="INSERT INTO tbl_products(title,logo) VALUES('$title','$logo')";
+      $sql="INSERT INTO tbl_products(title,logo,color, terms_and_conditions, about, baner_contentId) 
+	  	VALUES('$title','$logo','$color', '$terms_and_conditions', '$about', $banner_id)";
 	  $this->execQuery($sql);
 	}
 //.................
-	public function update($title,$logo,$id)
+	public function update($title, $logo, $color, $terms_and_conditions, $about, $banner_id, $id)
 	{
-       $sql="UPDATE tbl_products SET title='$title',logo='$logo' WHERE id=$id";
+		$banner_id = (int)$banner_id;
+       $sql="UPDATE tbl_products SET title='$title',logo='$logo',color='$color',logo='$logo',terms_and_conditions='$terms_and_conditions',about='$about',baner_contentId='$banner_id' WHERE id=$id";
 	   $this->execQuery($sql);
+	}
+
+	public function getColors(){
+		$colors;
+		$colors['blue'] = 'blue';
+		$colors['red'] = 'red';
+		$colors['indigo'] = 'indigo';
+		$colors['purple'] = 'purple';
+		$colors['pink'] = 'pink';
+		$colors['orange'] = 'orange';
+		$colors['yellow'] = 'yellow';
+		$colors['green'] = 'green';
+		$colors['teal'] = 'teal';
+		$colors['cyan'] = 'cyan';
+		$colors['gray'] = 'gray';
+		return $colors;
 	}
 
 	

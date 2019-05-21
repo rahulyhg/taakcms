@@ -21,8 +21,11 @@ body{
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
-
+.taak_form{
+    margin-block-end: 0;
+}
 .content{
     margin-top:56px;
     background-color: antiquewhite;
@@ -56,7 +59,7 @@ a:not([href]):not([tabindex]):hover {
     width: 200px;
     align-content: center;
     text-align: left;
-    background-color: rgba(168, 252, 252, 0.5);
+    background-color: #a8fcfc80;
     cursor: pointer;
     margin: 10px;
     display: flex;

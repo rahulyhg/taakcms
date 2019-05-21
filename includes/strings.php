@@ -16,6 +16,7 @@ $strings = [
     "banner_id" => "شناسه محتوای بنر",
     "save" => "ذخیره",
     "cancel" => "انصراف",
+    "color" => "رنگ",
 ];
 
 define ('STRINGS', $strings);
