@@ -29,7 +29,6 @@ class product_model extends model
 //.................
 	public function update($title, $logo, $color, $terms_and_conditions, $about, $banner_id, $id)
 	{
-		$banner_id = (int)$banner_id;
        $sql="UPDATE tbl_products SET title='$title',logo='$logo',color='$color',logo='$logo',terms_and_conditions='$terms_and_conditions',about='$about',baner_contentId='$banner_id' WHERE id=$id";
 	   $this->execQuery($sql);
 	}

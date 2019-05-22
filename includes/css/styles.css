@@ -92,6 +92,9 @@ a:not([href]):not([tabindex]):hover {
     margin: auto; 
     text-align: center;
     background-color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 

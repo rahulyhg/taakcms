@@ -3,7 +3,7 @@
 <div class="content">
   <div class="flexColumn">
     <div class="card shadow" style="max-width:600px;width: 100%;">
-      <form action="index.php?id=product/save" method="post" class="taak_form" >
+      <form action="index.php?id=product/save" method="post" class="taak_form" enctype="multipart/form-data" >
         <div class="card-header"><?php echo $page_title?></div>
         <div class="card-body">
           <input type="hidden" name="id" readonly="readonly" value="<?php echo $row['id'] ?>"></td>
@@ -23,6 +23,7 @@
           <div class="form-group">
             <label for="logo"><?php echo STRINGS['logo']?>:</label>
             <input type="file" class="form-control-file border" name="logo" value="<?php echo $row['logo'] ?>" >
+            <div class="app_logo" style="background-image:url('uploads/<?php echo $row['logo'] ?>');" ></div>
           </div>
           <div class="form-group">
             <label for="terms_and_conditions"><?php echo STRINGS['terms_and_conditions']?>:</label>
