@@ -18,6 +18,14 @@ $strings = [
     "cancel" => "انصراف",
     "color" => "رنگ",
     "contents" => "محتواها",
+    "fieldsets" => "مدیریت فیلدهای موجودیت",
+    "add" => "افزودن",
+    "define_fieldset" => "تعریف مجموعه فیلد جدید",
+    "add_category" => "دسته‌بندی جدید",
+    "manage_fieldsets" => "مدیریت فیلدها",
+    "title_latin" => "عنوان لاتین",
+    "value" => "مقدار",
+    "type" => "نوع فیلد",
 ];
 
 define ('STRINGS', $strings);

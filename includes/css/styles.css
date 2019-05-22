@@ -10,7 +10,26 @@
     font-weight: normal;
     font-style: normal;
 }
+a ,a:hover ,a:visited{
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+  }
+  
+/* colors */
+:root {
+    --blue-light: #A2CFFF; 
+    --indigo-light: #C7A8FA;
+    --purple-light: #CABAE8;
+    --pink-light: #F6B8D5;
+    --red-light: #F2B5BB;
+    --orange-light: #FED0A9;
+    --yellow-light: #FFE8A4;
+    --green-light: #B0DFBB;
+    --teal-light: #ADEBD9;
+    --cyan-light: #AADDE5;
+}
 
+/* colors */
 body{
     font-family: 'Yekan';
     direction: rtl;
@@ -25,6 +44,7 @@ body{
 }
 .taak_form{
     margin-block-end: 0;
+    width: 100%;
 }
 .content{
     width: 100%;
@@ -107,13 +127,6 @@ a:not([href]):not([tabindex]):hover {
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
 
-
-.menu{
-    background-color: aliceblue;
-    width: 300px;
-    height: calc(100vh - 56px);
-}
-
 .pagecontent{
     display: flex;
     flex-flow: row;
@@ -123,4 +136,53 @@ a:not([href]):not([tabindex]):hover {
     display: flex;
     flex-flow: column;
     margin-top: 56px;
+}
+
+.content-card{
+    margin:10px;
+    width:100%;
+    box-shadow:0 .125rem .25rem rgba(0,0,0,.075)!important;
+    display:flex;
+    flex-flow:column;
+    border: 1px solid gray;
+}
+.content-card-header{
+    width:100%;
+    line-height: 1.5;
+    font-size: 1.2em;
+    padding: 10px;
+    font-weight:700;
+    border-bottom: 1px solid gray;
+    background-color:#adb5bd;
+}
+
+.content-card-body{
+    height: 100%;
+    display:flex;
+    flex-flow:row;
+    flex-wrap:wrap;
+    justify-content:start;
+    padding: 10px;
+    align-items: start;
+}
+.content-card-body-column{
+    height: 100%;
+    display:flex;
+    flex-flow:column;
+    flex-wrap:wrap;
+    justify-content:start;
+    padding: 10px;
+    align-items: start;
+}
+
+.content-card-footer{
+    padding: 5px;
+    border-top: 1px solid gray;
+    background-color:#adb5bd;
+}
+.content-row{
+    width: 100%;
+    display:flex;
+    flex-flow: row;
+
 }

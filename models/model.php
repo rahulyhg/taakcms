@@ -28,5 +28,9 @@ class model
 		$row=mysqli_fetch_assoc($res);
 		return $row;
 	} 	
+	
+	public function insert_id(){
+		return mysqli_insert_id($this->conn);
+	}
 }
 ?>
