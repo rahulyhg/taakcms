@@ -27,12 +27,13 @@ body{
     margin-block-end: 0;
 }
 .content{
-    margin-top:56px;
+    width: 100%;
     background-color: antiquewhite;
     height: calc(100vh - 56px);
     display: flex;
     flex-flow: row;
     justify-content: center;
+    overflow-y: auto;
 }
 
 .app_container{
@@ -103,3 +104,20 @@ a:not([href]):not([tabindex]):hover {
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
 
+
+.menu{
+    background-color: aliceblue;
+    width: 300px;
+    height: calc(100vh - 56px);
+}
+
+.pagecontent{
+    display: flex;
+    flex-flow: row;
+}
+
+.mainBody{
+    display: flex;
+    flex-flow: column;
+    margin-top: 56px;
+}

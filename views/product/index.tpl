@@ -29,7 +29,7 @@
 
 <script>
   function view_product(id){
-    alert(id);
+    window.location.href = "index.php?id=content/index/"+ id;
   }
 
   function edit_product(id){

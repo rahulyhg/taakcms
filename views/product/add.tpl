@@ -3,7 +3,7 @@
 <div class="content">
   <div class="flexColumn">
     <div class="card shadow" style="max-width:600px;width: 100%;">
-      <form action="index.php?id=product/save" method="post" class="taak_form" >
+      <form action="index.php?id=product/save" method="post" class="taak_form" enctype="multipart/form-data" >
         <div class="card-header"><?php echo $page_title?></div>
         <div class="card-body">
           <input type="hidden" name="id" readonly="readonly" value="0"></td>

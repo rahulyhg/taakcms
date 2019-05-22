@@ -29,7 +29,7 @@
     
 
 </head>
-<body>
+<body class="mainBody">
 
 <?php if ($page_title != ""){ ?>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
@@ -46,3 +46,4 @@
     </nav>
 <?php } ?>
 
+<div class="pagecontent">

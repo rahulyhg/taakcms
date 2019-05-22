@@ -17,6 +17,7 @@ $strings = [
     "save" => "ذخیره",
     "cancel" => "انصراف",
     "color" => "رنگ",
+    "contents" => "محتواها",
 ];
 
 define ('STRINGS', $strings);
