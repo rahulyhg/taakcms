@@ -5,13 +5,12 @@
 .item{
     display:flex;
     flex-flow:column;
-    width:40%;
+    max-width:60%;
+    justify-content:center;
     height:60%;
-    border:5px solid black;
+    width:60%;
+    /*border:5px solid black;*/
     border-radius:30px;
-    margin-top:100px;
-   padding-left:50px;
-      padding-top:50px;
 
 }
 .name{
@@ -19,7 +18,7 @@
     flex-flow:row;
     width:100%;
     height:25%;
-    /*border:1px solid black;*/
+  /* border:1px solid black;*/
     
 }
 .row{
@@ -37,30 +36,27 @@ label{
 
 
 .form-group{
-    width:150%;
+    width:100%;
 height:40%;
     margin:auto;
 }
 .btn-primary{
-width:80%;
+width:40%;
 height:50%;
-font-size:20px;
+font-size:100%;
 margin:auto;
-margin-right:200px;
 }
 .btn-danger{
-    width:32%;
+    width:40%;
 height:50%;
-font-size:20px;
+font-size:100%;
 margin:auto;
-margin-right:50px;
 
 }
 .custom-switch{
-width:50px;
+
   transform: scale(2, 2);
 margin:auto;
-
 }
 .custom-file{
     width:40%;
@@ -76,7 +72,7 @@ height:40%;
   
 }
 p{
-    font-size:100%;
+    font-size:120%;
     margin:auto;
 }
 
@@ -97,10 +93,10 @@ p{
 
  </div>
   <div class="name">
-  <div class="row"><label>زمینه</label></div>
+  <div class="row"><label>فیلدست</label></div>
   <div class="row">
    <div class="form-group">
-    <input type="text" class="form-control" id="exampleFormControlInput1">
+    <input type="text" class="form-control" >
   </div>
   </div>
   </div>
@@ -109,9 +105,8 @@ p{
  <div class="row">
  <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <button class="btn btn-outline-secondary" type="button" id="button-addon1"><p>انتخاب فایل</p></button>
   </div>
-  <input type="text" class="form-control" >
+  <input type="file" class="form-control" >
 </div>
  </div>
  </div>
@@ -119,7 +114,7 @@ p{
  <div class="row"><label>فعال بودن</label></div>
  <div class="row">
  <div class="custom-control custom-switch">
-  <input type="checkbox" class="custom-control-input" id="customSwitch1">
+  <input type="checkbox" class="custom-control-input">
 <label class="custom-control-label" for="customSwitch1"></label>
 
 </div>
