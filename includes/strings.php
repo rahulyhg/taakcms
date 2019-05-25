@@ -26,6 +26,7 @@ $strings = [
     "title_latin" => "عنوان لاتین",
     "value" => "مقدار",
     "type" => "نوع فیلد",
+    "order" => "ترتیب",
 ];
 
 define ('STRINGS', $strings);
