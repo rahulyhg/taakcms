@@ -121,7 +121,7 @@ p{
  <div class="row"><label>فعال بودن</label></div>
  <div class="row">
  <div class="custom-control custom-switch">
-  <input type="checkbox" class="custom-control-input">
+  <input type="checkbox" class="custom-control-input" id="customSwitch1">
 <label class="custom-control-label" for="customSwitch1"></label>
 
 </div>
