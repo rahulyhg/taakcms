@@ -2,11 +2,18 @@
 <?php include('views/header.tpl');?>
 <?php include('views/menu.tpl');?>
 <style>
+.content{
+     display:flex;
+    flex-flow:column;
+    justify-content:center;
+    align-items:center;
+}
 .item{
     display:flex;
     flex-flow:column;
     max-width:60%;
     justify-content:center;
+    align-items:center;
     height:60%;
     width:60%;
     /*border:5px solid black;*/
