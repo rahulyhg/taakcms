@@ -37,18 +37,19 @@ class fieldset_controller extends controller
 	return $this->_view->output(); 
   }
 
-  public function saveonly()
+  public function save()
   {
     $id  =$_POST['id'];
     $title =$_POST['title'];
     $product_id =$_SESSION['product_id'];
+    $fields = $_POST['mytbl_data'];
     
     if($id==0)
         $id = $this->_model->insert($title , $product_id); 
     else	 
         $this->_model->update($title , $id);		
 
-    return $this->edit($id);
+    return $this->index();
   }
 }	 
 	 

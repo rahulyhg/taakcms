@@ -12,7 +12,7 @@
             <?php echo $page_title ?> 
         </div>
         <div class="content-card-body-column">
-            <form action="index.php?id=fieldset/saveonly" method="post" class="taak_form" >
+            <form action="index.php?id=fieldset/save" method="post" class="taak_form" >
                 <input type="hidden" name="id" readonly="readonly" value="0"></td>
                 <div class="content-row">
                     <div class="col-sm-2"><?php echo STRINGS['title'] ?> </div>
