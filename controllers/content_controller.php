@@ -34,6 +34,19 @@ class content_controller extends controller
    
 	 return $this->_view->output(); 
   }
+
+  public function add()
+  {
+    $category_id = $_SESSION['active_category_id'];
+    $fields = $this->_model->getFieldsByCategoryId($category_id);
+
+    $this->_setView("add");
+	
+    $this->_view->set('page_title', STRINGS['contents']); 
+    $this->_view->set('fields', $fields); 
+   
+	 return $this->_view->output(); 
+  }
 }	 
 	 
 ?>

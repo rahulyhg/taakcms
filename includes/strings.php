@@ -27,6 +27,7 @@ $strings = [
     "value" => "مقدار",
     "type" => "نوع فیلد",
     "order" => "ترتیب",
+    "select_a_category" => "یکی از دسته‌بندی‌ها را انتخاب نمایید.",
 ];
 
 define ('STRINGS', $strings);

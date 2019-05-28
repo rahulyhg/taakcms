@@ -164,6 +164,7 @@ a:not([href]):not([tabindex]):hover {
     justify-content:start;
     padding: 10px;
     align-items: start;
+    overflow: auto;
 }
 .content-card-body-column{
     height: 100%;

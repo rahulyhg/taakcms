@@ -1,15 +1,18 @@
 <?php include('views/header.tpl');?>
 <?php include('views/menu.tpl');?>
 <style>
-
+.content-card-body{
+    
+}
 .content-card-item{
-    width:100px;
-    text-align: center;
+    width:100%;
     padding: 10px;
     border: 1px solid gray;
     cursor: pointer;
-    border-radius:10px;
     margin:4px;
+}
+.content-card-item:hover{
+    background-color:#ffffff94;
 }
 
 .content-card-item:hover{

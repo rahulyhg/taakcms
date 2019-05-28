@@ -45,7 +45,7 @@
     <div class="menu_categories">
         <ul class="list-group list-group-flush">
             <?php foreach($_SESSION['categories'] as $category) { $isActive = $_SESSION['active_category_id'] == $category['id']; ?> 
-            <li href="index.php?id=content/view_contents/<?php echo $category['id']; ?>" class="list-group-item list-group-item-action <?php echo $isActive ? 'active' : ''; ?> ">
+            <li onclick="view_contents(<?php echo $category['id']; ?>);" class="list-group-item list-group-item-action <?php echo $isActive ? 'active' : ''; ?> ">
                 <?php echo $category['title']; ?>
                 <a class="fas fa-trash-alt" onclick="delete_category(<?php echo $category['id']; ?>)" ></a>
                 <a class="fas fa-edit" onclick="edit_category(<?php echo $category['id']; ?>)" ></a>
@@ -60,5 +60,10 @@
         <a class="btn btn-secondary btn-lg" href='index.php?id=category/add' ><?php echo STRINGS['add_category'] ?></a>
         <a class="btn btn-secondary btn-lg" href='index.php?id=fieldset/index' ><?php echo STRINGS['manage_fieldsets'] ?></a>
     </div>
+    <script>
+        function view_contents(id){
+            window.location.href = "index.php?id=content/view_contents/" + id;
+        }
+    </script>
 
 </div>
