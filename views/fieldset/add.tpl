@@ -29,7 +29,7 @@
                             (object)['id'=>'field_title_latin','type'=>'input','caption'=>STRINGS['title_latin']],
                             (object)['id'=>'field_type','type'=>'input','caption'=>STRINGS['type']],
                             (object)['id'=>'field_value','type'=>'input','caption'=>STRINGS['value']]);
-
+                        $data=[];
                         require_once HOME . DS . 'views' . DS . 'components' . DS . 'grid.php'; 
                         
                     ?>
@@ -46,6 +46,9 @@
         function validateSubmit(){
             $('#mytbl_data').val(getTableData());
             return true;
+        }
+        function cancel(){
+            window.location.href = 'index.php?id=fieldset/index';
         }
     </script>
      

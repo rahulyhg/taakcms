@@ -25,10 +25,49 @@
         </tr>
     </tbody>
     <script>
-        const columnList=<?php echo json_encode($columns) ?>;
-        
+        const columnList = <?php echo json_encode($columns) ?>;
+        const mytable = $('#<?php echo $tableId?>')[0];
         var <?php echo $tableId?>_data=[];
-        var mytable = $('#<?php echo $tableId?>')[0];
+
+        <?php 
+            if(count($data) > 0){ 
+                echo $tableId . "_data=" . json_encode($data) . ";";
+                
+                echo "setdata();";
+            } 
+        ?>
+
+        function setdata(){
+
+            for (var row=0;row < <?php echo $tableId?>_data.length ; row++){ 
+                var newRow = $("<tr></tr>");
+                for (var i=0;i<columnList.length +1;i++){
+                    var newelement = $("<td></td>");
+                    if (i==0){
+                        var btn = document.createElement('button');
+                        btn.innerText = "-";
+                        btn.className = "btn btn-danger btn-sm";
+                        btn.onclick=(function() {return function() {
+                            removeRow(this.parentElement);
+                            }})();
+                        btn.type="button";
+                        newelement.append(btn);
+                    } else if (i==1){
+                        newelement = $("<td style='display:none'></td>");
+                        var cellValue = <?php echo $tableId?>_data[row][columnList[i-1].id]
+                        newelement.append(document.createTextNode(cellValue));
+
+                    } else {
+                        var cellValue = <?php echo $tableId?>_data[row][columnList[i-1].id]
+                        newelement.append(document.createTextNode(cellValue));
+                    }
+                    newRow.append(newelement);
+                }
+                newRow[0].onclick=(function() {return function() {edit(this);}})();
+                $('#<?php echo $tableId?> tr:last').before(newRow);
+            }
+        }
+        
         function getRandomId(){
             return Math.floor(Math.random() * Math.floor(1000)) * -1;
         }
