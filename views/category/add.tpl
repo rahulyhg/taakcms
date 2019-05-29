@@ -105,7 +105,7 @@ height:50%;
   <div class="row"><label>فیلدست</label></div>
   <div class="row">
    <div class="form-group">
-    <input type="text" class="form-control" >
+    <?php $dropdownName="fieldset"; $datasource=$fieldsets; $dropdownValue="";  require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
   </div>
   </div>
   </div>
@@ -136,10 +136,7 @@ height:50%;
   </div>
   <div class="row">
         <button type="button" class="btn btn-primary"><p>ذخیره</p></button>
-              <button type="button" class="btn btn-danger"><p>انصراف</p></button>
-
-
-
+        <button type="button" class="btn btn-danger"><p>انصراف</p></button>
   </div>
   </div>
 

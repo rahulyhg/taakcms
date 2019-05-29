@@ -13,12 +13,7 @@
           </div>
           <div class="form-group">
             <label for="color"><?php echo STRINGS['color']?>:</label>
-            <select name="color" class="custom-select">
-              <option selected value=""></option>
-                <?php foreach($colors as $color) { ?> 
-                  <option style="color:var(--<?php echo $color; ?>)" value="<?php echo $color; ?>"><?php echo $color; ?></option>
-                <?php } ?>
-            </select>
+            <?php $dropdownName="color"; $datasource=$colors; $dropdownValue="";  require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
           </div>
           <div class="form-group">
             <label for="logo"><?php echo STRINGS['logo']?>:</label>

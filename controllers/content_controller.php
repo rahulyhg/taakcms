@@ -47,6 +47,26 @@ class content_controller extends controller
    
 	 return $this->_view->output(); 
   }
+
+  public function save()
+  {
+    $category_id = $_SESSION['active_category_id'];
+    $fields = $this->_model->getFieldsByCategoryId($category_id);
+    $id=$_POST['id'];
+    $title=$_POST['title'];
+
+    $details;
+    foreach($fields as $field){
+      $details[$field['title_latin']] = $_POST[$field['title_latin']];
+    }
+
+    if($id==0)
+        $id = $this->_model->insert($title,$category_id,$details); 
+    else	 
+        $this->_model->update($id,$details);		
+    
+	 return $this->view_contents($category_id); 
+  }
 }	 
 	 
 ?>

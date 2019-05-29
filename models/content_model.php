@@ -23,5 +23,22 @@ class content_model extends model
 		$fields = $this->getAll($sql); 
 		return $fields; 
 	} 
+
+	public function insert($title,$category_id, $details){
+		$sql="INSERT INTO tbl_contents(title,category_id) 
+		VALUES('$title',$category_id)";
+		$this->execQuery($sql);
+		$id = $this->insert_id();
+
+		$sql="DELETE FROM tbl_content_details WHERE content_id = $id";			
+		$this->execQuery($sql);
+
+		foreach($details as $detail => $detail_value){
+			
+			$sql="INSERT INTO tbl_content_details(content_id,field_key,field_value) 
+				VALUES($id,'$detail','$detail_value')";
+			$this->execQuery($sql);
+		}
+	}
 }
 ?>
