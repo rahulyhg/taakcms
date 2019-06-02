@@ -117,12 +117,29 @@
                 if (j != 0){
                     const cellValue = col.innerText;
                     col.innerText="";
-                    var input = document.createElement('input');
-                    input.type = j==1 ? "hidden" : "text";
-                    input.className = "form-control form-control-sm";
-                    input.id = columnList[j-1].id;
-                    input.value = cellValue;
-                    col.appendChild(input);
+                    if (columnList[j-1].type == 'select'){
+                        var select = document.createElement('select');
+                        select.className = "custom-select custom-select-sm";
+                        select.name = columnList[j-1].id;
+                        select.id = columnList[j-1].id;
+                        select.value = cellValue;
+                        const options = columnList[j-1].options;
+                        for (var option=0;option < options.length;option++){
+                            var opt = document.createElement('option');
+                            opt.appendChild( document.createTextNode(options[option]));
+                            opt.value = options[option]; 
+                            opt.selected = options[option] == cellValue;
+                            select.appendChild(opt); 
+                        }
+                        col.appendChild(select);
+                    }else{
+                        var input = document.createElement('input');
+                        input.type = columnList[j-1].type == "hidden" ? "hidden" : "text";
+                        input.className = "form-control form-control-sm";
+                        input.id = columnList[j-1].id;
+                        input.value = cellValue;
+                        col.appendChild(input);
+                    }
                 }
             } 
         }
@@ -137,8 +154,9 @@
             
             var newRow = $("<tr></tr>");
             for (var i=0;i<columnList.length+1;i++){
+                const columnInfo = columnList[i-1];
                 var newelement = $("<td></td>");
-                if (i==0){
+                if (!columnInfo){
                     var btn = document.createElement('button');
                     btn.innerText = "-";
                     btn.className = "btn btn-danger btn-sm";
@@ -147,13 +165,26 @@
                         }})();
                     btn.type="button";
                     newelement.append(btn);
-                } else if (i==1){
+                } else if (columnInfo.type == 'hidden'){
                     newelement = $("<td style='display:none'></td>");
                     var input = document.createElement('input');
                     input.type = "hidden";
                     input.id = columnList[i-1].id;
                     newelement.append(input);
 
+                } else if (columnInfo.type == 'select'){
+                    var select = document.createElement('select');
+                    select.className = "custom-select custom-select-sm";
+                    select.name = columnInfo.id;
+                    select.id = columnInfo.id;
+                    const options = columnInfo.options;
+                    for (var option=0;option < options.length;option++){
+                        var opt = document.createElement('option');
+                        opt.appendChild( document.createTextNode(options[option]));
+                        opt.value = options[option]; 
+                        select.appendChild(opt); 
+                    }
+                    newelement.append(select);
                 } else {
                     var input = document.createElement('input');
                     input.className = "form-control form-control-sm";

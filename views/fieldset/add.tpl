@@ -27,7 +27,7 @@
                             (object)['id'=>'field_order','type'=>'input','caption'=>STRINGS['order']],
                             (object)['id'=>'field_title','type'=>'input','caption'=>STRINGS['title']],
                             (object)['id'=>'field_title_latin','type'=>'input','caption'=>STRINGS['title_latin']],
-                            (object)['id'=>'field_type','type'=>'input','caption'=>STRINGS['type']],
+                            (object)['id'=>'field_type','type'=>'select','caption'=>STRINGS['type'],'options'=>['text','number']],
                             (object)['id'=>'field_value','type'=>'input','caption'=>STRINGS['value']]);
                         $data=[];
                         require_once HOME . DS . 'views' . DS . 'components' . DS . 'grid.php'; 
