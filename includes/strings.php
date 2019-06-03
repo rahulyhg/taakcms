@@ -28,6 +28,10 @@ $strings = [
     "type" => "نوع فیلد",
     "order" => "ترتیب",
     "select_a_category" => "یکی از دسته‌بندی‌ها را انتخاب نمایید.",
+    "details" => "جزئیات",
+    "images" => "تصاویر",
+    "sounds" => "صداها",
+    "videos" => "ویدئوها",
 ];
 
 define ('STRINGS', $strings);
