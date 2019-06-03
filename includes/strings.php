@@ -32,6 +32,7 @@ $strings = [
     "images" => "تصاویر",
     "sounds" => "صداها",
     "videos" => "ویدئوها",
+    "date" => "تاریخ",
 ];
 
 define ('STRINGS', $strings);

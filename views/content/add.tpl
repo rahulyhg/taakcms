@@ -34,12 +34,9 @@
                             <label for="title"><?php echo STRINGS['title']  ?>:</label>
                             <input type="text" class="form-control" name="title" />
                         </div>
-                        <?php foreach($fields as $field) { ?>
-                            <div class="form-group">
-                                <label for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>
-                                <input type="text" class="form-control" name="<?php echo $field['title_latin']  ?>" />
-                            </div>
-                        <?php } ?>
+                        <?php
+                            require HOME . DS . 'views' . DS . 'components' . DS . 'field_generator.php';  
+                        ?>
                     </div>
                     <div id="menu1" class="container tab-pane fade"><br>
                         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>

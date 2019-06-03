@@ -19,7 +19,12 @@
     border:1px solid black;
     
 }
-
+.table{
+    margin-top:10px;
+}
+.action-bar{
+    width:100%;
+}
 </style>
 <div class="content">
     <div class="content-card">
@@ -27,14 +32,32 @@
             <?php echo $page_title ?> 
         </div>
         <div class="content-card-body">
-                <?php foreach($rows as $row) { ?> 
-                <div class="content-card-item" onclick="edit(<?php echo $row['id'] ?>);">
-                    <?php echo $row['title'] ?>
-                </div>
-                <?php } ?>
-                <div class="content-card-item" onclick="add();">
-                    <?php echo STRINGS['add'] ?>
-                </div>
+            <div class="action-bar">
+                <button type="primary" class="btn btn-sm btn-primary" onclick="add();"><?php echo STRINGS['add'] ?></button>
+            </div>
+            <table class="table table-bordered table-sm">
+                <thead>
+                <tr>
+                    <th style="display:none;"></th>
+                    <th><?php echo STRINGS['title'] ?></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($rows as $row) { ?> 
+                    <tr>
+                        <td style="display:none;"><?php echo $row['id']; ?></td>
+                        <td><?php echo $row['title']; ?></td>
+                        <td>
+                            <a class="fas fa-edit" onclick="edit(<?php echo $row['id']; ?>)" ></a>
+                            <a class="fas fa-trash-alt"  onclick="delete(<?php echo $row['id']; ?>);" ></a>
+                        </td>
+                    </tr>
+                    <?php } ?>
+                    
+                </tbody>
+            </table>
+                
         </div>
     </div>
 </div>
