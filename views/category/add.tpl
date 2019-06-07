@@ -90,13 +90,16 @@ height:50%;
 
 </style>
 
+<form action="index.php?id=category/save" method="post" class="taak_form"  enctype="multipart/form-data"  >
+
+<input type="hidden" name='id' >
 <div class="content">
  <div class="item">
  <div class="name">
  <div class="row"><label>عنوان</label></div>
  <div class="row">
   <div class="form-group">
-    <input type="text" class="form-control">
+    <input type="text" name='title' class="form-control">
   </div>
  </div>
 
@@ -115,7 +118,7 @@ height:50%;
  <div class="input-group mb-3">
   <div class="input-group-prepend">
   </div>
-  <input type="file" class="form-control" >
+  <input type="file" name='logo' class="form-control" >
 </div>
  </div>
  </div>
@@ -123,8 +126,8 @@ height:50%;
  <div class="row"><label>فعال بودن</label></div>
  <div class="row">
  <div class="custom-control custom-switch">
-  <input type="checkbox" class="custom-control-input" id="customSwitch1">
-<label class="custom-control-label" for="customSwitch1"></label>
+  <input type="checkbox" name='active' class="custom-control-input" id="active">
+<label class="custom-control-label" for="active"></label>
 
 </div>
  </div>
@@ -135,7 +138,7 @@ height:50%;
 
   </div>
   <div class="row">
-        <button type="button" class="btn btn-primary"><p>ذخیره</p></button>
+        <button type="submit" class="btn btn-primary"><p>ذخیره</p></button>
         <button type="button" class="btn btn-danger"><p>انصراف</p></button>
   </div>
   </div>
@@ -144,5 +147,5 @@ height:50%;
  </div>
 
 </div>
-
+ </form>
 <?php include('views/footer.tpl');?>

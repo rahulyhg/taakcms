@@ -33,7 +33,14 @@ $strings = [
     "sounds" => "صداها",
     "videos" => "ویدئوها",
     "date" => "تاریخ",
+    "nodacategory" => "هیچ دسته بندی تعریف نشده است!",
+    "logout" => "خروج",
+    "users" => "کاربران",
+];
+$data_types = [
+    'text','number','select','yesno','string_list'
 ];
 
+define ('DataTypes', $data_types);
 define ('STRINGS', $strings);
 ?>

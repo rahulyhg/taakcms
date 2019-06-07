@@ -48,6 +48,26 @@ class content_controller extends controller
 	 return $this->_view->output(); 
   }
 
+  public function edit($id)
+  {
+    $category_id = $_SESSION['active_category_id'];
+    $fields = $this->_model->getFieldsByCategoryId($category_id);
+    $values = $this->_model->getRowById($id);
+    $this->_setView("add");
+	
+    $this->_view->set('page_title', STRINGS['contents']); 
+    $this->_view->set('fields', $fields); 
+    $this->_view->set('values', $values); 
+   
+	 return $this->_view->output(); 
+  }
+
+  private function getValue($title){
+    if (isset($_POST[$title]))
+      return $_POST[$title];
+    return "";
+  }
+
   public function save()
   {
     $category_id = $_SESSION['active_category_id'];
@@ -57,15 +77,21 @@ class content_controller extends controller
 
     $details;
     foreach($fields as $field){
-      $details[$field['title_latin']] = $_POST[$field['title_latin']];
+      $details[$field['title_latin']] = $this->getValue($field['title_latin']);
     }
 
     if($id==0)
         $id = $this->_model->insert($title,$category_id,$details); 
     else	 
-        $this->_model->update($id,$details);		
+        $this->_model->update($id,$title,$details);		
     
-	 return $this->view_contents($category_id); 
+	  return $this->view_contents($category_id); 
+  }
+
+  public function uploadimage(){
+    $id=$_POST['id'];
+    $image = $this->_upload_file($_FILES["image"]);
+    echo $image;
   }
 }	 
 	 

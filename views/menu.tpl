@@ -14,7 +14,7 @@
     color:<?php echo $_SESSION['product_color'] ?>
 }
 .menu_categories{
-    
+    margin: 10px 0px;
 }
 .menu_actions{
     display:flex;
@@ -50,10 +50,10 @@
                 <a class="fas fa-trash-alt" onclick="delete_category(<?php echo $category['id']; ?>)" ></a>
                 <a class="fas fa-edit" onclick="edit_category(<?php echo $category['id']; ?>)" ></a>
             </li>
-            <?php } if (count($_SESSION['categories']) == 0) { ?>
-                no category defined!
             <?php } ?>
-            
+            <?php if (count($_SESSION['categories']) == 0) { 
+                echo STRINGS['nodacategory'];
+                } ?>
         </ul>
     </div>
     <div class="menu_actions">

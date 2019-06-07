@@ -13,6 +13,23 @@ class category_controller extends controller
    
 	 return $this->_view->output(); 
   }
+
+  public function save() 
+   { 
+	   $id  =$_POST['id'];
+	   $title =$_POST['title'];
+	   $fieldset =$_POST['fieldset'];
+	   $logo = $this->_upload_file($_FILES["logo"]);
+	   $active =0;//$_POST['active'];
+     $product_id = $_SESSION['product_id'];
+
+	   if($id==0)
+			$this->_model->insert($title , $fieldset, $logo, $active,$product_id); 
+      else	 
+         $this->_model->update($title , $fieldset, $logo, $active,$product_id, $id );					       
+      
+      header('location:index.php?id=content/index/' . $product_id);
+   } 
 }	 
 	 
 ?>

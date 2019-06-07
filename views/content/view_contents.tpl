@@ -37,8 +37,8 @@
                         <td><?php echo $row['title']; ?></td>
                         <td><?php echo $row['title']; ?></td>
                         <td>
-                            <a class="fas fa-edit" onclick="edit_product(<?php echo $row['id']; ?>)" ></a>
-                            <a class="fas fa-trash-alt"  onclick="delete_product(<?php echo $row['id']; ?>);" ></a>
+                            <a class="fas fa-edit" onclick="edit(<?php echo $row['id']; ?>)" ></a>
+                            <a class="fas fa-trash-alt"  onclick="delete(<?php echo $row['id']; ?>);" ></a>
                         </td>
                     </tr>
                     <?php } ?>
@@ -52,6 +52,10 @@
     
 </div>
 <script>
+    function edit(id){
+        window.location.href = "index.php?id=content/edit/"+ id;
+    }
+    
     function add_new_content(){
         window.location.href = "index.php?id=content/add";
     }
