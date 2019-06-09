@@ -14,26 +14,40 @@
 }
 .image-containert{
     width: 100%;
-    background-color: #dc3545;
-    padding: 10px 0px;
+    background-color: #e9ecef;
+    padding: 5px;
     display:flex;
     flex-flow:row;
     flex-wrap:wrap;
+    border: 1px solid lightgray;
 }
 .image-item{
     width: 80px;
     height: 60px;
-    margin:0px 5px;
+    margin: 5px;
+    border:1px solid lightgray;
     background-color: blue;
 }
-.image-item:first-child{
-    margin-right:10px;
+.image-item:hover{
+    border:1px solid black;
+    cursor:pointer;
 }
+
 .image-preview{
     width: 100%;
+    padding: 10px;
+    border: 1px solid lightgray;
 }
 .image-add{
     margin: 10px 0px;
+}
+
+.image-add-button{
+    background-image:url('./includes/img/plusicon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
 }
 </style>
 
@@ -74,11 +88,10 @@
                     <div id="menu1" class="container tab-pane fade"><br>
                         <div class="imagestab">
                             <div class="image-containert">
-                                <?php foreach($values['images'] as $image) {
-                                    $path = './uploads/$image["title"]';
-                                    echo '<img class="image-item" onclick="handlePreviewImage(this); src="'.$path.'"></img>';
-                                } ?>
-                                <div class="image-item" onclick="handleAddImage();">new image</div>
+                                <?php foreach($values['images'] as $image) { ?>
+                                    <img class="image-item" onclick="handlePreviewImage(this)"; src="./uploads/<?php echo $image['title'] ?>"></img>
+                                <?php } ?>
+                                <div class="image-item image-add-button" onclick="handleAddImage();"></div>
                             </div> 
                             <div id="image-preview">
                                 <img src="" id='imagepreview' class="image-preview" />
@@ -147,12 +160,20 @@
             if (event.total === event.loaded){
                 //unsetting in load 
                 var fileInput = document.getElementById('newimage');
+                let imageelement = document.createElement('img');
+                imageelement.className = "image-item";
+                imageelement.onclick = (function() {return function() {
+                        handlePreviewImage(this);
+                        }})();
+                imageelement.src = "./uploads/" + getFileNameFromPath(fileInput.value) ;
                 fileInput.value='';
+
+                $('.image-containert .image-item:last').before(imageelement);
                 $("#add_image")[0].disabled = false;
             }
             console.log(event);
-
         }
+        
         function validateSubmit(){
             return true;
         }

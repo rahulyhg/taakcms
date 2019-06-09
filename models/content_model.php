@@ -15,11 +15,25 @@ class content_model extends model
 		$sql2 = "SELECT * FROM tbl_content_details WHERE content_id =$id"; 
 		$row['details'] = $this->getAll($sql2); 
 		
-		$sql3 = "SELECT * FROM tbl_content_sounds WHERE content_id =$id";
+		$sql3 = "SELECT * FROM tbl_content_images WHERE content_id =$id";
 		$row['images'] = $this->getAll($sql3); 
 
 		return $row; 
 	} 
+
+	public function getEmptyRow($fields) 
+	{ 
+		$sql = "SELECT * FROM tbl_contents WHERE  id =0"; 
+		$row = $this->getRow($sql); 
+		
+		$sql2 = "SELECT * FROM tbl_content_details WHERE content_id =$id"; 
+		$row['details'] = $this->getAll($sql2); 
+		
+		$sql3 = "SELECT * FROM tbl_content_images WHERE content_id =$id";
+		$row['images'] = $this->getAll($sql3); 
+
+		return $row; 
+	}
 
 	public function getFieldsByCategoryId($categoryId) 
 	{ 
@@ -33,11 +47,15 @@ class content_model extends model
 
 	
 
-	public function insert($title,$category_id, $details){
+	public function insert($oldId,$title,$category_id, $details){
+		
 		$sql="INSERT INTO tbl_contents(title,category_id) 
 		VALUES('$title',$category_id)";
 		$this->execQuery($sql);
 		$id = $this->insert_id();
+		
+		$sqlimage = "UPDATE tbl_content_images SET content_id = $id WHERE content_id = $oldId";
+		$this->execQuery($sqlimage);
 
 		$sql="DELETE FROM tbl_content_details WHERE content_id = $id";			
 		$this->execQuery($sql);
@@ -62,6 +80,11 @@ class content_model extends model
 				VALUES($id,'$detail','$detail_value')";
 			$this->execQuery($sql);
 		}
+	}
+
+	public function saveImage($id,$image){
+		$sql="INSERT INTO tbl_content_images(content_id,title) VALUES($id,'$image')";
+		$this->execQuery($sql);
 	}
 }
 ?>

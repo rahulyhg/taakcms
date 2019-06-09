@@ -23,6 +23,6 @@ function aul ($class)
 }
 
 spl_autoload_register('aul');
-require_once HOME . DS . 'includes' . DS . 'strings.php'; 
+require_once HOME . DS . 'includes' . DS . 'definition.php'; 
 
 ?>

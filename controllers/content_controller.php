@@ -39,11 +39,22 @@ class content_controller extends controller
   {
     $category_id = $_SESSION['active_category_id'];
     $fields = $this->_model->getFieldsByCategoryId($category_id);
-
+    
+    $values['id']=rand(100, 999) * -1;
+    $values['title']="";
+    foreach($fields as $field){
+      $item = array();
+      $item['field_key'] = $field['title_latin'];
+      $item['field_value'] = '';
+      $values['details'][] = $item;
+    }
+    $values['images'] = [];
+     
     $this->_setView("add");
 	
     $this->_view->set('page_title', STRINGS['contents']); 
     $this->_view->set('fields', $fields); 
+    $this->_view->set('values', $values); 
    
 	 return $this->_view->output(); 
   }
@@ -80,8 +91,8 @@ class content_controller extends controller
       $details[$field['title_latin']] = $this->getValue($field['title_latin']);
     }
 
-    if($id==0)
-        $id = $this->_model->insert($title,$category_id,$details); 
+    if($id<=0)
+        $id = $this->_model->insert($id,$title,$category_id,$details); 
     else	 
         $this->_model->update($id,$title,$details);		
     
@@ -91,6 +102,7 @@ class content_controller extends controller
   public function uploadimage(){
     $id=$_POST['id'];
     $image = $this->_upload_file($_FILES["image"]);
+    $this->_model->saveImage($id,$image);
     echo $image;
   }
 }	 
