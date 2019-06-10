@@ -49,6 +49,14 @@
     background-position: center;
     background-color: transparent;
 }
+#image-title{
+    margin:10px;
+
+}
+.image-bar{
+    padding:5px 0px;
+
+}
 </style>
 
 <div class="content">
@@ -89,11 +97,12 @@
                         <div class="imagestab">
                             <div class="image-containert">
                                 <?php foreach($values['images'] as $image) { ?>
-                                    <img class="image-item" onclick="handlePreviewImage(this)"; src="./uploads/<?php echo $image['title'] ?>"></img>
+                                    <img class="image-item" onclick="handlePreviewImage(this,<?php echo $image['id'] ?>)"; src="./uploads/<?php echo $image['title'] ?>"></img>
                                 <?php } ?>
                                 <div class="image-item image-add-button" onclick="handleAddImage();"></div>
                             </div> 
                             <div id="image-preview">
+                                <div class="image-bar"><span id="image-title"></span><button id="delete-image" type="button" class="btn btn-danger btn-sm">delete</button></div>
                                 <img src="" id='imagepreview' class="image-preview" />
                             </div> 
                             <div class="image-add">
@@ -119,22 +128,27 @@
         </div>
     </div>
     <script>
-        $('.image-preview').hide();
+        $('#image-preview').hide();
         $('.image-add').hide();
+        var xhr = new XMLHttpRequest();
+        xhr.onprogress = callback;
         
         function handleAddImage(){
-            $('.image-preview').hide();
+            $('#image-preview').hide();
             $('.image-add').show();
         }
 
-        function handlePreviewImage(row){
-            $('.image-preview').show();
+        function handlePreviewImage(row,id){
+            $('#image-preview').show();
             $('.image-add').hide();
             $('#imagepreview')[0].src = row.src;
+            $('#image-title').html(getFileNameFromPath(row.src));
+            $('#delete-image').click(function(){
+                xhr.open('POST', 'index.php?id=content/deleteImage/'+id, true);
+            });
         }
 
-        var xhr = new XMLHttpRequest();
-        xhr.onprogress = callback;
+        
         $("#add_image").click(function (event) {
             var fileInput = document.getElementById('newimage');
             var id = document.getElementById('id');
