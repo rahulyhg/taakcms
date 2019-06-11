@@ -8,11 +8,11 @@
     border-right: 1px solid lightgrey;
     border-bottom: 1px solid lightgrey;
 }
-.imagestab{
+.attachment-tab{
     display:flex;
     flex-flow:column;
 }
-.image-containert{
+.attachment-container{
     width: 100%;
     background-color: #e9ecef;
     padding: 5px;
@@ -21,39 +21,38 @@
     flex-wrap:wrap;
     border: 1px solid lightgray;
 }
-.image-item{
+.attachment-item{
     width: 80px;
     height: 60px;
     margin: 5px;
     border:1px solid lightgray;
-    background-color: blue;
 }
-.image-item:hover{
+.attachment-item:hover{
     border:1px solid black;
     cursor:pointer;
 }
 
-.image-preview{
+.attachment-preview{
     width: 100%;
     padding: 10px;
     border: 1px solid lightgray;
 }
-.image-add{
+.attachment-add{
     margin: 10px 0px;
 }
 
-.image-add-button{
+.attachment-add-button{
     background-image:url('./includes/img/plusicon.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     background-color: transparent;
 }
-#image-title{
+.attachment-title{
     margin:10px;
 
 }
-.image-bar{
+.attachment-bar{
     padding:5px 0px;
 
 }
@@ -94,18 +93,18 @@
                         ?>
                     </div>
                     <div id="menu1" class="container tab-pane fade"><br>
-                        <div class="imagestab">
-                            <div class="image-containert">
+                        <div class="attachment-tab">
+                            <div class="attachment-container" id="image-container">
                                 <?php foreach($values['images'] as $image) { ?>
-                                    <img class="image-item" onclick="handlePreviewImage(this,<?php echo $image['id'] ?>)"; src="./uploads/<?php echo $image['title'] ?>"></img>
+                                    <img class="attachment-item" onclick="handlePreviewImage(this,<?php echo $image['id'] ?>)"; src="./uploads/<?php echo $image['title'] ?>"></img>
                                 <?php } ?>
-                                <div class="image-item image-add-button" onclick="handleAddImage();"></div>
+                                <div class="attachment-item attachment-add-button" onclick="handleAddImage();"></div>
                             </div> 
-                            <div id="image-preview">
-                                <div class="image-bar"><span id="image-title"></span><button id="delete-image" type="button" class="btn btn-danger btn-sm">delete</button></div>
-                                <img src="" id='imagepreview' class="image-preview" />
+                            <div id="image-preview" >
+                                <div class="attachment-bar"><span id="image-title" class="attachment-title"></span><button id="delete-image" type="button" class="btn btn-danger btn-sm">delete</button></div>
+                                <img src="" id='imagepreview' class="attachment-preview" />
                             </div> 
-                            <div class="image-add">
+                            <div id="image-add" class="attachment-add">
                                 <form method="post" action="index.php?id=content/uploadimage" id="imageform" >
                                     <input type="file" name="newimage" id="newimage" />
                                     <button id="add_image" class="btn btn-primary btn-sm" type="button">Upload</button>
@@ -114,7 +113,24 @@
                         </div>
                     </div>
                     <div id="menu2" class="container tab-pane fade"><br>
-                        <audio preload="none" src="" controls="controls" style="float: left;width: 100%;"></audio>
+                        <div class="attachment-tab">
+                            <div class="attachment-container" id="audio-container">
+                                <?php foreach($values['images'] as $image) { ?>
+                                    <img class="attachment-item" onclick="handlePreviewAudio(this,<?php echo $image['id'] ?>)"; src="./includes/img/audio-file.png"></img>
+                                <?php } ?>
+                                <div class="attachment-item attachment-add-button" onclick="handleAddImage();"></div>
+                            </div> 
+                            <div id="audio-preview">
+                                <div class="attachment-bar"><span id="audio-title" class="attachment-title"></span><button id="delete-image" type="button" class="btn btn-danger btn-sm">delete</button></div>
+                                <audio id="audiopreview" preload="none" src="" controls="controls" style="float: left;width: 100%;"></audio>
+                            </div> 
+                            <div id="audio-add" class="attachment-add">
+                                <form method="post" action="index.php?id=content/uploadAudio" id="audioform" >
+                                    <input type="file" name="newimage" id="newimage" />
+                                    <button id="add_image" class="btn btn-primary btn-sm" type="button">Upload</button>
+                                </form>
+                            </div> 
+                        </div>
                     </div>
                     <div id="menu3" class="container tab-pane fade"><br>
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
@@ -129,18 +145,20 @@
     </div>
     <script>
         $('#image-preview').hide();
-        $('.image-add').hide();
+        $('#image-add').hide();
+        $('#audio-preview').hide();
+        $('#audio-add').hide();
         var xhr = new XMLHttpRequest();
         xhr.onprogress = callback;
         
         function handleAddImage(){
             $('#image-preview').hide();
-            $('.image-add').show();
+            $('#image-add').show();
         }
 
         function handlePreviewImage(row,id){
             $('#image-preview').show();
-            $('.image-add').hide();
+            $('#image-add').hide();
             $('#imagepreview')[0].src = row.src;
             $('#image-title').html(getFileNameFromPath(row.src));
             $('#delete-image').click(function(){
@@ -175,18 +193,30 @@
                 //unsetting in load 
                 var fileInput = document.getElementById('newimage');
                 let imageelement = document.createElement('img');
-                imageelement.className = "image-item";
+                imageelement.className = "attachment-item";
                 imageelement.onclick = (function() {return function() {
                         handlePreviewImage(this);
                         }})();
                 imageelement.src = "./uploads/" + getFileNameFromPath(fileInput.value) ;
                 fileInput.value='';
 
-                $('.image-containert .image-item:last').before(imageelement);
+                $('#image-container .attachment-item:last').before(imageelement);
                 $("#add_image")[0].disabled = false;
             }
             console.log(event);
         }
+
+        /*Audio*/
+        function handlePreviewAudio(row,id){
+            $('#audio-preview').show();
+            $('#audio-add').hide();
+            $('#audiopreview')[0].src = row.src;
+            $('#audio-title').html(getFileNameFromPath(row.src));
+            $('#delete-audio').click(function(){
+                xhr.open('POST', 'index.php?id=content/deleteAudio/'+id, true);
+            });
+        }
+        /**/
         
         function validateSubmit(){
             return true;
