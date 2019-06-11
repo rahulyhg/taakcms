@@ -114,7 +114,7 @@
                         </div>
                     </div>
                     <div id="menu2" class="container tab-pane fade"><br>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                        <audio preload="none" src="" controls="controls" style="float: left;width: 100%;"></audio>
                     </div>
                     <div id="menu3" class="container tab-pane fade"><br>
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
