@@ -17,6 +17,12 @@ class content_model extends model
 		
 		$sql3 = "SELECT * FROM tbl_content_images WHERE content_id =$id";
 		$row['images'] = $this->getAll($sql3); 
+		
+		$sql4 = "SELECT * FROM tbl_content_sounds WHERE content_id =$id";
+		$row['sounds'] = $this->getAll($sql4); 
+
+		$sql5 = "SELECT * FROM tbl_content_videos WHERE content_id =$id";
+		$row['videos'] = $this->getAll($sql5); 
 
 		return $row; 
 	} 
@@ -31,6 +37,8 @@ class content_model extends model
 		
 		$sql3 = "SELECT * FROM tbl_content_images WHERE content_id =$id";
 		$row['images'] = $this->getAll($sql3); 
+
+		
 
 		return $row; 
 	}
@@ -86,5 +94,15 @@ class content_model extends model
 		$sql="INSERT INTO tbl_content_images(content_id,title) VALUES($id,'$image')";
 		$this->execQuery($sql);
 	}
+	public function saveAudio($id,$audio){
+		$sql="INSERT INTO tbl_content_sounds(content_id,title) VALUES($id,'$audio')";
+		$this->execQuery($sql);
+	}
+	public function saveVideo($id,$video){
+		$sql="INSERT INTO tbl_content_videos(content_id,title) VALUES($id,'$video')";
+		$this->execQuery($sql);
+	}
+	
+	
 }
 ?>

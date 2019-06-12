@@ -105,6 +105,18 @@ class content_controller extends controller
     $this->_model->saveImage($id,$image);
     echo $image;
   }
+  public function uploadaudio(){
+    $id=$_POST['id'];
+    $audio = $this->_upload_file($_FILES["audio"]);
+    $this->_model->saveAudio($id,$audio);
+    echo $audio;
+  }
+  public function uploadvideo(){
+    $id=$_POST['id'];
+    $video = $this->_upload_file($_FILES["video"]);
+    $this->_model->saveVideo($id,$video);
+    echo $video;
+  }
 }	 
 	 
 ?>
