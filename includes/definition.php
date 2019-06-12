@@ -38,7 +38,7 @@ $strings = [
     "users" => "کاربران",
 ];
 $data_types = [
-    'text','number','select','yesno','string_list'
+    'text','number','select','yesno','string_list','long_text'
 ];
 
 define ('DataTypes', $data_types);

@@ -25,6 +25,30 @@ foreach($fields as $field) {
             } ?>
         </select>
     </div>
+    <?php } else if ($field['data_type'] == 'long_text'){?>
+    <div class="form-group">
+        <label for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>
+        <textarea type="text" class="form-control" name="<?php echo $field['title_latin']  ?>" ><?php echo getvalue($field['title_latin'],$values);  ?></textarea>
+    </div>
+    <?php } else if ($field['data_type'] == 'string_list'){?>
+    <div class="form-group">
+        <label for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>
+        <?php 
+
+            $tableId=$field['title_latin'];
+            $columns = array(
+                (object)['id'=>'field_id','type'=>'hidden','caption'=>''],
+                (object)['id'=>'order','type'=>'input','caption'=>STRINGS['order']],
+                (object)['id'=>'title','type'=>'input','caption'=>STRINGS['title']]);
+                $res = getvalue($field['title_latin'],$values);
+                if ($res == "")
+                    $data = [];
+                else
+                    $data = json_decode($res,true);
+            require_once HOME . DS . 'views' . DS . 'components' . DS . 'grid.php'; 
+
+            ?>
+    </div>
     <?php } else if ($field['data_type'] == 'yesno'){?>
     <div class="form-group">
         <label for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>

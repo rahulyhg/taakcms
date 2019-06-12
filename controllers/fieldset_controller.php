@@ -42,7 +42,7 @@ class fieldset_controller extends controller
     $id  =$_POST['id'];
     $title =$_POST['title'];
     $product_id =$_SESSION['product_id'];
-    $fields = json_decode(stripslashes($_POST['mytbl_data']));
+    $fields = json_decode(stripslashes($_POST['mytbl']));
     
     if($id==0)
         $id = $this->_model->insert($title , $product_id, $fields); 

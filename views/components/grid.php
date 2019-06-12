@@ -1,5 +1,5 @@
-<input type="hidden" id="<?php echo $tableId?>_data" name="<?php echo $tableId?>_data" value=""></td>
-<table class="table table-sm" id='<?php echo $tableId?>'>
+<input type="hidden" id="<?php echo $tableId?>" name="<?php echo $tableId?>" value=""></td>
+<table class="table table-sm" id='<?php echo $tableId?>_tbl'>
     <thead>
         <tr>
             <th scope="col"></th>
@@ -26,7 +26,7 @@
     </tbody>
     <script>
         const columnList = <?php echo json_encode($columns) ?>;
-        const mytable = $('#<?php echo $tableId?>')[0];
+        const mytable = $('#<?php echo $tableId?>_tbl')[0];
         var <?php echo $tableId?>_data=[];
 
         <?php 
@@ -64,7 +64,7 @@
                     newRow.append(newelement);
                 }
                 newRow[0].onclick=(function() {return function() {edit(this);}})();
-                $('#<?php echo $tableId?> tr:last').before(newRow);
+                $('#<?php echo $tableId?>_tbl tr:last').before(newRow);
             }
         }
         
@@ -194,7 +194,7 @@
                 newRow.append(newelement);
             }
 
-            $('#<?php echo $tableId?> tr:last').before(newRow);
+            $('#<?php echo $tableId?>_tbl tr:last').before(newRow);
 
         }
 

@@ -55,10 +55,17 @@ class content_controller extends controller
     $this->_view->set('page_title', STRINGS['contents']); 
     $this->_view->set('fields', $fields); 
     $this->_view->set('values', $values); 
+    $this->_view->set('tableId', $this->getTableId($fields)); 
    
 	 return $this->_view->output(); 
   }
+  private function getTableId($fields){
+    foreach($fields as $field){
+      if ($field['data_type'] == 'string_list')
+        return $field['title_latin'];
+    }
 
+  }
   public function edit($id)
   {
     $category_id = $_SESSION['active_category_id'];
@@ -69,13 +76,28 @@ class content_controller extends controller
     $this->_view->set('page_title', STRINGS['contents']); 
     $this->_view->set('fields', $fields); 
     $this->_view->set('values', $values); 
-   
+    $this->_view->set('tableId', $this->getTableId($fields)); 
+
 	 return $this->_view->output(); 
   }
 
-  private function getValue($title){
-    if (isset($_POST[$title]))
-      return $_POST[$title];
+  private function getValue($title,$data_type){
+    if (isset($_POST[$title])){
+      if ($data_type == 'string_list'){
+        $data =  json_decode(stripslashes($_POST[$title]),true);
+        $newdata[]=array();
+        $index=0;
+        foreach($data as $row){
+          $newdata[$index]['order'] = $row['order'];
+          $newdata[$index]['title'] = $row['title'];
+          $newdata[$index]['field_id'] = 0;
+          $index++;
+        }
+        return json_encode($newdata,JSON_UNESCAPED_UNICODE);
+      }else{
+        return $_POST[$title];
+      }
+    }
     return "";
   }
 
@@ -88,7 +110,7 @@ class content_controller extends controller
 
     $details;
     foreach($fields as $field){
-      $details[$field['title_latin']] = $this->getValue($field['title_latin']);
+      $details[$field['title_latin']] = $this->getValue($field['title_latin'],$field['data_type']);
     }
 
     if($id<=0)

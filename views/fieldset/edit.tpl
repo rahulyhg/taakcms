@@ -45,7 +45,7 @@
     </div>
     <script>
         function validateSubmit(){
-            $('#mytbl_data').val(getTableData());
+            $('#mytbl').val(getTableData());
             return true;
         }
 

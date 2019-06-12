@@ -7,6 +7,7 @@
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgrey;
     border-bottom: 1px solid lightgrey;
+    padding-bottom: 20px;
 }
 .attachment-tab{
     display:flex;
@@ -317,6 +318,7 @@
         });
 
         function validateSubmit(){
+            $('#<?php echo $tableId; ?>').val(getTableData());
             return true;
         }
 
