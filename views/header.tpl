@@ -7,17 +7,15 @@
     <meta name="author" content="">
 
     <!-- CSS -->
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="includes/css/styles.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"  crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="./includes/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./includes/css/bootstrap/rtl-bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="./includes/css/styles.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="./includes/css/fontawsome.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script src="./includes/js/jquery.min.js"></script>
+    <script src="./includes/js/popper.min.js"></script>
+    <script src="./includes/js/bootstrap.min.js"></script>
+    <script src="./includes/js/jquery-3.3.1.slim.min.js"  crossorigin="anonymous"></script>
     <script src="includes/js/common.js"></script>
 
     <?php
