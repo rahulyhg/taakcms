@@ -21,7 +21,7 @@ class category_controller extends controller
 	   $fieldset =$_POST['fieldset'];
 	   $logo = $this->_upload_file($_FILES["logo"]);
 	   $active =0;//$_POST['active'];
-     $product_id = $_SESSION['product_id'];
+      $product_id = $_SESSION['product_id'];
 
 	   if($id==0)
 			$this->_model->insert($title , $fieldset, $logo, $active,$product_id); 

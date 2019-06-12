@@ -1,4 +1,4 @@
-<select name="<?php echo $dropdownName ?>" class="custom-select">
+<select name="<?php echo $dropdownName ?>" class="custom-select form-group-last">
     <option <?php echo $dropdownValue == "" ? 'selected' : ''; ?> value=""></option>
     <?php 
     foreach($datasource as $item => $item_value) { 

@@ -1,27 +1,92 @@
 <?php include('views/header.tpl');?>
 
+<style>
+.app_container{
+    width: 90%;
+    margin-top:30px;
+    margin-bottom: auto;
+    display: flex;
+    flex-flow:row;
+    flex-wrap: wrap;
+    justify-content: center;
 
+}
+.app_item{
+    width: 250px;
+    align-content: center;
+    text-align: left;
+    background-color: white;
+    cursor: pointer;
+    margin: 10px;
+    display: flex;
+    flex-flow: column;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.app_item:hover{
+    cursor: pointer;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+.app_actions{
+    padding: 5px 10px;
+    border-top: 1px solid var(--border);
+}
+
+.app_title{
+    text-align: center;
+    margin:10px;
+    color: var(--fontcolor);
+}
+
+.app_logo{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin: auto; 
+    text-align: center;
+    background-color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    
+}
+.fas{
+  color:gray !important;
+}
+.fas:hover{
+  color:black !important;
+}
+.fa-plus{
+  line-height:191px;
+  text-align:center;
+  font-size:50px;
+
+}
+</style>
 <div class="content">
   <div class="flexColumn">
-    <h1 style="margin:auto;"><?php echo STRINGS['please_select_a_product']; ?></h1>
     <div class="app_container" >
 
         <?php foreach($rows as $row) { $color = $row['color'] == '' ? '#a8fcfc80' : $row['color']; ?> 
-          <div class="app_item" style="background-color:var(--<?php echo $color; ?>)" onclick="view_product(<?php echo $row['id']; ?>);">
+          <div class="app_item" onclick="view_product(<?php echo $row['id']; ?>);">
+            <div class="app_logo" style="border:1px solid <?php echo $row['color']; ?>; background-image:url('uploads/<?php echo $row['logo'] ?>');" ></div>
             <div class="app_title"><?php echo $row['title']; ?></div>
-            <div class="app_logo" style="background-image:url('uploads/<?php echo $row['logo'] ?>');" ></div>
             <div class="app_actions">
-                <a class="fas fa-edit" onclick="edit_product(<?php echo $row['id']; ?>)" ></a>
-                <a class="fas fa-trash-alt"  onclick="delete_product(<?php echo $row['id']; ?>);" ></a>
+                <a class="fas fa-edit fa-sm" onclick="edit_product(<?php echo $row['id']; ?>)" ></a>
+                <a class="fas fa-trash-alt fa-sm"  onclick="delete_product(<?php echo $row['id']; ?>);" ></a>
             </div>
           </div>
         <?php } ?>
         <div class="app_item" onclick="add_product();">
-          <div class="app_title"><?php echo STRINGS['add_product']; ?></div>
-          <div class="app_logo" style="background-image:url('includes/img/plusicon.png');" ></div>
-          <div style="height:24px;">
-            
-          </div>
+          <span class="fas fa-plus "></span>
+          <div class="app_actions">
+                
+                <div style="color:white">+</div>
+            </div>
+           
         </div>
     </div>
   </div>

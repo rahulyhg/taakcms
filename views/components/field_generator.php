@@ -12,13 +12,13 @@ function getvalue($fieldtitle,$values){
 foreach($fields as $field) { 
     if ($field['data_type'] == 'text'){ ?>
     <div class="form-group">
-        <label for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>
-        <input type="text" class="form-control" name="<?php echo $field['title_latin']  ?>" value="<?php echo getvalue($field['title_latin'],$values);  ?>" />
+        <label class="form-group-first" for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>
+        <input type="text" class="form-control form-group-last" name="<?php echo $field['title_latin']  ?>" value="<?php echo getvalue($field['title_latin'],$values);  ?>" />
     </div>
     <?php } else if ($field['data_type'] == 'select'){?>
     <div class="form-group">
-        <label for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>
-        <select class="form-control" name="<?php echo $field['title_latin']  ?>" value="<?php echo getvalue($field['title_latin'],$values);  ?>" >
+        <label class="form-group-first" for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>
+        <select class="form-control form-group-last" name="<?php echo $field['title_latin']  ?>" value="<?php echo getvalue($field['title_latin'],$values);  ?>" >
             <option value=''></option>
             <?php foreach(explode("/",$field['value']) as $opt){
                 echo "<option value='" . $opt . "' " . (getvalue($field['title_latin'],$values) == $opt ? "selected" : "")  . " >" . $opt . "</option>";
@@ -27,12 +27,12 @@ foreach($fields as $field) {
     </div>
     <?php } else if ($field['data_type'] == 'long_text'){?>
     <div class="form-group">
-        <label for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>
-        <textarea type="text" class="form-control" name="<?php echo $field['title_latin']  ?>" ><?php echo getvalue($field['title_latin'],$values);  ?></textarea>
+        <label class="form-group-first" for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>
+        <textarea type="text" class="form-control form-group-last" name="<?php echo $field['title_latin']  ?>" ><?php echo getvalue($field['title_latin'],$values);  ?></textarea>
     </div>
     <?php } else if ($field['data_type'] == 'string_list'){?>
     <div class="form-group">
-        <label for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>
+        <label class="form-group-first" for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>
         <?php 
 
             $tableId=$field['title_latin'];
@@ -51,8 +51,8 @@ foreach($fields as $field) {
     </div>
     <?php } else if ($field['data_type'] == 'yesno'){?>
     <div class="form-group">
-        <label for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>
-        <input type="checkbox" <?php echo getvalue($field['title_latin'],$values) == 1 ? "checked" : "";  ?> />
+        <label class="form-group-first" for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>
+        <input class="form-group-last" type="checkbox" <?php echo getvalue($field['title_latin'],$values) == 1 ? "checked" : "";  ?> />
     </div>
     <?php } ?> 
 <?php } ?>

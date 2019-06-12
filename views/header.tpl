@@ -18,21 +18,16 @@
     <script src="./includes/js/jquery-3.3.1.slim.min.js"  crossorigin="anonymous"></script>
     <script src="includes/js/common.js"></script>
 
-    <?php
-        if ($page_title == ""){
-            echo '<link rel="stylesheet" href="includes/css/reset.css">';
-            echo '<link rel="stylesheet" href="includes/css/supersized.css">';
-            echo '<link rel="stylesheet" href="includes/css/loginstyle.css">';
-        }
-    ?>
-    
-
 </head>
 <body class="mainBody">
-
+<style>
+.navbar-brand{
+    color:var(--fontcolor)!important;
+}
+</style>
 <?php if ($page_title != ""){ ?>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-        <a class="navbar-brand" href="index.php?id=product/index">مدیریت محتوای تاک</a>
+    <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color: white;border-bottom: 1px solid var(--border);">
+        <a class="navbar-brand" href="index.php?id=product/index"><?php echo STRINGS['site-name'] ?></a>
 
         <ul class="navbar-nav ml-auto" style="margin-left: 0px !important;">
             <li class="nav-item">

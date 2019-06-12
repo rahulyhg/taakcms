@@ -1,12 +1,13 @@
 <?php
 $strings = [
     "products" => "محصولات",
+    "site-name" => "مدیریت محتوای تاک",
     "categories" => "دسته‌بندی‌ها",
     "add_product" => "محصول جدید",
     "edit_product" => "ویرایش محصول جدید",
     "username" => "نام کاربری",
     "password" => "رمز ورود",
-    "enter" => "وارد شوید",
+    "enter" => "ورود",
     "enter_taak_cms" => "ورود به پنل محتوای تاک",
     "please_select_a_product" => "لطفاً یک سرویس را انتخاب نمایید",
     "title" => "عنوان",
@@ -26,7 +27,7 @@ $strings = [
     "title_latin" => "عنوان لاتین",
     "value" => "مقدار",
     "type" => "نوع فیلد",
-    "order" => "ترتیب",
+    "order" => "ردیف",
     "select_a_category" => "یکی از دسته‌بندی‌ها را انتخاب نمایید.",
     "details" => "جزئیات",
     "images" => "تصاویر",
@@ -36,6 +37,9 @@ $strings = [
     "nodacategory" => "هیچ دسته بندی تعریف نشده است!",
     "logout" => "خروج",
     "users" => "کاربران",
+    "edit" => "ویرایش",
+    "fieldset" => "فیلدها",
+
 ];
 $data_types = [
     'text','number','select','yesno','string_list','long_text'

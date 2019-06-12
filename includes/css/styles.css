@@ -10,6 +10,18 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Samim';
+    src: url('./fonts/Samim.eot');
+    src: url('./fonts/Samim.eot?#iefix') format("embedded-opentype"),
+    url('./fonts/Samim.woff2') format('woff2'),
+    url('./fonts/Samim.woff') format('woff'),
+    url('./fonts/Samim.ttf') format('truetype'),
+	url('./fonts/Samim.otf') format('opentype'),
+    url('./fonts//Samim.svg#Samim') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 a ,a:hover ,a:visited{
     color: inherit; /* blue colors for links too */
     text-decoration: inherit; /* no underline */
@@ -27,11 +39,15 @@ a ,a:hover ,a:visited{
     --green-light: #B0DFBB;
     --teal-light: #ADEBD9;
     --cyan-light: #AADDE5;
+
+    --background:#c2cedc;/*#f7fafc;*/
+    --border:#e9eaed;
+    --fontcolor:#777777;/*#1d8cf1;*/
 }
 
 /* colors */
 body{
-    font-family: 'Yekan';
+    font-family: 'Samim';
     direction: rtl;
 }
 
@@ -48,7 +64,7 @@ body{
 }
 .content{
     width: 100%;
-    background-color: antiquewhite;
+    background-color: var(--background);
     height: calc(100vh - 56px);
     display: flex;
     flex-flow: row;
@@ -56,16 +72,7 @@ body{
     overflow-y: auto;
 }
 
-.app_container{
-    width: 90%;
-    margin-top:0px;
-    margin-bottom: auto;
-    display: flex;
-    flex-flow:row;
-    flex-wrap: wrap;
-    justify-content: center;
 
-}
 
 a:not([href]):not([tabindex]) {
     color: black;
@@ -76,46 +83,7 @@ a:not([href]):not([tabindex]):hover {
     color: blue;
     
 }
-.app_item{
-    width: 200px;
-    align-content: center;
-    text-align: left;
-    background-color: #a8fcfc80;
-    cursor: pointer;
-    margin: 10px;
-    display: flex;
-    flex-flow: column;
-    border: 1px solid gray;
-    padding-bottom: 10px;
-    border-radius: 10px;
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
-}
 
-.app_item:hover{
-    cursor: pointer;
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
-}
-.app_actions{
-    padding:0px 10px;
-}
-
-.app_title{
-    text-align: center;
-    margin:10px;
-    font-size: 2em;
-}
-
-.app_logo{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin: auto; 
-    text-align: center;
-    background-color: white;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
 
 
 .hoverable{
@@ -141,10 +109,10 @@ a:not([href]):not([tabindex]):hover {
 .content-card{
     margin:10px;
     width:100%;
-    box-shadow:0 .125rem .25rem rgba(0,0,0,.075)!important;
+    
     display:flex;
     flex-flow:column;
-    border: 1px solid gray;
+    
 }
 .content-card-header{
     width:100%;
@@ -152,8 +120,7 @@ a:not([href]):not([tabindex]):hover {
     font-size: 1.2em;
     padding: 10px;
     font-weight:700;
-    border-bottom: 1px solid gray;
-    background-color:#adb5bd;
+    
 }
 
 .content-card-body{
@@ -179,8 +146,8 @@ a:not([href]):not([tabindex]):hover {
 
 .content-card-footer{
     padding: 5px;
-    border-top: 1px solid gray;
-    background-color:#adb5bd;
+    
+    
 }
 .content-row{
     width: 100%;
@@ -188,3 +155,19 @@ a:not([href]):not([tabindex]):hover {
     flex-flow: row;
 
 }
+
+.form-group{
+    display:flex;
+    flex-flow:row;
+    width:100%;
+  
+  }
+  .form-group-first{
+    width:20%;
+    text-align:left;
+    margin: auto;
+    padding: 0px 10px;
+  }
+  .form-group-last{
+    width:80%;
+  }

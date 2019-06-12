@@ -2,39 +2,39 @@
 
 <div class="content">
   <div class="flexColumn">
-    <div class="card shadow" style="max-width:600px;width: 100%;">
+    <div class="content-card" style="max-width:600px;width: 100%;">
       <form action="index.php?id=product/save" method="post" class="taak_form" enctype="multipart/form-data" >
-        <div class="card-header"><?php echo $page_title?></div>
-        <div class="card-body">
+        <div class="content-card-header"><?php echo $page_title?></div>
+        <div class="content-card-body-column">
           <input type="hidden" name="id" readonly="readonly" value="0"></td>
           <div class="form-group">
-            <label for="title"><?php echo STRINGS['title']?>:</label>
-            <input type="text" class="form-control" name="title" >
+            <label class="form-group-first" for="title"><?php echo STRINGS['title']?>:</label>
+            <input type="text" class="form-control form-group-last" name="title" >
           </div>
           <div class="form-group">
-            <label for="color"><?php echo STRINGS['color']?>:</label>
+            <label class="form-group-first" for="color"><?php echo STRINGS['color']?>:</label>
             <?php $dropdownName="color"; $datasource=$colors; $dropdownValue="";  require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
           </div>
           <div class="form-group">
-            <label for="logo"><?php echo STRINGS['logo']?>:</label>
-            <input type="file" class="form-control-file border" name="logo" >
+            <label class="form-group-first" for="logo"><?php echo STRINGS['logo']?>:</label>
+            <input type="file" class="form-control-file border form-group-last" name="logo" >
           </div>
           <div class="form-group">
-            <label for="terms_and_conditions"><?php echo STRINGS['terms_and_conditions']?>:</label>
-            <textarea type="text" class="form-control border" name="terms_and_conditions"></textarea>
+            <label class="form-group-first" for="terms_and_conditions"><?php echo STRINGS['terms_and_conditions']?>:</label>
+            <textarea type="text" class="form-control border form-group-last" name="terms_and_conditions"></textarea>
           </div>
           <div class="form-group">
-            <label for="about"><?php echo STRINGS['about']?>:</label>
-            <textarea type="text" class="form-control border" name="about"></textarea>
+            <label class="form-group-first" for="about"><?php echo STRINGS['about']?>:</label>
+            <textarea type="text" class="form-control border form-group-last" name="about"></textarea>
           </div>
           <div class="form-group">
-            <label for="banner_id"><?php echo STRINGS['banner_id']?>:</label>
-            <input type="text" class="form-control border" name="banner_id"></textarea>
+            <label class="form-group-first" for="banner_id"><?php echo STRINGS['banner_id']?>:</label>
+            <input type="text" class="form-control border form-group-last" name="banner_id"></textarea>
           </div>
         </div>
-        <div class="card-footer">
-          <button class="btn btn-primary" type="submit" ><?php echo STRINGS['save']?></button>
-          <button class="btn btn-danger" type="button" onclick="cancel();"><?php echo STRINGS['cancel']?></button>
+        <div class="content-card-footer">
+          <button class="btn btn-light btn-sm" type="submit" ><?php echo STRINGS['save']?></button>
+          <button class="btn btn-light btn-sm" type="button" onclick="cancel();"><?php echo STRINGS['cancel']?></button>
         </div>
       </form>
     </div>

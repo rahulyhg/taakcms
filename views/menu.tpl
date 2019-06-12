@@ -1,6 +1,6 @@
 <style>
 .menu{
-    background-color: #f1f2f3;
+    
     width: 300px;
     display:flex;
     flex-flow:column;
@@ -9,8 +9,8 @@
 }
 
 .menu_title{
-    font-size:xx-large;
-    text-align: center;
+    font-size:x-large;
+    padding: 5px;
     color:<?php echo $_SESSION['product_color'] ?>
 }
 .menu_categories{
@@ -34,6 +34,12 @@
 }
 .list-group-flush >li{
     cursor:pointer;
+}
+.list-group-item:hover , .list-group-item.active{
+    background-color:var(--background);
+    border:1px solid var(--background);
+    color:var(--fontcolor);
+
 }
 </style>
 

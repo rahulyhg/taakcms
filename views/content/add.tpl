@@ -27,6 +27,9 @@
     height: 60px;
     margin: 5px;
     border:1px solid lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .attachment-item:hover{
     border:1px solid black;
@@ -43,11 +46,10 @@
 }
 
 .attachment-add-button{
-    background-image:url('./includes/img/plusicon.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: transparent;
+    display:flex;
+    flex-flow:column;
+    justify-content:center;
+    align-items:center;
 }
 .attachment-title{
     margin:10px;
@@ -63,7 +65,6 @@
 <div class="content">
     <div class="content-card">
         <div class="content-card-header">
-            <?php echo $page_title ?> 
         </div>
         <div class="content-card-body-column">
             <form id="mainform" action="index.php?id=content/save" method="post" class="taak_form" >
@@ -87,8 +88,8 @@
                     <div id="home" class="container tab-pane active"><br>
                         <input type="hidden" name="id" id="id" readonly="readonly" value="<?php echo $values['id']; ?>" />
                         <div class="form-group">
-                            <label for="title"><?php echo STRINGS['title']  ?>:</label>
-                            <input type="text" class="form-control" name="title" value="<?php echo $values['title']; ?>" />
+                            <label class="form-group-first" for="title"><?php echo STRINGS['title']  ?>:</label>
+                            <input type="text" class="form-control form-group-last" name="title" value="<?php echo $values['title']; ?>" />
                         </div>
                         <?php
                             require HOME . DS . 'views' . DS . 'components' . DS . 'field_generator.php';  
@@ -100,16 +101,19 @@
                                 <?php foreach($values['images'] as $image) { ?>
                                     <img class="attachment-item" onclick="handlePreviewImage(this,<?php echo $image['id'] ?>)"; src="./uploads/<?php echo $image['title'] ?>"></img>
                                 <?php } ?>
-                                <div class="attachment-item attachment-add-button" onclick="handleAddImage();"></div>
+                                <div class="attachment-add-button" onclick="handleAddImage();">
+                                    <button type="button" class="btn btn-light btn-sm"> <div class="fas fa-plus"></div></button>
+                                </div>
+
                             </div> 
                             <div id="image-preview" >
-                                <div class="attachment-bar"><span id="image-title" class="attachment-title"></span><button id="delete-image" type="button" class="btn btn-danger btn-sm">delete</button></div>
+                                <div class="attachment-bar"><span id="image-title" class="attachment-title"></span><button id="delete-image" type="button" class="btn btn-light btn-sm"><div class="fas fa-times"></div></button></div>
                                 <img src="" id='imagepreview' class="attachment-preview" />
                             </div> 
                             <div id="image-add" class="attachment-add">
                                 <form method="post" action="index.php?id=content/uploadimage" id="imageform" >
                                     <input type="file" name="newimage" id="newimage" />
-                                    <button id="add_image" class="btn btn-primary btn-sm" type="button">Upload</button>
+                                    <button id="add_image" class="btn btn-light btn-sm" type="button"><div class="fas fa-upload" ></div></button>
                                 </form>
                             </div> 
                         </div>
@@ -118,18 +122,22 @@
                         <div class="attachment-tab">
                             <div class="attachment-container" id="audio-container">
                                 <?php if (isset($values['sounds'])) foreach($values['sounds'] as $sound) { ?>
-                                    <img class="attachment-item" data-filepath="./uploads/<?php echo $sound['title'] ?>" onclick="handlePreviewAudio(this,<?php echo $sound['id'] ?>)"; src="./includes/img/audio-file.png"></img>
+                                    <div class="attachment-item" data-filepath="./uploads/<?php echo $sound['title'] ?>" onclick="handlePreviewAudio(this,<?php echo $sound['id'] ?>)"; >
+                                        <div class="fas fa-music"></div>
+                                    </div>
                                 <?php } ?>
-                                <div class="attachment-item attachment-add-button" onclick="handleAddAudio();"></div>
+                                <div class="attachment-add-button" onclick="handleAddAudio();">
+                                    <button type="button" class="btn btn-light btn-sm"> <div class="fas fa-plus"></div></button>
+                                </div>
                             </div> 
                             <div id="audio-preview">
-                                <div class="attachment-bar"><span id="audio-title" class="attachment-title"></span><button id="delete-audio" type="button" class="btn btn-danger btn-sm">delete</button></div>
+                                <div class="attachment-bar"><span id="audio-title" class="attachment-title"></span><button id="delete-audio" type="button" class="btn btn-light btn-sm"><div class="fas fa-times"></div></button></div>
                                 <audio id="audiopreview" preload="none" src="" controls="controls" style="float: left;width: 100%;"></audio>
                             </div> 
                             <div id="audio-add" class="attachment-add">
                                 <form method="post" action="index.php?id=content/uploadAudio" id="audioform" >
                                     <input type="file" name="newaudio" id="newaudio" />
-                                    <button id="add_audio" class="btn btn-primary btn-sm" type="button">Upload</button>
+                                    <button id="add_image" class="btn btn-light btn-sm" type="button"><div class="fas fa-upload" ></div></button>
                                 </form>
                             </div> 
                         </div>
@@ -138,18 +146,22 @@
                         <div class="attachment-tab">
                             <div class="attachment-container" id="video-container">
                                 <?php if (isset($values['videos'])) foreach($values['videos'] as $video) { ?>
-                                    <img class="attachment-item" data-filepath="./uploads/<?php echo $video['title'] ?>" onclick="handlePreviewVideo(this,<?php echo $video['id'] ?>)"; src="./includes/img/video-file.png"></img>
+                                    <div class="attachment-item" data-filepath="./uploads/<?php echo $video['title'] ?>" onclick="handlePreviewVideo(this,<?php echo $video['id'] ?>)";>
+                                        <div class="fas fa-video"></div>
+                                    </div>
                                 <?php } ?>
-                                <div class="attachment-item attachment-add-button" onclick="handleAddVideo();"></div>
+                                <div class="attachment-add-button" onclick="handleAddVideo();">
+                                    <button type="button" class="btn btn-light btn-sm"> <div class="fas fa-plus"></div></button>
+                                </div>
                             </div> 
                             <div id="video-preview">
-                                <div class="attachment-bar"><span id="video-title" class="attachment-title"></span><button id="delete-video" type="button" class="btn btn-danger btn-sm">delete</button></div>
+                                <div class="attachment-bar"><span id="video-title" class="attachment-title"></span><button id="delete-video" type="button" class="btn btn-light btn-sm"><div class="fas fa-times"></div></button></div>
                                 <video id="videopreview" preload="none" src="" controls="controls" style="float: left;width: 100%;"></video>
                             </div> 
                             <div id="video-add" class="attachment-add">
                                 <form method="post" action="index.php?id=content/uploadVideo" id="videoform" >
                                     <input type="file" name="newvideo" id="newvideo" />
-                                    <button id="add_video" class="btn btn-primary btn-sm" type="button">Upload</button>
+                                    <button id="add_image" class="btn btn-light btn-sm" type="button"><div class="fas fa-upload" ></div></button>
                                 </form>
                             </div> 
                         </div>
@@ -158,8 +170,8 @@
             </form>
         </div>
         <div class="content-card-footer">
-            <button class="btn btn-primary" id="btn_submit" type="submit" onclick="return validateSubmit();" ><?php echo STRINGS['save']?></button>
-            <button class="btn btn-danger" type="button" onclick="cancel();"><?php echo STRINGS['cancel']?></button>
+            <button class="btn btn-light btn-sm" id="btn_submit" type="submit" onclick="return validateSubmit();" ><?php echo STRINGS['save']?></button>
+            <button class="btn btn-light btn-sm" type="button" onclick="cancel();"><?php echo STRINGS['cancel']?></button>
         </div>
     </div>
     <script>
