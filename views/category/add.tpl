@@ -13,6 +13,10 @@
             <input type="text" class="form-control form-group-last" name="title" >
           </div>
           <div class="form-group">
+            <label class="form-group-first" for="has_subcategory"><?php echo STRINGS['has_subcategory']?>:</label>
+            <input type="checkbox" name="has_subcategory" />
+          </div>
+          <div class="form-group">
             <label class="form-group-first" for="fieldset"><?php echo STRINGS['fieldset']?>:</label>
             <?php $dropdownName="fieldset"; $datasource=$fieldsets; $dropdownValue="";  require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
           </div>

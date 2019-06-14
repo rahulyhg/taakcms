@@ -1,5 +1,5 @@
 <?php 
-class category_controller extends controller 
+class subcategory_controller extends controller 
 { 
   public function add()
   {
@@ -18,28 +18,22 @@ class category_controller extends controller
    { 
 	   $id  =$_POST['id'];
 	   $title =$_POST['title'];
-	   
+	   $fieldset =$_POST['fieldset'];
 	   $has_subcategory =$_POST['has_subcategory'];
 	   //$logo = $this->_upload_file($_FILES["logo"]);
 	   $active =0;//$_POST['active'];
       $product_id = $_SESSION['product_id'];
 
-      if($id==0){
-         $category_id = $this->_model->insert($title , $has_subcategory,$product_id); 
-         if (!$has_subcategory){
-            $fieldset =$_POST['fieldset'];
-   
-            $subcategory_model = new subcategory_model(); 
-            $subcategory_model->insert($title,'',$fieldset,false,false,$product_id,true,0,$category_id,false);
-         
-   
-   
-         }
-      }
+      if($id==0)
+         $this->_model->insert($title , $fieldset, $has_subcategory,$product_id); 
       else	 
-         $this->_model->update($title , $has_subcategory,$product_id, $id );	
+         $this->_model->update($title , $fieldset, $has_subcategory,$product_id, $id );	
          
-      
+      if ($has_subcategory){
+
+      }else{
+         				       
+      }
       header('location:index.php?id=content/index/' . $product_id);
    } 
 }	 

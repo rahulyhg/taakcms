@@ -39,6 +39,8 @@ $strings = [
     "users" => "کاربران",
     "edit" => "ویرایش",
     "fieldset" => "فیلدها",
+    "has_subcategory" => "دارای زیرمجموعه",
+    "category" => "دسته بندی",
 
 ];
 $data_types = [

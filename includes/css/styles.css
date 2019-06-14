@@ -165,7 +165,7 @@ a:not([href]):not([tabindex]):hover {
   .form-group-first{
     width:20%;
     text-align:left;
-    margin: auto;
+    margin: unset auto;
     padding: 0px 10px;
   }
   .form-group-last{

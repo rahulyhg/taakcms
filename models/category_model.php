@@ -7,16 +7,17 @@ class category_model extends model
 		return $rows; 
     }
 
-    public function insert($title , $fieldset, $logo, $active,$product_id)
+    public function insert($title , $has_subcategory,$product_id)
 	{
-      $sql="INSERT INTO tbl_categories(title,fieldset_id,logo, active,product_id) 
-	  	VALUES('$title',$fieldset,'$logo', $active,$product_id)";
+      $sql="INSERT INTO tbl_categories(title,has_subcategory,product_id) 
+	  	VALUES('$title',$has_subcategory, $product_id)";
 	  $this->execQuery($sql);
+	  return $this->insert_id();
 	}
 //.................
-	public function update($title , $fieldset, $logo, $active,$product_id, $id)
+	public function update($title ,$has_subcategory,$product_id, $id)
 	{
-       $sql="UPDATE tbl_categories SET title='$title',fieldset_id=$fieldset,logo='$logo',logo='$logo',active=$active,product_id=$product_id WHERE id=$id";
+       $sql="UPDATE tbl_categories SET title='$title',has_subcategory=$has_subcategory,product_id=$product_id WHERE id=$id";
 	   $this->execQuery($sql);
 	}
 }
