@@ -24,6 +24,7 @@
 }
 .action-bar{
     width:100%;
+    text-align:left;
 }
 </style>
 <div class="content">
@@ -31,9 +32,11 @@
         <div class="content-card-header">
             <?php echo $page_title ?> 
         </div>
-        <div class="content-card-body">
+        <div class="content-card-body-column">
             <div class="action-bar">
-                <button type="primary" class="btn btn-sm btn-primary" onclick="add();"><?php echo STRINGS['add'] ?></button>
+                <button type="primary" class="btn btn-sm btn-light" onclick="add();">
+                    <div class="fas fa-plus"></div>
+                </button>
             </div>
             <table class="table table-bordered table-sm">
                 <thead>

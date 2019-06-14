@@ -24,10 +24,13 @@ class content_controller extends controller
 
   public function view_contents($category_id,$subcategory_id)
   {
+    $subcategory_model = new subcategory_model(); 
     if (!isset($_SESSION['active_category_id'])){
-      $subcategory_model = new subcategory_model(); 
-      $categories = $category_model->getRowsByProductId($product_id);
+      $categories = $subcategory_model->getRowsByProductId($product_id);
     }
+
+    $subcategory_title = $subcategory_model->getTitle($subcategory_id);
+
     $_SESSION['active_category_id'] = $category_id;
     $_SESSION['active_subcategory_id'] = $subcategory_id;
     $contents = $this->_model->getRowsBySubcategoryId($subcategory_id);
@@ -36,6 +39,7 @@ class content_controller extends controller
 	
     $this->_view->set('page_title', STRINGS['contents']); 
     $this->_view->set('contents', $contents); 
+    $this->_view->set('subcategory_title', $subcategory_title); 
    
 	 return $this->_view->output(); 
   }

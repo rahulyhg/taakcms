@@ -11,6 +11,8 @@
 .menu_title{
     font-size:x-large;
     padding: 5px;
+    display:flex;
+    flex-flow:row;
     color:<?php echo $_SESSION['product_color'] ?>
 }
 .menu_categories{
@@ -47,6 +49,13 @@
 
     <div class="menu_title">
         <a href="index.php?id=content/index/<?php echo $_SESSION['product_id'] ?>"> <?php echo $_SESSION['product_title'] ?> </a>
+        <button style="margin-right: auto;" data-toggle="tooltip" title="<?php echo STRINGS['manage_fieldsets'] ?>" type="button" class="btn btn-sm btn-light" onclick="manage_fieldsets();">
+            <div class="fas fa-cog"></div>
+        </button>
+        <button type="button" data-toggle="tooltip" title="<?php echo STRINGS['add_category'] ?>" class="btn btn-sm btn-light" onclick="add_category();">
+            <div class="fas fa-plus"></div>
+        </button>
+
     </div>
     <div class="menu_categories">
         <ul class="list-group list-group-flush">
@@ -62,11 +71,14 @@
                 } ?>
         </ul>
     </div>
-    <div class="menu_actions">
-        <a class="btn btn-secondary btn-lg" href='index.php?id=category/add' ><?php echo STRINGS['add_category'] ?></a>
-        <a class="btn btn-secondary btn-lg" href='index.php?id=fieldset/index' ><?php echo STRINGS['manage_fieldsets'] ?></a>
-    </div>
     <script>
+        function manage_fieldsets(){
+            window.location.href = "index.php?id=fieldset/index";
+        }
+        function add_category(){
+            window.location.href = "index.php?id=category/add";
+        }
+
         function view_contents(category_id,subcategory_id){
             if (subcategory_id == 0){
                 window.location.href = "index.php?id=subcategory/index/" + category_id;

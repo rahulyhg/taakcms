@@ -18,7 +18,7 @@
     
     <div class="content-card">
         <div class="content-card-header">
-            
+            <?php echo STRINGS['groups']; ?>
             <button type="primary" class="btn btn-sm btn-light" style="float:left;" onclick="add_new_subcategory();">
                     <div class="fas fa-plus"></div>
             </button>
@@ -39,7 +39,7 @@
                 </thead>
                 <tbody>
                     <?php foreach($subcategories as $row) { ?> 
-                    <tr class="d-flex">
+                    <tr class="d-flex" ondblclick="view_subcategory_contents(<?php echo $row['category_id']; ?>,<?php echo $row['id']; ?>)">
                         <td style="display:none;"><?php echo $row['id']; ?></td>
                         <td class="col-sm-1" ><?php echo $row['row_index']; ?></td>
                         <td class="col-sm-6" style="text-align:right;" ><?php echo $row['title']; ?></td>
@@ -58,6 +58,10 @@
 <script>
     function edit(id){
         window.location.href = "index.php?id=subcategory/edit/"+ id;
+    }
+
+    function view_subcategory_contents(category_id,subcategory_id){
+        window.location.href = "index.php?id=content/view_contents/"+ category_id + "/" + subcategory_id ;
     }
     
     function add_new_subcategory(){

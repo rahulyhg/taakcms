@@ -18,7 +18,7 @@
     
     <div class="content-card">
         <div class="content-card-header">
-            
+            <?php echo $subcategory_title; ?>
             <button type="primary" class="btn btn-sm btn-light" style="float:left;" onclick="add_new_content();">
                     <div class="fas fa-plus"></div>
             </button>

@@ -59,5 +59,10 @@ class subcategory_model extends model
 		$rows = $this->getRow($sql); 
 		return $rows['category_id']; 
 	}
+	public function getTitle($subcategory_id){
+		$sql = "SELECT * FROM tbl_subcategories WHERE id = $subcategory_id"; 
+		$rows = $this->getRow($sql); 
+		return $rows['title']; 
+	}
 }
 ?>

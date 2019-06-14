@@ -3,10 +3,11 @@ class fieldset_controller extends controller
 { 
   public function index()
   {
+    $product_id = $_SESSION['product_id'];
     $_SESSION['active_category_id'] = 0;
     $this->_setView("index");
     
-    $fieldsets = $this->_model->getRows();
+    $fieldsets = $this->_model->getRows($product_id);
 
     $this->_view->set('page_title', STRINGS['fieldsets']); 
     $this->_view->set('rows', $fieldsets); 

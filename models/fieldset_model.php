@@ -1,8 +1,8 @@
 <?php
 class fieldset_model extends model 
 { 
-    public function getRows(){
-		$sql = "SELECT * FROM tbl_fieldsets"; 
+    public function getRows($product_id){
+		$sql = "SELECT * FROM tbl_fieldsets WHERE product_id = $product_id"; 
 		$rows = $this->getAll($sql); 
 		return $rows; 
 	
