@@ -22,10 +22,15 @@ class content_controller extends controller
 	 return $this->_view->output(); 
   }
 
-  public function view_contents($category_id)
+  public function view_contents($category_id,$subcategory_id)
   {
+    if (!isset($_SESSION['active_category_id'])){
+      $subcategory_model = new subcategory_model(); 
+      $categories = $category_model->getRowsByProductId($product_id);
+    }
     $_SESSION['active_category_id'] = $category_id;
-    $contents = $this->_model->getRowsByCategoryId($category_id);
+    $_SESSION['active_subcategory_id'] = $subcategory_id;
+    $contents = $this->_model->getRowsBySubcategoryId($subcategory_id);
 
     $this->_setView("view_contents");
 	
@@ -104,6 +109,7 @@ class content_controller extends controller
   public function save()
   {
     $category_id = $_SESSION['active_category_id'];
+    $sub_category_id = $_SESSION['active_subcategory_id'];
     $fields = $this->_model->getFieldsByCategoryId($category_id);
     $id=$_POST['id'];
     $title=$_POST['title'];
@@ -114,11 +120,11 @@ class content_controller extends controller
     }
 
     if($id<=0)
-        $id = $this->_model->insert($id,$title,$category_id,$details); 
+        $id = $this->_model->insert($id,$title,$sub_category_id,$details); 
     else	 
         $this->_model->update($id,$title,$details);		
     
-	  return $this->view_contents($category_id); 
+	  return $this->view_contents($category_id,$sub_category_id); 
   }
 
   public function uploadimage(){

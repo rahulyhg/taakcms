@@ -5,19 +5,59 @@ class subcategory_model extends model
         $sql = "SELECT * FROM tbl_subcategories WHERE product_id = $product_id"; 
 		$rows = $this->getAll($sql); 
 		return $rows; 
-    }
-
-    public function insert($id,$title,$logo,$content_fieldset_id,$has_audio,$has_video,$product_id,$active,$self_fieldset_id,$category_id,$has_image)
-	{
-      $sql="INSERT INTO tbl_subcategories(title,logo,content_fieldset_id,has_audio,has_video,product_id,active,self_fieldset_id,category_id,has_image) 
-	  	VALUES('$title','$logo',$content_fieldset_id,$has_audio,$has_video,$product_id,$active,$self_fieldset_id,$category_id,$has_image)";
-	  $this->execQuery($sql);
 	}
-//.................
-	public function update($title ,$has_subcategory,$product_id, $id)
+	public function getSubcategories($category_id){
+		$sql = "SELECT * FROM tbl_subcategories WHERE category_id = $category_id"; 
+		$rows = $this->getAll($sql); 
+		return $rows; 
+	}
+	public function getSubcategoryFields($category_id) 
+	{ 
+		$sql2 = "SELECT * FROM tbl_categories WHERE id =$category_id"; 
+		$category = $this->getRow($sql2); 
+
+		$fieldset_id = $category['subcategory_fieldset_id'];
+		$sql3  = "SELECT * FROM tbl_fieldset_details WHERE fieldset_id = $fieldset_id";
+		$fields = $this->getAll($sql3); 
+		return $fields; 
+	} 
+
+    public function insert($id,$title,$category_id,$row_index,$details)
 	{
-       $sql="UPDATE tbl_subcategories SET title='$title',has_subcategory=$has_subcategory,product_id=$product_id WHERE id=$id";
-	   $this->execQuery($sql);
+		$sql="INSERT INTO tbl_subcategories(title,category_id,row_index) 
+		VALUES('$title',$category_id,$row_index)";
+		$this->execQuery($sql);
+		$id = $this->insert_id();
+		
+		$sql="DELETE FROM tbl_subcategories_details WHERE subcategory_id = $id";			
+		$this->execQuery($sql);
+
+		foreach($details as $detail => $detail_value){
+			$sql="INSERT INTO tbl_subcategories_details(subcategory_id,field_key,field_value) 
+				VALUES($id,'$detail','$detail_value')";
+			$this->execQuery($sql);
+		}
+	}
+	//.................
+	public function update($title,$category_id,$row_index, $id)
+	{
+		$sql="UPDATE tbl_subcategories SET title = '$title',row_index=$row_index WHERE id = $id";
+		$this->execQuery($sql);
+
+		$sql="DELETE FROM tbl_subcategories_details WHERE subcategory_id = $id";			
+		$this->execQuery($sql);
+
+		foreach($details as $detail => $detail_value){
+			$sql="INSERT INTO tbl_subcategories_details(subcategory_id,field_key,field_value) 
+				VALUES($id,'$detail','$detail_value')";
+			$this->execQuery($sql);
+		}
+	}
+
+	public function getSubcategoryId($category_id){
+		$sql = "SELECT * FROM tbl_subcategories WHERE category_id = $category_id"; 
+		$rows = $this->getRow($sql); 
+		return $rows['category_id']; 
 	}
 }
 ?>

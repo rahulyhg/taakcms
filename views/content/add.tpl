@@ -330,7 +330,10 @@
         });
 
         function validateSubmit(){
-            $('#<?php echo $tableId; ?>').val(getTableData());
+            var table = $('#<?php echo $tableId; ?>');
+            if (table.length){
+                table.val(getTableData());
+            }
             return true;
         }
 

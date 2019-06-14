@@ -41,6 +41,10 @@ $strings = [
     "fieldset" => "فیلدها",
     "has_subcategory" => "دارای زیرمجموعه",
     "category" => "دسته بندی",
+    "subcategory" => "زیر دسته بندی",
+    "has_audio" => "دارای صدا",
+    "has_video" => "دارای ویدئو",
+    "has_image" => "دارای تصویر",
 
 ];
 $data_types = [

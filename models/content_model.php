@@ -1,8 +1,8 @@
 <?php
 class content_model extends model 
 { 
-    public function getRowsByCategoryId($category_id){
-        $sql = "SELECT * FROM tbl_contents WHERE category_id = $category_id"; 
+    public function getRowsBySubcategoryId($subcategory_id){
+        $sql = "SELECT * FROM tbl_contents WHERE subcategory_id = $subcategory_id"; 
 		$rows = $this->getAll($sql); 
 		return $rows; 
     }
@@ -47,7 +47,7 @@ class content_model extends model
 	{ 
 		$sql = "SELECT * FROM tbl_categories WHERE id =$categoryId"; 
 		$category = $this->getRow($sql); 
-		$fieldset_id = $category['fieldset_id'] ;
+		$fieldset_id = $category['content_fieldset_id'] ;
 		$sql  = "SELECT * FROM tbl_fieldset_details WHERE fieldset_id = $fieldset_id";
 		$fields = $this->getAll($sql); 
 		return $fields; 
@@ -55,10 +55,10 @@ class content_model extends model
 
 	
 
-	public function insert($oldId,$title,$category_id, $details){
+	public function insert($oldId,$title,$subcategory_id, $details){
 		
-		$sql="INSERT INTO tbl_contents(title,category_id) 
-		VALUES('$title',$category_id)";
+		$sql="INSERT INTO tbl_contents(title,subcategory_id) 
+		VALUES('$title',$subcategory_id)";
 		$this->execQuery($sql);
 		$id = $this->insert_id();
 		

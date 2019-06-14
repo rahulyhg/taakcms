@@ -3,6 +3,7 @@ session_start();
 $controller = "product"; 
 $action = "index"; 
 $query = null; 
+$extraQuery=null;
 
 if (isset($_GET['id'])) 
 { 
@@ -17,6 +18,10 @@ if (isset($_GET['id']))
 	{ 
 		$query = $params[2]; 
 	} 
+	if (isset($params[3]) && !empty($params[3])) 
+	{ 
+		$extraQuery = $params[3]; 
+	} 
 }
 
 $modelName = $controller; 
@@ -26,7 +31,13 @@ $load = new $controller($modelName, $action);
 if ($action!='login' && !isset($_SESSION['uname']))
    header('location:index.php?id=user/login');
 
-if (method_exists($load, $action)  ) 
-	  $load->$action($query); 
+if (method_exists($load, $action)) {
+	if ($extraQuery == null){
+		$load->$action($query); 
+	}else{
+		$load->$action($query,$extraQuery); 
+	}
+
+}
 else  echo "request invalid";
 	 

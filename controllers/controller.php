@@ -82,5 +82,14 @@ class controller
 
 	  }
 
+	  function getBool($post,$id){
+		  if (isset($post[$id])){
+			if ($post[$id] == "on"){
+				return 1;
+			}
+		  }
+		  return 0;
+	  }
+
 }	 
 ?>
