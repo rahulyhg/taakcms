@@ -14,7 +14,7 @@
     </thead>
     <tbody>
         <tr>
-            <td scope="row"><button type="button" class="btn btn-primary btn-sm" onclick="addRow();">+</button></td>
+            <td scope="row"><button type="button" class="btn btn-light btn-sm" onclick="addRow();">+</button></td>
             <?php foreach($columns as $column) {
                 if ($column->type == 'hidden'){
                     echo '<td style="display:none" ></td>';
@@ -46,7 +46,7 @@
                     if (i==0){
                         var btn = document.createElement('button');
                         btn.innerText = "-";
-                        btn.className = "btn btn-danger btn-sm";
+                        btn.className = "btn btn-light btn-sm";
                         btn.onclick=(function() {return function() {
                             removeRow(this.parentElement);
                             }})();
@@ -159,7 +159,7 @@
                 if (!columnInfo){
                     var btn = document.createElement('button');
                     btn.innerText = "-";
-                    btn.className = "btn btn-danger btn-sm";
+                    btn.className = "btn btn-light btn-sm";
                     btn.onclick=(function() {return function() {
                         removeRow(this.parentElement);
                         }})();

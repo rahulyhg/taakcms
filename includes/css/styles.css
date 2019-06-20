@@ -41,8 +41,10 @@ a ,a:hover ,a:visited{
     --cyan-light: #AADDE5;
 
     --background:#c2cedc;/*#f7fafc;*/
+    --secoundbackground:#f7f7f7;/*#f7fafc;*/
     --border:#e9eaed;
     --fontcolor:#777777;/*#1d8cf1;*/
+    
 }
 
 /* colors */
@@ -112,6 +114,10 @@ a:not([href]):not([tabindex]):hover {
     
     display:flex;
     flex-flow:column;
+
+    background-color: var(--secoundbackground);
+    border-radius: 4px;
+    border: 1px solid var(--border);
     
 }
 .content-card-header{
@@ -170,4 +176,19 @@ a:not([href]):not([tabindex]):hover {
   }
   .form-group-last{
     width:80%;
+  }
+
+  .form-control{
+    
+    height: calc(1.8125rem + 2px);
+  }
+  .custom-select{
+    height: calc(1.8125rem + 2px);
+    line-height: 1;
+  }
+  
+ .required:before{
+    content:"*";
+    color:red;
+    margin-left: 5px;
   }

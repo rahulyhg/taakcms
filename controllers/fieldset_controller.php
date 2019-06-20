@@ -42,13 +42,14 @@ class fieldset_controller extends controller
   {
     $id  =$_POST['id'];
     $title =$_POST['title'];
+    $display_title =$_POST['display_title'];
     $product_id =$_SESSION['product_id'];
     $fields = json_decode(stripslashes($_POST['mytbl']));
     
     if($id==0)
-        $id = $this->_model->insert($title , $product_id, $fields); 
+        $id = $this->_model->insert($title ,$display_title, $product_id, $fields); 
     else	 
-        $this->_model->update($title , $fields, $id);		
+        $this->_model->update($title ,$display_title, $fields, $id);		
 
     return $this->index();
   }

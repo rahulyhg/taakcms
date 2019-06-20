@@ -7,8 +7,8 @@ class subcategory_controller extends controller
       $this->_setView("index");
 
       $subcategories = $this->_model->getSubcategories($category_id);
-
-      $this->_view->set('page_title', STRINGS['subcategory']); 
+      $title = $this->_model->getSubcategoryTitle($category_id);
+      $this->_view->set('page_title', $title); 
       $this->_view->set('subcategories', $subcategories); 
       
       

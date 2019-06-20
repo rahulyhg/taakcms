@@ -14,9 +14,13 @@
         <div class="content-card-body-column">
             <form action="index.php?id=fieldset/save" method="post" class="taak_form" >
                 <input type="hidden" name="id" readonly="readonly" value="<?php echo $fieldset['id']; ?>"></td>
-                <div class="content-row">
-                    <div class="col-sm-2"><?php echo STRINGS['title'] ?> </div>
-                    <div class="col-sm-10"><input name='title' class="form-control" value="<?php echo $fieldset['title']; ?>" /></div>
+                <div class="form-group">
+                    <div class="form-group-first"><?php echo STRINGS['title'] ?> </div>
+                    <div class="form-group-last"><input name='title' class="form-control" value="<?php echo $fieldset['title']; ?>" /></div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group-first"><?php echo STRINGS['display_title'] ?> </div>
+                    <div class="form-group-last"><input name='display_title' class="form-control" value="<?php echo $fieldset['display_title']; ?>" /></div>
                 </div>
                 <div class="content-row" style="margin-top:10px">
                     <?php 
@@ -38,8 +42,8 @@
            
         </div>
         <div class="content-card-footer">
-            <button class="btn btn-primary" type="submit" onclick="return validateSubmit();" ><?php echo STRINGS['save']?></button>
-            <button class="btn btn-danger" type="button" onclick="cancel();"><?php echo STRINGS['cancel']?></button>
+            <button class="btn btn-light" type="submit" onclick="return validateSubmit();" ><?php echo STRINGS['save']?></button>
+            <button class="btn btn-light" type="button" onclick="cancel();"><?php echo STRINGS['cancel']?></button>
         </div>
         </form>
     </div>

@@ -40,10 +40,10 @@ class fieldset_model extends model
 		return $row; 
     } 
     
-    public function insert($title,$product_id,$fields)
+    public function insert($title,$display_title,$product_id,$fields)
 	{
-      	$sql="INSERT INTO tbl_fieldsets(title,product_id) 
-		VALUES('$title',$product_id)";
+      	$sql="INSERT INTO tbl_fieldsets(title,display_title,product_id) 
+		VALUES('$title','$display_title',$product_id)";
 		$this->execQuery($sql);
 		$id = $this->insert_id();
 		foreach($fields as $field){
@@ -65,9 +65,9 @@ class fieldset_model extends model
 		return $id;
 	}
 //.................
-	public function update($title, $fields, $id)
+	public function update($title,$display_title, $fields, $id)
 	{
-	   $sql="UPDATE tbl_fieldsets SET title='$title' WHERE id=$id";
+	   $sql="UPDATE tbl_fieldsets SET title='$title',display_title='$display_title' WHERE id=$id";
 	   $this->execQuery($sql);
 
 	   foreach($fields as $field){

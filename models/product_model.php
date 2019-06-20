@@ -29,8 +29,9 @@ class product_model extends model
 //.................
 	public function update($title, $logo, $color, $terms_and_conditions, $about, $banner_id, $id)
 	{
-       $sql="UPDATE tbl_products SET title='$title',logo='$logo',color='$color',logo='$logo',terms_and_conditions='$terms_and_conditions',about='$about',baner_contentId='$banner_id' WHERE id=$id";
-	   $this->execQuery($sql);
+		$logoUpdate = $logo !== "" ? "logo= '$logo',":"";
+       	$sql="UPDATE tbl_products SET title='$title',color='$color',$logoUpdate terms_and_conditions='$terms_and_conditions',about='$about',baner_contentId='$banner_id' WHERE id=$id";
+	   	$this->execQuery($sql);
 	}
 
 	public function getColors(){

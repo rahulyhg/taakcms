@@ -52,8 +52,8 @@
                         <td style="display:none;"><?php echo $row['id']; ?></td>
                         <td><?php echo $row['title']; ?></td>
                         <td>
-                            <a class="fas fa-edit" onclick="edit(<?php echo $row['id']; ?>)" ></a>
-                            <a class="fas fa-trash-alt"  onclick="delete(<?php echo $row['id']; ?>);" ></a>
+                            <button class="btn btn-sm btn-light" onclick="edit(<?php echo $row['id']; ?>)"><div class="fas fa-edit"></div></button>
+                            <button class="btn btn-sm btn-light" onclick="delete(<?php echo $row['id']; ?>)"><div class="fas fa-trash"></div></button>
                         </td>
                     </tr>
                     <?php } ?>

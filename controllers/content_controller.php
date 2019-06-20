@@ -29,7 +29,7 @@ class content_controller extends controller
       $categories = $subcategory_model->getRowsByProductId($product_id);
     }
 
-    $subcategory_title = $subcategory_model->getTitle($subcategory_id);
+    $subcategory_title = $subcategory_model->getContentTitle($category_id,$subcategory_id);
 
     $_SESSION['active_category_id'] = $category_id;
     $_SESSION['active_subcategory_id'] = $subcategory_id;
@@ -37,9 +37,8 @@ class content_controller extends controller
 
     $this->_setView("view_contents");
 	
-    $this->_view->set('page_title', STRINGS['contents']); 
+    $this->_view->set('page_title', $subcategory_title); 
     $this->_view->set('contents', $contents); 
-    $this->_view->set('subcategory_title', $subcategory_title); 
    
 	 return $this->_view->output(); 
   }

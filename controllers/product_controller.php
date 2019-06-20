@@ -42,8 +42,11 @@ class product_controller extends controller
    public function save() 
    { 
 	   $id  = $_POST['id'];
-	   $title = $_POST['title'];
-	   $logo = $this->_upload_file($_FILES["logo"]);
+      $title = $_POST['title'];
+      $logo="";
+      if (isset($_FILES["logo"]) && $_FILES["logo"]["name"] !== ""){
+         $logo = $this->_upload_file($_FILES["logo"]);
+      }
 	   $color = $_POST['color'];
 	   $terms_and_conditions = $_POST['terms_and_conditions'];
 	   $about = $_POST['about'];

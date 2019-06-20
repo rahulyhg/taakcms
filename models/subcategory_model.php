@@ -59,10 +59,29 @@ class subcategory_model extends model
 		$rows = $this->getRow($sql); 
 		return $rows['category_id']; 
 	}
-	public function getTitle($subcategory_id){
-		$sql = "SELECT * FROM tbl_subcategories WHERE id = $subcategory_id"; 
-		$rows = $this->getRow($sql); 
-		return $rows['title']; 
+	public function getContentTitle($category_id,$subcategory_id){
+		$sql = "SELECT * FROM tbl_categories WHERE id = $category_id"; 
+		$category = $this->getRow($sql); 
+		$fieldset_id = $category['content_fieldset_id'];
+		$sql2 = "SELECT * FROM tbl_fieldsets WHERE id = $fieldset_id"; 
+		$fieldset = $this->getRow($sql2); 
+		$subcategory_title="";
+		if ($category['has_subcategory'] == "1"){
+			$sql3 = "SELECT * FROM tbl_subcategories WHERE id = $subcategory_id"; 
+			$subcategory = $this->getRow($sql3);
+			$subcategory_title = $subcategory['title'] . ' - ' ;
+		}
+		
+		return $subcategory_title . $fieldset['display_title']; 
+	}
+	public function getSubcategoryTitle($category_id){
+		$sql = "SELECT * FROM tbl_categories WHERE id = $category_id"; 
+		$category = $this->getRow($sql); 
+		$fieldset_id = $category['subcategory_fieldset_id'];
+		$sql2 = "SELECT * FROM tbl_fieldsets WHERE id = $fieldset_id"; 
+		$fieldset = $this->getRow($sql2); 
+		
+		return $fieldset['display_title']; 
 	}
 }
 ?>

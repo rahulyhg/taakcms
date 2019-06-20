@@ -46,6 +46,9 @@ $strings = [
     "has_video" => "دارای ویدئو",
     "has_image" => "دارای تصویر",
     "groups" => "گروه ها",
+    "display_title" => "عنوان نمایشی",
+    "content_fieldset" => "موجودیت محتوا",
+    "subcategory_fieldset" => "موجودیت دسته بندی",
 
 ];
 $data_types = [
