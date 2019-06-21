@@ -6,6 +6,15 @@ class product_model extends model
 		$rows = $this->getAll("SELECT * FROM tbl_products"); 
 		return $rows ; 
 	} 
+	public function getRowsForDrowdown(){
+		$sql = "SELECT * FROM tbl_products"; 
+		$rows = $this->getAll($sql); 
+		$fieldsets;
+		foreach($rows as $row)
+			$fieldsets[$row['id']] = $row['title'];
+
+		return $fieldsets; 
+	}
 //.................	
 	public function getRowById($id) 
 	{ 

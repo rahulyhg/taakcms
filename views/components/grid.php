@@ -1,5 +1,5 @@
 <input type="hidden" id="<?php echo $tableId?>" name="<?php echo $tableId?>" value=""></td>
-<table class="table table-sm" id='<?php echo $tableId?>_tbl'>
+<table class="table table-sm form-group-last" id='<?php echo $tableId?>_tbl'>
     <thead>
         <tr>
             <th scope="col"></th>
@@ -59,6 +59,9 @@
 
                     } else {
                         var cellValue = <?php echo $tableId?>_data[row][columnList[i-1].id]
+                        if (columnList[i-1].options){
+                            cellValue=columnList[i-1].options[cellValue];
+                        }
                         newelement.append(document.createTextNode(cellValue));
                     }
                     newRow.append(newelement);
@@ -102,7 +105,10 @@
 
             for (var j = 0, col; col = row.cells[j]; j++) {
                 if (j!=0){
-                    const cellValue = col.children[0].value;
+                    let cellValue = col.children[0].value;
+                    if (columnList[j-1].options){
+                        cellValue=columnList[j-1].options[cellValue];
+                    }
                     col.removeChild(col.children[0]);
                     col.appendChild(document.createTextNode(cellValue));
                 }
@@ -110,25 +116,39 @@
             
         }
 
+        function getValueFromKey(obj,text){
+            const keys = Object.keys(obj);
+            for (var option=0;option < keys.length;option++){
+                if (obj[keys[option]] === text){
+                    return keys[option];
+                }
+            }
+        }
+
         function changeToEditMode(row){
             row.onclick=(function() {return function() {}})();
 
             for (var j = 0, col; col = row.cells[j]; j++) {
                 if (j != 0){
-                    const cellValue = col.innerText;
+                    let cellValue = col.innerText;
+                    
+                    
                     col.innerText="";
                     if (columnList[j-1].type == 'select'){
+                        
                         var select = document.createElement('select');
                         select.className = "custom-select custom-select-sm";
                         select.name = columnList[j-1].id;
                         select.id = columnList[j-1].id;
-                        select.value = cellValue;
                         const options = columnList[j-1].options;
-                        for (var option=0;option < options.length;option++){
+                        cellValue = getValueFromKey(options,cellValue);
+                        select.value = cellValue;
+                        const keys = Object.keys(options);
+                        for (var option=0;option < keys.length;option++){
                             var opt = document.createElement('option');
-                            opt.appendChild( document.createTextNode(options[option]));
-                            opt.value = options[option]; 
-                            opt.selected = options[option] == cellValue;
+                            opt.appendChild( document.createTextNode(options[keys[option]]));
+                            opt.value = keys[option]; 
+                            opt.selected = keys[option] == cellValue;
                             select.appendChild(opt); 
                         }
                         col.appendChild(select);
@@ -178,10 +198,11 @@
                     select.name = columnInfo.id;
                     select.id = columnInfo.id;
                     const options = columnInfo.options;
-                    for (var option=0;option < options.length;option++){
+                    const keys = Object.keys(options);
+                    for (var option=0;option < keys.length;option++){
                         var opt = document.createElement('option');
-                        opt.appendChild( document.createTextNode(options[option]));
-                        opt.value = options[option]; 
+                        opt.appendChild( document.createTextNode(options[keys[option]]));
+                        opt.value = keys[option]; 
                         select.appendChild(opt); 
                     }
                     newelement.append(select);

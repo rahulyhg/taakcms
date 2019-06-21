@@ -31,7 +31,7 @@
 
         <ul class="navbar-nav ml-auto" style="margin-left: 0px !important;">
             <li class="nav-item">
-                <a class="nav-link" href="index.php?id=user/logout"><?php echo STRINGS['users'] ?> <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.php?id=user/index"><?php echo STRINGS['users'] ?> <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?id=user/logout"><?php echo STRINGS['logout'] ?> <span class="sr-only">(current)</span></a>

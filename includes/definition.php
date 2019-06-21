@@ -49,11 +49,24 @@ $strings = [
     "display_title" => "عنوان نمایشی",
     "content_fieldset" => "موجودیت محتوا",
     "subcategory_fieldset" => "موجودیت دسته بندی",
+    "users" => "کاربران",
+    "fullname" => "نام کامل",
+    "operations" => "عملیات",
+    "role" => "نقش",
+    "adduser" => "کاربر جدید",
+    "accessed_products" => "محصولات در دسترس",
+    "edit_user" => "ویرایش کاربر",
+
 
 ];
-$data_types = [
-    'text','number','select','yesno','string_list','long_text'
-];
+
+$data_types;
+$data_types['text']='text';
+$data_types['number']='number';
+$data_types['select']='select';
+$data_types['yesno']='yesno';
+$data_types['string_list']='string_list';
+$data_types['long_text']='long_text';
 
 define ('DataTypes', $data_types);
 define ('STRINGS', $strings);
