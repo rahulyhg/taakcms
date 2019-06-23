@@ -26,6 +26,27 @@ class content_model extends model
 
 		return $row; 
 	} 
+	public function getRowByIdForApi($id) 
+	{ 
+		$sql = "SELECT * FROM tbl_contents WHERE  id =$id"; 
+		$row = $this->getRow($sql); 
+		
+		$sql2 = "SELECT * FROM tbl_content_details WHERE content_id =$id"; 
+		foreach ($this->getAll($sql2) as $detail){
+			$row[$detail['field_key']] = $detail['field_value'];
+		} 
+		
+		$sql3 = "SELECT * FROM tbl_content_images WHERE content_id =$id";
+		$row['images'] = $this->getAll($sql3); 
+		
+		$sql4 = "SELECT * FROM tbl_content_sounds WHERE content_id =$id";
+		$row['sounds'] = $this->getAll($sql4); 
+
+		$sql5 = "SELECT * FROM tbl_content_videos WHERE content_id =$id";
+		$row['videos'] = $this->getAll($sql5); 
+
+		return $row; 
+	} 
 
 	public function getEmptyRow($fields) 
 	{ 

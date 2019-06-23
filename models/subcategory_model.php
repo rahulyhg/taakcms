@@ -12,6 +12,27 @@ class subcategory_model extends model
 		
 		return $rows; 
 	}
+
+	public function getSubcategoriesForApi($category_id,$conditions){
+		$ids=[];
+		foreach ($conditions as $condition){
+			$sql = 'SELECT subcategory_id FROM tbl_subcategory_details 
+			WHERE field_key ="' . $condition['field'] . '" AND field_value = "' . $condition['value'] . '"';
+			$rows = $this->getAll($sql); 
+			$res = array_map(function ($object) { 
+				return $object['subcategory_id']; 
+			}, $rows);
+			array_push($ids, $res);
+		}
+		$whereContition="";
+		if (count($ids) > 0){
+			$whereContition = " AND id in (" . implode(',',$ids[0]) . ") ";
+		}
+		$sql = "SELECT * FROM tbl_subcategories WHERE category_id = $category_id " . $whereContition ." ORDER BY row_index"; 
+		$rows = $this->getAll($sql); 
+		return $rows;
+	}
+
 	public function getRowById($id) 
 	{ 
 		$sql = "SELECT * FROM tbl_subcategories WHERE  id =$id"; 
@@ -43,11 +64,11 @@ class subcategory_model extends model
 		$this->execQuery($sql);
 		$id = $this->insert_id();
 		
-		$sql="DELETE FROM tbl_subcategories_details WHERE subcategory_id = $id";			
+		$sql="DELETE FROM tbl_subcategory_details WHERE subcategory_id = $id";			
 		$this->execQuery($sql);
 
 		foreach($details as $detail => $detail_value){
-			$sql="INSERT INTO tbl_subcategories_details(subcategory_id,field_key,field_value) 
+			$sql="INSERT INTO tbl_subcategory_details(subcategory_id,field_key,field_value) 
 				VALUES($id,'$detail','$detail_value')";
 			$this->execQuery($sql);
 		}
@@ -61,11 +82,11 @@ class subcategory_model extends model
 		$sql="UPDATE tbl_subcategories SET title = '$title',row_index=$row_index WHERE id = $id";
 		$this->execQuery($sql);
 
-		$sql="DELETE FROM tbl_subcategories_details WHERE subcategory_id = $id";			
+		$sql="DELETE FROM tbl_subcategory_details WHERE subcategory_id = $id";			
 		$this->execQuery($sql);
 
 		foreach($details as $detail => $detail_value){
-			$sql="INSERT INTO tbl_subcategories_details(subcategory_id,field_key,field_value) 
+			$sql="INSERT INTO tbl_subcategory_details(subcategory_id,field_key,field_value) 
 				VALUES($id,'$detail','$detail_value')";
 			$this->execQuery($sql);
 		}

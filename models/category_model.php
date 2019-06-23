@@ -16,6 +16,11 @@ class category_model extends model
 		}
 		return $rows; 
 	}
+	public function getRows($product_id){
+        $sql = "SELECT id,title FROM tbl_categories WHERE product_id = $product_id"; 
+		$rows = $this->getAll($sql); 
+		return $rows; 
+	}
 	
 	public function getCategory($id){
 		$sql = "SELECT * FROM tbl_categories WHERE id = $id"; 
