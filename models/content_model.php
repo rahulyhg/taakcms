@@ -2,7 +2,7 @@
 class content_model extends model 
 { 
     public function getRowsBySubcategoryId($subcategory_id){
-        $sql = "SELECT * FROM tbl_contents WHERE subcategory_id = $subcategory_id"; 
+        $sql = "SELECT * FROM tbl_contents WHERE subcategory_id = $subcategory_id ORDER BY row_index"; 
 		$rows = $this->getAll($sql); 
 		return $rows; 
     }
@@ -55,10 +55,13 @@ class content_model extends model
 
 	
 
-	public function insert($oldId,$title,$subcategory_id, $details){
+	public function insert($oldId,$title,$subcategory_id,$row_index,$last_row_index,$date, $details){
 		
-		$sql="INSERT INTO tbl_contents(title,subcategory_id) 
-		VALUES('$title',$subcategory_id)";
+		$sql="UPDATE tbl_contents SET row_index = row_index + 1 WHERE subcategory_id = $subcategory_id AND row_index >= $row_index ";
+		$this->execQuery($sql);
+
+		$sql="INSERT INTO tbl_contents(title,subcategory_id,row_index,create_date) 
+		VALUES('$title',$subcategory_id,$row_index,'$date')";
 		$this->execQuery($sql);
 		$id = $this->insert_id();
 		
@@ -76,8 +79,11 @@ class content_model extends model
 		}
 	}
 
-	public function update($id,$title, $details){
-		$sql="UPDATE tbl_contents SET title = '$title' WHERE id = $id";
+	public function update($id,$title,$subcategory_id,$row_index,$last_row_index, $details){
+		$sql="UPDATE tbl_contents SET row_index = row_index + 1 WHERE subcategory_id = $subcategory_id AND row_index >= $row_index and row_index < $last_row_index";
+		$this->execQuery($sql);
+
+		$sql="UPDATE tbl_contents SET title = '$title',row_index = $row_index WHERE id = $id";
 		$this->execQuery($sql);
 
 		$sql="DELETE FROM tbl_content_details WHERE content_id = $id";			
@@ -101,6 +107,11 @@ class content_model extends model
 	public function saveVideo($id,$video){
 		$sql="INSERT INTO tbl_content_videos(content_id,title) VALUES($id,'$video')";
 		$this->execQuery($sql);
+	}
+	public function getNewOrderIndex(){
+		$sql = "SELECT * FROM tbl_contents ORDER BY row_index DESC"; 
+		$subcategory = $this->getRow($sql); 
+		return $subcategory['row_index'] + 1; 
 	}
 	
 	

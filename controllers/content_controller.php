@@ -50,6 +50,7 @@ class content_controller extends controller
     
     $values['id']=rand(100, 999) * -1;
     $values['title']="";
+    $values['row_index']=$this->_model->getNewOrderIndex();
     foreach($fields as $field){
       $item = array();
       $item['field_key'] = $field['title_latin'];
@@ -116,6 +117,9 @@ class content_controller extends controller
     $fields = $this->_model->getFieldsByCategoryId($category_id);
     $id=$_POST['id'];
     $title=$_POST['title'];
+    $date=date('Y-m-d h:i:s');
+    $row_index=$_POST['row_index'];
+    $last_row_index=$_POST['last_row_index'];
 
     $details;
     foreach($fields as $field){
@@ -123,9 +127,9 @@ class content_controller extends controller
     }
 
     if($id<=0)
-        $id = $this->_model->insert($id,$title,$sub_category_id,$details); 
+        $id = $this->_model->insert($id,$title,$sub_category_id,$row_index,$last_row_index,$date,$details); 
     else	 
-        $this->_model->update($id,$title,$details);		
+        $this->_model->update($id,$title,$sub_category_id,$row_index,$last_row_index,$details);		
     
 	  return $this->view_contents($category_id,$sub_category_id); 
   }

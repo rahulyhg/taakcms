@@ -21,7 +21,7 @@
           </div>
           <div class="form-group">
             <label class="form-group-first" for="content_fieldset"><?php echo STRINGS['content_fieldset']?>:</label>
-            <?php $dropdownName="content_fieldset"; $datasource=$fieldsets; $dropdownValue="";  require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
+            <?php $dropdownName="content_fieldset"; $disabled=false; $datasource=$fieldsets; $dropdownValue="";  require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
           </div>
           <div class="form-group">
             <label class="form-group-first" for="has_audio"><?php echo STRINGS['has_audio']?>:</label>

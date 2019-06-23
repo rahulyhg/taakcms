@@ -33,7 +33,7 @@ class subcategory_model extends model
 		return $fields; 
 	} 
 
-    public function insert($id,$title,$category_id,$row_index,$details)
+    public function insert($title,$category_id,$row_index,$details)
 	{
 		$sql="UPDATE tbl_subcategories SET row_index = row_index + 1 WHERE row_index >= $row_index ";
 		$this->execQuery($sql);

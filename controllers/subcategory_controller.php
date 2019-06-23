@@ -92,7 +92,7 @@ class subcategory_controller extends controller
       }
 
       if($id<=0)
-         $id = $this->_model->insert($id,$title,$category_id, $row_index,$details); 
+         $id = $this->_model->insert($title,$category_id, $row_index,$details); 
       else	 
          $this->_model->update($id,$title, $row_index,$last_row_index,$details);		
       

@@ -24,7 +24,10 @@ class category_controller extends controller
       $has_image = $this->getBool($_POST,'has_image');
 
       $has_subcategory = $this->getBool($_POST,'has_subcategory');
-      $subcategory_fieldset_id = intval($_POST['subcategory_fieldset']);
+      $subcategory_fieldset_id = 0;
+      if (isset($_POST['subcategory_fieldset'])){
+         $subcategory_fieldset_id = intval($_POST['subcategory_fieldset']);
+      }
 
       $product_id = $_SESSION['product_id'];
 
@@ -32,7 +35,7 @@ class category_controller extends controller
          $category_id = $this->_model->insert($title,$contetn_fieldset_id,$has_audio,$has_video,$has_image,$has_subcategory,$subcategory_fieldset_id,$product_id); 
          if (!$has_subcategory && $category_id){
             $subcategory_model = new subcategory_model(); 
-            $subcategory_model->insert($title,$category_id);
+            $subcategory_model->insert($title,$category_id,0,[]);
          }
       }
       else	 

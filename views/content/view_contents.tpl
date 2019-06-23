@@ -43,7 +43,7 @@
                         <td style="display:none;"><?php echo $row['id']; ?></td>
                         <td class="col-sm-1" ><?php echo $row['row_index']; ?></td>
                         <td class="col-sm-6" style="text-align:right;" ><?php echo $row['title']; ?></td>
-                        <td class="col-sm-3" ><?php echo $row['title']; ?></td>
+                        <td class="col-sm-3" ><?php echo $row['create_date']; ?></td>
                         <td class="col-sm-2" >
                             <a class="fas fa-edit" onclick="edit(<?php echo $row['id']; ?>)" ></a>
                             <a class="fas fa-trash-alt"  onclick="delete(<?php echo $row['id']; ?>);" ></a>
