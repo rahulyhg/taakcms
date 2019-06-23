@@ -31,10 +31,10 @@
                 <thead>
                 <tr class="d-flex">
                     <th style="display:none;"></th>
-                    <th class="col-sm-1"><?php echo STRINGS['order'] ?></th>
-                    <th class="col-sm-6"><?php echo STRINGS['title'] ?></th>
-                    <th class="col-sm-3"><?php echo STRINGS['date'] ?></th>
-                    <th class="col-sm-2"><?php echo STRINGS['edit'] ?></th>
+                    <th class="col-sm-1"><?php echo tr('order') ?></th>
+                    <th class="col-sm-6"><?php echo tr('title') ?></th>
+                    <th class="col-sm-3"><?php echo tr('date') ?></th>
+                    <th class="col-sm-2"><?php echo tr('edit') ?></th>
                 </tr>
                 </thead>
                 <tbody>

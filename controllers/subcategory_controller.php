@@ -31,7 +31,7 @@ class subcategory_controller extends controller
          $item['field_value'] = '';
          $values['details'][] = $item;
        }
-      $this->_view->set('page_title', STRINGS['category']); 
+      $this->_view->set('page_title', tr('category')); 
       $this->_view->set('fields', $fields); 
       $this->_view->set('values', $values); 
       $this->_view->set('category_id', $category_id); 
@@ -51,7 +51,7 @@ class subcategory_controller extends controller
          $item['field_value'] = '';
          $values['details'][] = $item;
        }
-      $this->_view->set('page_title', STRINGS['category']); 
+      $this->_view->set('page_title', tr('category')); 
       $this->_view->set('fields', $fields); 
       $this->_view->set('values', $values); 
       $this->_view->set('category_id', $category_id); 

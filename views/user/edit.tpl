@@ -8,26 +8,26 @@
         <div class="content-card-body-column">
           <input type="hidden" name="id" readonly="readonly" value="<?php echo $row['id']?>"></td>
           <div class="form-group">
-            <label class="form-group-first" for="username"><?php echo STRINGS['username']?>:</label>
+            <label class="form-group-first" for="username"><?php echo tr('username')?>:</label>
             <input required="required" type="text" class="form-control form-group-last" name="username" value="<?php echo $row['username']?>" >
           </div>
           <div class="form-group">
-            <label class="form-group-first" for="fullname"><?php echo STRINGS['fullname']?>:</label>
+            <label class="form-group-first" for="fullname"><?php echo tr('fullname')?>:</label>
             <input required="required" type="text" class="form-control form-group-last" name="fullname" value="<?php echo $row['fullname']?>" >
           </div>
           <div class="form-group">
-            <label class="form-group-first" for="role"><?php echo STRINGS['role']?>:</label>
+            <label class="form-group-first" for="role"><?php echo tr('role')?>:</label>
             <?php $dropdownName="role"; $disabled=false; $datasource=$roles; $dropdownValue=$row['role']; require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
           </div>
           <div class="form-group">
-            <label class="form-group-first" for="accessed_products"><?php echo STRINGS['accessed_products']  ?>:</label>
+            <label class="form-group-first" for="accessed_products"><?php echo tr('accessed_products')  ?>:</label>
 
             <?php 
 
             $tableId='accessed_products';
             $columns = array(
                 (object)['id'=>'field_id','type'=>'hidden','caption'=>''],
-                (object)['id'=>'product','type'=>'select','caption'=>STRINGS['products'],'options'=>$products]);
+                (object)['id'=>'product','type'=>'select','caption'=>tr('products'),'options'=>$products]);
                
                 $data = $row['accessed_products'];
                 
@@ -37,8 +37,8 @@
           </div>
         </div>
         <div class="content-card-footer">
-          <button class="btn btn-light btn-sm" type="submit" onclick="return validateSubmit();" ><?php echo STRINGS['save']?></button>
-          <button class="btn btn-light btn-sm" type="button" onclick="cancel();"><?php echo STRINGS['cancel']?></button>
+          <button class="btn btn-light btn-sm" type="submit" onclick="return validateSubmit();" ><?php echo tr('save')?></button>
+          <button class="btn btn-light btn-sm" type="button" onclick="cancel();"><?php echo tr('cancel')?></button>
         </div>
       </form>
     </div>

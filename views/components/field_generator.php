@@ -38,8 +38,8 @@ foreach($fields as $field) {
             $tableId=$field['title_latin'];
             $columns = array(
                 (object)['id'=>'field_id','type'=>'hidden','caption'=>''],
-                (object)['id'=>'order','type'=>'input','caption'=>STRINGS['order']],
-                (object)['id'=>'title','type'=>'input','caption'=>STRINGS['title']]);
+                (object)['id'=>'order','type'=>'input','caption'=>tr('order')],
+                (object)['id'=>'title','type'=>'input','caption'=>tr('title')]);
                 $res = getvalue($field['title_latin'],$values);
                 if ($res == "")
                     $data = [];

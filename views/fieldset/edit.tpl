@@ -15,11 +15,11 @@
             <form action="index.php?id=fieldset/save" method="post" class="taak_form" >
                 <input type="hidden" name="id" readonly="readonly" value="<?php echo $fieldset['id']; ?>"></td>
                 <div class="form-group">
-                    <div class="form-group-first"><?php echo STRINGS['title'] ?> </div>
+                    <div class="form-group-first"><?php echo tr('title') ?> </div>
                     <div class="form-group-last"><input name='title' class="form-control" value="<?php echo $fieldset['title']; ?>" /></div>
                 </div>
                 <div class="form-group">
-                    <div class="form-group-first"><?php echo STRINGS['display_title'] ?> </div>
+                    <div class="form-group-first"><?php echo tr('display_title') ?> </div>
                     <div class="form-group-last"><input name='display_title' class="form-control" value="<?php echo $fieldset['display_title']; ?>" /></div>
                 </div>
                 <div class="content-row" style="margin-top:10px">
@@ -28,11 +28,11 @@
                         $tableId="mytbl";
                         $columns = array(
                             (object)['id'=>'field_id','type'=>'hidden','caption'=>''],
-                            (object)['id'=>'field_order','type'=>'input','caption'=>STRINGS['order']],
-                            (object)['id'=>'field_title','type'=>'input','caption'=>STRINGS['title']],
-                            (object)['id'=>'field_title_latin','type'=>'input','caption'=>STRINGS['title_latin']],
-                            (object)['id'=>'field_type','type'=>'select','caption'=>STRINGS['type'],'options'=>DataTypes],
-                            (object)['id'=>'field_value','type'=>'input','caption'=>STRINGS['value']]);
+                            (object)['id'=>'field_order','type'=>'input','caption'=>tr('order')],
+                            (object)['id'=>'field_title','type'=>'input','caption'=>tr('title')],
+                            (object)['id'=>'field_title_latin','type'=>'input','caption'=>tr('title_latin')],
+                            (object)['id'=>'field_type','type'=>'select','caption'=>tr('type'),'options'=>DataTypes],
+                            (object)['id'=>'field_value','type'=>'input','caption'=>tr('value')]);
                         
                         $data = $fieldset['details'];
 
@@ -42,8 +42,8 @@
            
         </div>
         <div class="content-card-footer">
-            <button class="btn btn-light" type="submit" onclick="return validateSubmit();" ><?php echo STRINGS['save']?></button>
-            <button class="btn btn-light" type="button" onclick="cancel();"><?php echo STRINGS['cancel']?></button>
+            <button class="btn btn-light" type="submit" onclick="return validateSubmit();" ><?php echo tr('save')?></button>
+            <button class="btn btn-light" type="button" onclick="cancel();"><?php echo tr('cancel')?></button>
         </div>
         </form>
     </div>

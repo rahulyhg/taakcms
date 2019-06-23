@@ -42,7 +42,7 @@
                 <thead>
                 <tr>
                     <th style="display:none;"></th>
-                    <th><?php echo STRINGS['title'] ?></th>
+                    <th><?php echo tr('title') ?></th>
                     <th></th>
                 </tr>
                 </thead>

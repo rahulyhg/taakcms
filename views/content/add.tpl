@@ -71,21 +71,21 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#home"><?php echo STRINGS['details'] ?></a>
+                        <a class="nav-link active" data-toggle="tab" href="#home"><?php echo tr('details') ?></a>
                     </li>
                     <?php if ($has_image) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#menu1"><?php echo STRINGS['images'] ?></a>
+                        <a class="nav-link" data-toggle="tab" href="#menu1"><?php echo tr('images') ?></a>
                     </li>
                     <?php } ?>
                     <?php if ($has_audio) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#menu2"><?php echo STRINGS['sounds'] ?></a>
+                        <a class="nav-link" data-toggle="tab" href="#menu2"><?php echo tr('sounds') ?></a>
                     </li>
                     <?php } ?>
                     <?php if ($has_video) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#menu3"><?php echo STRINGS['videos'] ?></a>
+                        <a class="nav-link" data-toggle="tab" href="#menu3"><?php echo tr('videos') ?></a>
                     </li>
                     <?php } ?>
                 </ul>
@@ -95,11 +95,11 @@
                         <input type="hidden" name="id" id="id" readonly="readonly" value="<?php echo $values['id']; ?>" />
                         <input type="hidden" name="last_row_index" id="last_row_index" readonly="readonly" value="<?php echo $values['row_index']; ?>" />
                         <div class="form-group">
-                            <label class="form-group-first" for="row_index"><?php echo STRINGS['row_index']  ?>:</label>
+                            <label class="form-group-first" for="row_index"><?php echo tr('row_index')  ?>:</label>
                             <input type="text" class="form-control form-group-last" name="row_index" value="<?php echo $values['row_index']; ?>" />
                         </div>
                         <div class="form-group">
-                            <label class="form-group-first" for="title"><?php echo STRINGS['title']  ?>:</label>
+                            <label class="form-group-first" for="title"><?php echo tr('title')  ?>:</label>
                             <input type="text" class="form-control form-group-last" name="title" value="<?php echo $values['title']; ?>" />
                         </div>
                         <?php
@@ -181,8 +181,8 @@
             </form>
         </div>
         <div class="content-card-footer">
-            <button class="btn btn-light btn-sm" id="btn_submit" type="submit" onclick="return validateSubmit();" ><?php echo STRINGS['save']?></button>
-            <button class="btn btn-light btn-sm" type="button" onclick="cancel();"><?php echo STRINGS['cancel']?></button>
+            <button class="btn btn-light btn-sm" id="btn_submit" type="submit" onclick="return validateSubmit();" ><?php echo tr('save')?></button>
+            <button class="btn btn-light btn-sm" type="button" onclick="cancel();"><?php echo tr('cancel')?></button>
         </div>
     </div>
     <script>

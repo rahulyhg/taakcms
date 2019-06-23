@@ -9,7 +9,7 @@ class fieldset_controller extends controller
     
     $fieldsets = $this->_model->getRows($product_id);
 
-    $this->_view->set('page_title', STRINGS['fieldsets']); 
+    $this->_view->set('page_title', tr('fieldsets')); 
     $this->_view->set('rows', $fieldsets); 
    
 	 return $this->_view->output(); 
@@ -22,7 +22,7 @@ class fieldset_controller extends controller
     
     $fieldset = $this->_model->getRowById($id);
 
-    $this->_view->set('page_title', STRINGS['define_fieldset']); 
+    $this->_view->set('page_title', tr('define_fieldset')); 
     $this->_view->set('fieldset', $fieldset); 
    
 	 return $this->_view->output(); 
@@ -33,7 +33,7 @@ class fieldset_controller extends controller
     $_SESSION['active_category_id'] = 0;
     $this->_setView("add");
     
-    $this->_view->set('page_title', STRINGS['define_fieldset']); 
+    $this->_view->set('page_title', tr('define_fieldset')); 
    
 	return $this->_view->output(); 
   }

@@ -16,7 +16,7 @@ class content_controller extends controller
     $_SESSION['active_category_id'] = 0;
     $this->_setView("index");
 	
-    $this->_view->set('page_title', STRINGS['contents']); 
+    $this->_view->set('page_title', tr('contents')); 
     
    
 	 return $this->_view->output(); 
@@ -65,7 +65,7 @@ class content_controller extends controller
      
     $this->_setView("add");
 	
-    $this->_view->set('page_title', STRINGS['contents']); 
+    $this->_view->set('page_title', tr('contents')); 
     $this->_view->set('fields', $fields); 
     $this->_view->set('values', $values); 
     $this->_view->set('tableId', $this->getTableId($fields)); 
@@ -93,13 +93,13 @@ class content_controller extends controller
     $subcategory_id = $_SESSION['active_subcategory_id'];
     $fields = $this->_model->getFieldsByCategoryId($category_id);
     $values = $this->_model->getRowById($id);
-    
+
     $category = new category_model();
     $category_info = $category->getCategory($category_id);
 
     $this->_setView("add");
 	
-    $this->_view->set('page_title', STRINGS['contents']); 
+    $this->_view->set('page_title', tr('contents')); 
     $this->_view->set('fields', $fields); 
     $this->_view->set('values', $values); 
     $this->_view->set('tableId', $this->getTableId($fields)); 

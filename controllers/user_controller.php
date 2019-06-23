@@ -35,7 +35,7 @@ class user_controller extends controller
 	$rows = $this->_model->getRows();
 	$this->_setView("index");
 	$this->_view->set('rows', $rows); 
-	$this->_view->set('page_title', STRINGS['users']); 
+	$this->_view->set('page_title', tr('users')); 
 	return $this->_view->output(); 
    }
 
@@ -45,7 +45,7 @@ class user_controller extends controller
 	$roles = $this->_model->getRoles();
 	$product = new product_model();
 	$products = $product->getRowsForDrowdown();
-	$this->_view->set('page_title', STRINGS['adduser']); 
+	$this->_view->set('page_title', tr('adduser')); 
 	$this->_view->set('roles', $roles); 
 	$this->_view->set('products', $products); 
 	return $this->_view->output(); 
@@ -59,7 +59,7 @@ class user_controller extends controller
 		$roles = $this->_model->getRoles();
 		$product = new product_model();
 		$products = $product->getRowsForDrowdown();
-		$this->_view->set('page_title', STRINGS['edit_user']); 
+		$this->_view->set('page_title', tr('edit_user')); 
 		$this->_view->set('row', $row); 
 		$this->_view->set('roles', $roles); 
 		$this->_view->set('products', $products); 

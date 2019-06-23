@@ -6,7 +6,7 @@ class product_controller extends controller
 	 $rows = $this->_model->getRows(accessed_products());
 	 $this->_setView("index");
     $this->_view->set('rows', $rows); 
-    $this->_view->set('page_title', STRINGS['products']); 
+    $this->_view->set('page_title', tr('products')); 
    
 	 return $this->_view->output(); 
   }
@@ -22,7 +22,7 @@ class product_controller extends controller
    { 
       $colors = $this->_model->getColors();
       $this->_setView("add");
-      $this->_view->set('page_title', STRINGS['add_product']); 
+      $this->_view->set('page_title', tr('add_product')); 
       $this->_view->set('colors', $colors); 
 	  return $this->_view->output(); 
    }
@@ -33,7 +33,7 @@ class product_controller extends controller
       $id = intval($id);
 	   $row = $this->_model->getRowById($id);
       $this->_setView("edit");
-      $this->_view->set('page_title', STRINGS['edit_product']);
+      $this->_view->set('page_title', tr('edit_product'));
       $this->_view->set('colors', $colors);  	
       $this->_view->set('row', $row ); 	
       return $this->_view->output(); 

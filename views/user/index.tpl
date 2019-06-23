@@ -17,10 +17,10 @@
                 <thead>
                 <tr class="d-flex">
                     <th style="display:none;"></th>
-                    <th class="col-sm-3"><?php echo STRINGS['username'] ?></th>
-                    <th class="col-sm-5"><?php echo STRINGS['fullname'] ?></th>
-                    <th class="col-sm-2"><?php echo STRINGS['role'] ?></th>
-                    <th class="col-sm-2"><?php echo STRINGS['operations'] ?></th>
+                    <th class="col-sm-3"><?php echo tr('username') ?></th>
+                    <th class="col-sm-5"><?php echo tr('fullname') ?></th>
+                    <th class="col-sm-2"><?php echo tr('role') ?></th>
+                    <th class="col-sm-2"><?php echo tr('operations') ?></th>
                 </tr>
                 </thead>
                 <tbody>

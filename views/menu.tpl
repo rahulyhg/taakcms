@@ -50,10 +50,10 @@
     <div class="menu_title">
         <a href="index.php?id=content/index/<?php echo $_SESSION['product_id'] ?>"> <?php echo $_SESSION['product_title'] ?> </a>
         <?php if (isAdmin()) { ?>
-            <button style="margin-right: auto;" data-toggle="tooltip" title="<?php echo STRINGS['manage_fieldsets'] ?>" type="button" class="btn btn-sm btn-light" onclick="manage_fieldsets();">
+            <button style="margin-right: auto;" data-toggle="tooltip" title="<?php echo tr('manage_fieldsets') ?>" type="button" class="btn btn-sm btn-light" onclick="manage_fieldsets();">
                 <div class="fas fa-cog"></div>
             </button>
-            <button type="button" data-toggle="tooltip" title="<?php echo STRINGS['add_category'] ?>" class="btn btn-sm btn-light" onclick="add_category();">
+            <button type="button" data-toggle="tooltip" title="<?php echo tr('add_category') ?>" class="btn btn-sm btn-light" onclick="add_category();">
                 <div class="fas fa-plus"></div>
             </button>
         <?php } ?>
@@ -70,7 +70,7 @@
             </li>
             <?php } ?>
             <?php if (count($_SESSION['categories']) == 0) { 
-                echo STRINGS['nodacategory'];
+                echo tr('nodacategory');
                 } ?>
         </ul>
     </div>
