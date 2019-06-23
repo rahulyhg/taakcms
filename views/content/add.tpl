@@ -73,15 +73,21 @@
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#home"><?php echo STRINGS['details'] ?></a>
                     </li>
+                    <?php if ($has_image) { ?>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#menu1"><?php echo STRINGS['images'] ?></a>
                     </li>
+                    <?php } ?>
+                    <?php if ($has_audio) { ?>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#menu2"><?php echo STRINGS['sounds'] ?></a>
                     </li>
+                    <?php } ?>
+                    <?php if ($has_video) { ?>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#menu3"><?php echo STRINGS['videos'] ?></a>
                     </li>
+                    <?php } ?>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -343,7 +349,7 @@
         }
 
         function cancel(){
-            window.location.href = 'index.php?id=content/view_contents/1';
+            window.location.href = 'index.php?id=content/view_contents/<?php echo $category_id; ?>/<?php echo $subcategory_id; ?>';
         }
     </script>
      

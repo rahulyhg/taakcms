@@ -15,7 +15,23 @@ class category_model extends model
 			}
 		}
 		return $rows; 
-    }
+	}
+	
+	public function getCategory($id){
+		$sql = "SELECT * FROM tbl_categories WHERE id = $id"; 
+		$row = $this->getRow($sql); 
+		if ($row == null){
+			$row['id'] = 0;
+			$row['title'] = '';
+			$row['content_fieldset_id'] = '';
+			$row['has_audio'] = "0";
+			$row['has_video'] = "0";
+			$row['has_image'] = "0";
+			$row['has_subcategory'] = "0";
+			$row['subcategory_fieldset_id'] = '';
+		}
+		return $row;
+	}
 
     public function insert($title,$content_fieldset_id,$has_audio,$has_video,$has_image,$has_subcategory,$subcategory_fieldset_id,$product_id)
 	{
@@ -30,5 +46,12 @@ class category_model extends model
        $sql="UPDATE tbl_categories SET title='$title',has_subcategory=$has_subcategory,content_fieldset_id=$content_fieldset_id,has_audio=$has_audio,has_video=$has_video,has_image=$has_image,subcategory_fieldset_id=$subcategory_fieldset_id WHERE id=$id";
 	   $this->execQuery($sql);
 	}
+	public function delete($id)
+	{
+       $sql="DELETE FROM tbl_categories WHERE id=$id";
+	   $this->execQuery($sql);
+	}	
+
+	
 }
 ?>

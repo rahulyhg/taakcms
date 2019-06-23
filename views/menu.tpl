@@ -23,13 +23,13 @@
     flex-flow:row;
 }
 
-.menu_actions > a{
+.menu_actions > button{
     width: 100%;
     margin:2px;
     font-size:smaller;
 }
 
-.list-group-item-action > a{
+.list-group-item-action > button{
     float:left;
     cursor:pointer;
     margin-left:4px;
@@ -64,8 +64,8 @@
             <li onclick="view_contents(<?php echo $category['id']; ?>,<?php echo $category['subcategory_id']; ?>);" class="list-group-item list-group-item-action <?php echo $isActive ? 'active' : ''; ?> ">
                 <?php echo $category['title']; ?>
                 <?php if (isAdmin()) { ?>
-                    <a class="fas fa-trash-alt" onclick="delete_category(<?php echo $category['id']; ?>)" ></a>
-                    <a class="fas fa-edit" onclick="edit_category(<?php echo $category['id']; ?>)" ></a>
+                    <button class="btn btn-sm btn-light" onclick="delete_category(<?php echo $category['id']; ?>)"><div class="fas fa-trash"></div></button>
+                    <button class="btn btn-sm btn-light" onclick="edit_category(<?php echo $category['id']; ?>)"><div class="fas fa-edit"></div></button>
                 <?php } ?>
             </li>
             <?php } ?>
@@ -75,6 +75,18 @@
         </ul>
     </div>
     <script>
+        function edit_category(id){
+            var e = window.event;
+            e.cancelBubble = true;
+            if (e.stopPropagation) e.stopPropagation();
+            window.location.href = "index.php?id=category/edit/" + id;
+        }
+        function delete_category(id){
+            var e = window.event;
+            e.cancelBubble = true;
+            if (e.stopPropagation) e.stopPropagation();
+            window.location.href = "index.php?id=category/delete/" + id;
+        }
         function manage_fieldsets(){
             window.location.href = "index.php?id=fieldset/index";
         }

@@ -48,12 +48,10 @@ class content_model extends model
 		$sql = "SELECT * FROM tbl_categories WHERE id =$categoryId"; 
 		$category = $this->getRow($sql); 
 		$fieldset_id = $category['content_fieldset_id'] ;
-		$sql  = "SELECT * FROM tbl_fieldset_details WHERE fieldset_id = $fieldset_id";
+		$sql = "SELECT * FROM tbl_fieldset_details WHERE fieldset_id = $fieldset_id";
 		$fields = $this->getAll($sql); 
 		return $fields; 
 	} 
-
-	
 
 	public function insert($oldId,$title,$subcategory_id,$row_index,$last_row_index,$date, $details){
 		

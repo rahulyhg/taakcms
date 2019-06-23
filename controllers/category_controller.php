@@ -3,17 +3,41 @@ class category_controller extends controller
 { 
    public function add()
    {
+      $product_id = $_SESSION['product_id'];
       $this->_setView("add");
-
       $fieldset_model = new fieldset_model(); 
-      $fieldsets = $fieldset_model->getRowsForDrowdown();
-
+      $fieldsets = $fieldset_model->getRowsForDrowdown($product_id);
+      $row = $this->_model->getCategory(0);
       $this->_view->set('page_title', STRINGS['category']); 
       $this->_view->set('fieldsets', $fieldsets); 
+      $this->_view->set('row', $row); 
+      $this->_view->set('product_id', $product_id); 
       
       return $this->_view->output(); 
    }
+   public function edit($id)
+   {
+      $product_id = $_SESSION['product_id'];
+      $this->_setView("add");
 
+      $fieldset_model = new fieldset_model(); 
+      $fieldsets = $fieldset_model->getRowsForDrowdown($product_id);
+      $row = $this->_model->getCategory($id);
+      $this->_view->set('page_title', STRINGS['category']); 
+      $this->_view->set('fieldsets', $fieldsets); 
+      $this->_view->set('row', $row); 
+      $this->_view->set('product_id', $product_id); 
+      
+      return $this->_view->output(); 
+   }
+   public function delete($id)
+   {
+      $product_id = $_SESSION['product_id'];
+      $this->_model->delete($id);
+      $this->_view->set('page_title', STRINGS['category']); 
+      
+      header('location:index.php?id=content/index/' . $product_id);
+   }
    public function save() 
    { 
 	   $id  =$_POST['id'];

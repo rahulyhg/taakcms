@@ -7,8 +7,8 @@ class fieldset_model extends model
 		return $rows; 
 	
 	}
-	public function getRowsForDrowdown(){
-		$sql = "SELECT * FROM tbl_fieldsets"; 
+	public function getRowsForDrowdown($product_id){
+		$sql = "SELECT * FROM tbl_fieldsets WHERE product_id = $product_id"; 
 		$rows = $this->getAll($sql); 
 		$fieldsets;
 		foreach($rows as $row)
