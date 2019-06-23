@@ -20,6 +20,11 @@
                 <div class="tab-content">
                     <div id="home" class="container tab-pane active"><br>
                         <input type="hidden" name="id" id="id" readonly="readonly" value="<?php echo $values['id']; ?>" />
+                        <input type="hidden" name="last_row_index" id="last_row_index" readonly="readonly" value="<?php echo $values['row_index']; ?>" />
+                        <div class="form-group">
+                            <label class="form-group-first" for="row_index"><?php echo STRINGS['row_index']  ?>:</label>
+                            <input type="text" class="form-control form-group-last" name="row_index" value="<?php echo $values['row_index']; ?>" />
+                        </div>
                         <div class="form-group">
                             <label class="form-group-first" for="title"><?php echo STRINGS['title']  ?>:</label>
                             <input type="text" class="form-control form-group-last" name="title" value="<?php echo $values['title']; ?>" />
@@ -48,7 +53,7 @@
         }
 
         function cancel(){
-            window.location.href = 'index.php?id=subcategory/index';
+            window.location.href = 'index.php?id=subcategory/index/<?php echo $category_id ?>';
         }
     </script>
      

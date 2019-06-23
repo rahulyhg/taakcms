@@ -58,8 +58,5 @@ class product_model extends model
 		$colors['gray'] = 'gray';
 		return $colors;
 	}
-
-	
-
 }
 ?>

@@ -56,6 +56,8 @@ $strings = [
     "adduser" => "کاربر جدید",
     "accessed_products" => "محصولات در دسترس",
     "edit_user" => "ویرایش کاربر",
+    "row_index" => "ردیف",
+    "count" => "تعداد",
 
 
 ];

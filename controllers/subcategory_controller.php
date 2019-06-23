@@ -8,8 +8,10 @@ class subcategory_controller extends controller
 
       $subcategories = $this->_model->getSubcategories($category_id);
       $title = $this->_model->getSubcategoryTitle($category_id);
+      $content_title = $this->_model->getContentPureTitle($category_id);
       $this->_view->set('page_title', $title); 
       $this->_view->set('subcategories', $subcategories); 
+      $this->_view->set('content_title', $content_title); 
       
       
       return $this->_view->output(); 
@@ -22,6 +24,7 @@ class subcategory_controller extends controller
       $fields = $this->_model->getSubcategoryFields($category_id);
       $values['id']=rand(100, 999) * -1;
       $values['title']="";
+      $values['row_index']=$this->_model->getNewOrderIndex();
       foreach($fields as $field){
          $item = array();
          $item['field_key'] = $field['title_latin'];
@@ -31,10 +34,30 @@ class subcategory_controller extends controller
       $this->_view->set('page_title', STRINGS['category']); 
       $this->_view->set('fields', $fields); 
       $this->_view->set('values', $values); 
+      $this->_view->set('category_id', $category_id); 
+	   return $this->_view->output(); 
+  }
+  public function edit($id)
+  {
+      $category_id = $_SESSION['active_category_id'];
+      $this->_setView("add");
+
+      $fields = $this->_model->getSubcategoryFields($category_id);
+      $values = $this->_model->getRowById($id);
+      
+      foreach($fields as $field){
+         $item = array();
+         $item['field_key'] = $field['title_latin'];
+         $item['field_value'] = '';
+         $values['details'][] = $item;
+       }
+      $this->_view->set('page_title', STRINGS['category']); 
+      $this->_view->set('fields', $fields); 
+      $this->_view->set('values', $values); 
+      $this->_view->set('category_id', $category_id); 
     
 	   return $this->_view->output(); 
   }
-
    private function getValue($title,$data_type){
       if (isset($_POST[$title])){
          if ($data_type == 'string_list'){
@@ -61,7 +84,8 @@ class subcategory_controller extends controller
       $fields = $this->_model->getSubcategoryFields($category_id);
       $id = $_POST['id'];
       $title = $_POST['title'];
-      $row_index=0;
+      $row_index = $_POST['row_index'];
+      $last_row_index=$_POST['last_row_index'];
       $details;
       foreach($fields as $field){
          $details[$field['title_latin']] = $this->getValue($field['title_latin'],$field['data_type']);
@@ -70,9 +94,16 @@ class subcategory_controller extends controller
       if($id<=0)
          $id = $this->_model->insert($id,$title,$category_id, $row_index,$details); 
       else	 
-         $this->_model->update($id,$title, $row_index,$details);		
+         $this->_model->update($id,$title, $row_index,$last_row_index,$details);		
       
       return $this->index($category_id); 
+   } 
+   public function delete($id) 
+   {  
+      $category_id = $_SESSION['active_category_id'];
+      $id=intval($id);
+      $this->_model->delete($id); 
+      return $this->index($category_id);
    } 
 }	 
 	 

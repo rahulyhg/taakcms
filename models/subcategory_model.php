@@ -7,10 +7,21 @@ class subcategory_model extends model
 		return $rows; 
 	}
 	public function getSubcategories($category_id){
-		$sql = "SELECT * FROM tbl_subcategories WHERE category_id = $category_id"; 
+		$sql = "SELECT * FROM vw_subcategories WHERE category_id = $category_id ORDER BY row_index"; 
 		$rows = $this->getAll($sql); 
+		
 		return $rows; 
 	}
+	public function getRowById($id) 
+	{ 
+		$sql = "SELECT * FROM tbl_subcategories WHERE  id =$id"; 
+		$row = $this->getRow($sql); 
+		
+		$sql2 = "SELECT * FROM tbl_subcategory_details WHERE subcategory_id =$id"; 
+		$row['details'] = $this->getAll($sql2); 
+
+		return $row; 
+	} 
 	public function getSubcategoryFields($category_id) 
 	{ 
 		$sql2 = "SELECT * FROM tbl_categories WHERE id =$category_id"; 
@@ -24,6 +35,9 @@ class subcategory_model extends model
 
     public function insert($id,$title,$category_id,$row_index,$details)
 	{
+		$sql="UPDATE tbl_subcategories SET row_index = row_index + 1 WHERE row_index >= $row_index ";
+		$this->execQuery($sql);
+
 		$sql="INSERT INTO tbl_subcategories(title,category_id,row_index) 
 		VALUES('$title',$category_id,$row_index)";
 		$this->execQuery($sql);
@@ -39,8 +53,11 @@ class subcategory_model extends model
 		}
 	}
 	//.................
-	public function update($title,$category_id,$row_index, $id)
+	public function update($id,$title,$row_index,$last_row_index,$details)
 	{
+		$sql="UPDATE tbl_subcategories SET row_index = row_index + 1 WHERE row_index >= $row_index and row_index < $last_row_index";
+		$this->execQuery($sql);
+
 		$sql="UPDATE tbl_subcategories SET title = '$title',row_index=$row_index WHERE id = $id";
 		$this->execQuery($sql);
 
@@ -59,12 +76,20 @@ class subcategory_model extends model
 		$rows = $this->getRow($sql); 
 		return $rows['category_id']; 
 	}
-	public function getContentTitle($category_id,$subcategory_id){
+	public function getContentPureTitle($category_id){
 		$sql = "SELECT * FROM tbl_categories WHERE id = $category_id"; 
 		$category = $this->getRow($sql); 
 		$fieldset_id = $category['content_fieldset_id'];
+
 		$sql2 = "SELECT * FROM tbl_fieldsets WHERE id = $fieldset_id"; 
 		$fieldset = $this->getRow($sql2); 
+
+		return $fieldset['display_title']; 
+	}
+	public function getContentTitle($category_id,$subcategory_id){
+		$sql = "SELECT * FROM tbl_categories WHERE id = $category_id"; 
+		$category = $this->getRow($sql); 
+		$content_pure_title = $this->getContentPureTitle($category_id);
 		$subcategory_title="";
 		if ($category['has_subcategory'] == "1"){
 			$sql3 = "SELECT * FROM tbl_subcategories WHERE id = $subcategory_id"; 
@@ -72,7 +97,7 @@ class subcategory_model extends model
 			$subcategory_title = $subcategory['title'] . ' - ' ;
 		}
 		
-		return $subcategory_title . $fieldset['display_title']; 
+		return $subcategory_title . $content_pure_title; 
 	}
 	public function getSubcategoryTitle($category_id){
 		$sql = "SELECT * FROM tbl_categories WHERE id = $category_id"; 
@@ -83,5 +108,16 @@ class subcategory_model extends model
 		
 		return $fieldset['display_title']; 
 	}
+
+	public function getNewOrderIndex(){
+		$sql = "SELECT * FROM tbl_subcategories ORDER BY row_index DESC"; 
+		$subcategory = $this->getRow($sql); 
+		return $subcategory['row_index'] + 1; 
+	}
+	public function delete($id)
+	{
+       $sql="DELETE FROM tbl_subcategories WHERE id=$id";
+	   $this->execQuery($sql);
+	}	
 }
 ?>
