@@ -15,7 +15,9 @@ class user_controller extends controller
 	  $row = $this->_model->getRowByUP($uname , $upass ); 
 	  if ($row )
 	  {
-	     $_SESSION['uname']=$row['username'];
+		 $_SESSION['uname']=$row['username'];
+		 $_SESSION['admin'] = $row['role'] === 'admin';
+		 $_SESSION['accessed_products'] = json_decode($row['accessed_products']);
 		 header('location:index.php?products/index');
 		 exit;
 	  }

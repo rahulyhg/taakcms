@@ -3,7 +3,7 @@ class product_controller extends controller
 { 
   public function index()
   {
-	 $rows = $this->_model->getRows();
+	 $rows = $this->_model->getRows(accessed_products());
 	 $this->_setView("index");
     $this->_view->set('rows', $rows); 
     $this->_view->set('page_title', STRINGS['products']); 

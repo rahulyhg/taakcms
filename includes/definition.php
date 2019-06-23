@@ -72,4 +72,11 @@ $data_types['long_text']='long_text';
 
 define ('DataTypes', $data_types);
 define ('STRINGS', $strings);
+
+function isAdmin(){
+    return $_SESSION['admin'];
+}
+function accessed_products(){
+    return $_SESSION['accessed_products'];
+}
 ?>

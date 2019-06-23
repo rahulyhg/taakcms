@@ -13,6 +13,11 @@ class user_model extends model
 	{ 
 		$sql = "SELECT * FROM tbl_users WHERE  id =$id"; 
 		$row = $this->getRow($sql); 
+		if ($row['accessed_products'] == ""){
+			$row['accessed_products'] = [];
+		}else {
+			$row['accessed_products'] = json_decode($row['accessed_products']);
+		}
 		return $row; 
 	} 
 

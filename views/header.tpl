@@ -30,9 +30,11 @@
         <a class="navbar-brand" href="index.php?id=product/index"><?php echo STRINGS['site-name'] ?></a>
 
         <ul class="navbar-nav ml-auto" style="margin-left: 0px !important;">
+            <?php if (isAdmin()) { ?>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?id=user/index"><?php echo STRINGS['users'] ?> <span class="sr-only">(current)</span></a>
             </li>
+            <?php } ?>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?id=user/logout"><?php echo STRINGS['logout'] ?> <span class="sr-only">(current)</span></a>
             </li>

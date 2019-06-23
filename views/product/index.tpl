@@ -73,17 +73,21 @@
             <div class="app_logo" style="border:1px solid <?php echo $row['color']; ?>; background-image:url('uploads/<?php echo $row['logo'] ?>');" ></div>
             <div class="app_title"><?php echo $row['title']; ?></div>
             <div class="app_actions">
-                <button class="btn btn-sm btn-light" onclick="edit_product(<?php echo $row['id']; ?>)"><div class="fas fa-edit"></div></button>
-                <button class="btn btn-sm btn-light" onclick="delete_product(<?php echo $row['id']; ?>);"><div class="fas fa-trash"></div></button>
+                <?php if (isAdmin()) { ?>
+                  <button class="btn btn-sm btn-light" onclick="edit_product(<?php echo $row['id']; ?>)"><div class="fas fa-edit"></div></button>
+                  <button class="btn btn-sm btn-light" onclick="delete_product(<?php echo $row['id']; ?>);"><div class="fas fa-trash"></div></button>
+                <?php } ?>
             </div>
           </div>
         <?php } ?>
-        <div class="app_item" onclick="add_product();">
-          <span class="fas fa-plus "></span>
-          <div class="app_actions">
-                <div style="color:white">+</div>
-            </div>
-        </div>
+        <?php if (isAdmin()) { ?>
+          <div class="app_item" onclick="add_product();">
+            <span class="fas fa-plus "></span>
+            <div class="app_actions">
+                  <div style="color:white">+</div>
+              </div>
+          </div>
+        <?php } ?>
     </div>
   </div>
 </div>

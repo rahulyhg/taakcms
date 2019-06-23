@@ -49,21 +49,24 @@
 
     <div class="menu_title">
         <a href="index.php?id=content/index/<?php echo $_SESSION['product_id'] ?>"> <?php echo $_SESSION['product_title'] ?> </a>
-        <button style="margin-right: auto;" data-toggle="tooltip" title="<?php echo STRINGS['manage_fieldsets'] ?>" type="button" class="btn btn-sm btn-light" onclick="manage_fieldsets();">
-            <div class="fas fa-cog"></div>
-        </button>
-        <button type="button" data-toggle="tooltip" title="<?php echo STRINGS['add_category'] ?>" class="btn btn-sm btn-light" onclick="add_category();">
-            <div class="fas fa-plus"></div>
-        </button>
-
+        <?php if (isAdmin()) { ?>
+            <button style="margin-right: auto;" data-toggle="tooltip" title="<?php echo STRINGS['manage_fieldsets'] ?>" type="button" class="btn btn-sm btn-light" onclick="manage_fieldsets();">
+                <div class="fas fa-cog"></div>
+            </button>
+            <button type="button" data-toggle="tooltip" title="<?php echo STRINGS['add_category'] ?>" class="btn btn-sm btn-light" onclick="add_category();">
+                <div class="fas fa-plus"></div>
+            </button>
+        <?php } ?>
     </div>
     <div class="menu_categories">
         <ul class="list-group list-group-flush">
             <?php foreach($_SESSION['categories'] as $category) { $isActive = $_SESSION['active_category_id'] == $category['id']; ?> 
             <li onclick="view_contents(<?php echo $category['id']; ?>,<?php echo $category['subcategory_id']; ?>);" class="list-group-item list-group-item-action <?php echo $isActive ? 'active' : ''; ?> ">
                 <?php echo $category['title']; ?>
-                <a class="fas fa-trash-alt" onclick="delete_category(<?php echo $category['id']; ?>)" ></a>
-                <a class="fas fa-edit" onclick="edit_category(<?php echo $category['id']; ?>)" ></a>
+                <?php if (isAdmin()) { ?>
+                    <a class="fas fa-trash-alt" onclick="delete_category(<?php echo $category['id']; ?>)" ></a>
+                    <a class="fas fa-edit" onclick="edit_category(<?php echo $category['id']; ?>)" ></a>
+                <?php } ?>
             </li>
             <?php } ?>
             <?php if (count($_SESSION['categories']) == 0) { 

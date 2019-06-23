@@ -1,15 +1,22 @@
 <?php
 class product_model extends model 
 { 
-	public function getRows() 
+	public function getRows($products) 
 	{ 
-		$rows = $this->getAll("SELECT * FROM tbl_products"); 
+		$sql = "SELECT * FROM tbl_products";
+		$output = array_map(function ($object) { 
+			return $object->product; 
+		}, $products);
+		if (count($products) > 0){
+			$sql .= " WHERE id in (" . implode(',',$output) . ") ";
+		}
+		$rows = $this->getAll($sql); 
 		return $rows ; 
 	} 
 	public function getRowsForDrowdown(){
 		$sql = "SELECT * FROM tbl_products"; 
 		$rows = $this->getAll($sql); 
-		$fieldsets;
+		$fieldsets=[];
 		foreach($rows as $row)
 			$fieldsets[$row['id']] = $row['title'];
 

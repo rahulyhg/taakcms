@@ -29,7 +29,7 @@
                 (object)['id'=>'field_id','type'=>'hidden','caption'=>''],
                 (object)['id'=>'product','type'=>'select','caption'=>STRINGS['products'],'options'=>$products]);
                
-                $data = json_decode($row['accessed_products']);
+                $data = $row['accessed_products'];
                 
             require_once HOME . DS . 'views' . DS . 'components' . DS . 'grid.php'; 
 
