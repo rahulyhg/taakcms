@@ -98,6 +98,12 @@ class content_model extends model
 		}
 	}
 
+	public function delete($id)
+	{
+       $sql="DELETE FROM tbl_contents WHERE id=$id";
+	   $this->execQuery($sql);
+	}	
+
 	public function update($id,$title,$subcategory_id,$row_index,$last_row_index, $details){
 		$sql="UPDATE tbl_contents SET row_index = row_index + 1 WHERE subcategory_id = $subcategory_id AND row_index >= $row_index and row_index < $last_row_index";
 		$this->execQuery($sql);

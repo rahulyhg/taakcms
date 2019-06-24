@@ -17,7 +17,7 @@
           <input type="hidden" name="id" readonly="readonly" value="<?php echo $row['id']; ?>"></td>
           <div class="form-group">
             <label class="form-group-first" for="title"><?php echo tr('title')?>:</label>
-            <input type="text" class="form-control form-group-last" name="title" value="<?php echo $row['title']; ?>" >
+            <input type="text" class="form-control form-group-last" name="title" required="required" value="<?php echo $row['title']; ?>" >
           </div>
           <div class="form-group">
             <label class="form-group-first" for="content_fieldset"><?php echo tr('content_fieldset')?>:</label>
@@ -26,6 +26,7 @@
               $disabled=false; 
               $datasource=$fieldsets; 
               $dropdownValue=$row['content_fieldset_id'];  
+              $required=true;
               require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' 
             ?>
           </div>
@@ -47,7 +48,14 @@
           </div>
           <div class="form-group">
             <label class="form-group-first" for="subcategory_fieldset"><?php echo tr('subcategory_fieldset')?>:</label>
-            <?php $dropdownName="subcategory_fieldset"; $disabled=true; $datasource=$fieldsets; $dropdownValue="";  require HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
+            <?php 
+              $dropdownName="subcategory_fieldset"; 
+              $disabled=true; 
+              $datasource=$fieldsets; 
+              $dropdownValue="";  
+              $required=false;
+              require HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' 
+            ?>
           </div>
         </div>
         <div class="content-card-footer">

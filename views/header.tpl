@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./includes/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="./includes/css/bootstrap/rtl-bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="./includes/css/styles.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="./includes/css/fontawsome.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="./includes/css/fontawsome.css" crossorigin="anonymous">
     <script src="./includes/js/jquery.min.js"></script>
     <script src="./includes/js/popper.min.js"></script>
     <script src="./includes/js/bootstrap.min.js"></script>

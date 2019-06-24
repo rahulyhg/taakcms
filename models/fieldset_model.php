@@ -40,34 +40,34 @@ class fieldset_model extends model
 		return $row; 
     } 
     
-    public function insert($title,$display_title,$product_id,$fields)
-	{
-      	$sql="INSERT INTO tbl_fieldsets(title,display_title,product_id) 
-		VALUES('$title','$display_title',$product_id)";
-		$this->execQuery($sql);
-		$id = $this->insert_id();
-		foreach($fields as $field){
-			$order = intval($field->field_order);
-			if ($field->row_status == 'inserted'){
-				$sql="INSERT INTO tbl_fieldset_details(fieldset_id,title,title_latin,data_type,value,orderfield) 
-				VALUES($id,'$field->field_title','$field->field_title_latin','$field->field_type','$field->field_value',$order)";
+    public function insert($title,$product_id,$fields)
+		{
+      	$sql="INSERT INTO tbl_fieldsets(title,product_id) 
+				VALUES('$title',$product_id)";
 				$this->execQuery($sql);
-			}else if ($field->row_status == 'updated'){
-				$sql="UPDATE tbl_fieldset_details
-				SET title = '$field->field_title',title_latin = '$field->field_title_latin',data_type = '$field->field_type',value = '$field->field_value' ,order=$order
-				WHERE id = $field->field_id";
-				$this->execQuery($sql);
-			}else if ($field->row_status == 'deleted'){
-				$sql="DELETE tbl_fieldset_details WHERE id = $field->field_id";
-				$this->execQuery($sql);
+				$id = $this->insert_id();
+				foreach($fields as $field){
+					$order = intval($field->field_order);
+					if ($field->row_status == 'inserted'){
+						$sql="INSERT INTO tbl_fieldset_details(fieldset_id,title,title_latin,data_type,value,orderfield) 
+						VALUES($id,'$field->field_title','$field->field_title_latin','$field->field_type','$field->field_value',$order)";
+						$this->execQuery($sql);
+					}else if ($field->row_status == 'updated'){
+						$sql="UPDATE tbl_fieldset_details
+						SET title = '$field->field_title',title_latin = '$field->field_title_latin',data_type = '$field->field_type',value = '$field->field_value' ,order=$order
+						WHERE id = $field->field_id";
+						$this->execQuery($sql);
+					}else if ($field->row_status == 'deleted'){
+						$sql="DELETE tbl_fieldset_details WHERE id = $field->field_id";
+						$this->execQuery($sql);
+					}
+				}
+				return $id;
 			}
-	  	}
-		return $id;
-	}
 //.................
-	public function update($title,$display_title, $fields, $id)
+	public function update($title, $fields, $id)
 	{
-	   $sql="UPDATE tbl_fieldsets SET title='$title',display_title='$display_title' WHERE id=$id";
+	   $sql="UPDATE tbl_fieldsets SET title='$title' WHERE id=$id";
 	   $this->execQuery($sql);
 
 	   foreach($fields as $field){

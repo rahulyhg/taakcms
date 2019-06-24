@@ -13,7 +13,7 @@
           </div>
           <div class="form-group">
             <label class="form-group-first" for="color"><?php echo tr('color')?>:</label>
-            <?php $dropdownName="color"; $datasource=$colors; $dropdownValue=""; require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
+            <?php $dropdownName="color"; $datasource=$colors; $dropdownValue="";$disabled=false; require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
           </div>
           <div class="form-group">
             <label class="form-group-first" for="logo"><?php echo tr('logo')?>:</label>
@@ -41,7 +41,7 @@
   </div>
 </div>
 <script>
-$("input[required]").parent().children(0).addClass("required");
+
 function cancel(){
   window.location.href = 'index.php?id=product/index';
 }

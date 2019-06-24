@@ -23,11 +23,11 @@
                         <input type="hidden" name="last_row_index" id="last_row_index" readonly="readonly" value="<?php echo $values['row_index']; ?>" />
                         <div class="form-group">
                             <label class="form-group-first" for="row_index"><?php echo tr('row_index')  ?>:</label>
-                            <input type="text" class="form-control form-group-last" name="row_index" value="<?php echo $values['row_index']; ?>" />
+                            <input required="required" type="text" class="form-control form-group-last" name="row_index" value="<?php echo $values['row_index']; ?>" />
                         </div>
                         <div class="form-group">
                             <label class="form-group-first" for="title"><?php echo tr('title')  ?>:</label>
-                            <input type="text" class="form-control form-group-last" name="title" value="<?php echo $values['title']; ?>" />
+                            <input required="required" type="text" class="form-control form-group-last" name="title" value="<?php echo $values['title']; ?>" />
                         </div>
                         <?php
                             require HOME . DS . 'views' . DS . 'components' . DS . 'field_generator.php';  

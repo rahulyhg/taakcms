@@ -72,7 +72,7 @@ class subcategory_controller extends controller
             }
             return json_encode($newdata,JSON_UNESCAPED_UNICODE);
          }else{
-            return $_POST[$title];
+            return safe($_POST[$title]);
          }
       }
       return "";
@@ -82,10 +82,10 @@ class subcategory_controller extends controller
    { 
       $category_id = $_SESSION['active_category_id'];
       $fields = $this->_model->getSubcategoryFields($category_id);
-      $id = $_POST['id'];
-      $title = $_POST['title'];
-      $row_index = $_POST['row_index'];
-      $last_row_index=$_POST['last_row_index'];
+      $id = safe($_POST['id']);
+      $title = safe($_POST['title']);
+      $row_index = safe($_POST['row_index']);
+      $last_row_index=safe($_POST['last_row_index']);
       $details;
       foreach($fields as $field){
          $details[$field['title_latin']] = $this->getValue($field['title_latin'],$field['data_type']);

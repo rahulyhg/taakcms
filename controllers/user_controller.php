@@ -10,8 +10,8 @@ class user_controller extends controller
 //.............
   public function check() 
    {  
- 	  $uname =$_POST['uname'];
-	  $upass =$_POST['upass'];  
+ 	  $uname =safe($_POST['uname']);
+	  $upass =safe($_POST['upass']);  
 	  $row = $this->_model->getRowByUP($uname , $upass ); 
 	  if ($row )
 	  {
@@ -68,10 +68,10 @@ class user_controller extends controller
 	
 	public function save()
 	{
-		$id  =$_POST['id'];
-		$username =$_POST['username'];
-		$fullname =$_POST['fullname'];
-		$role = $_POST['role'];
+		$id  =safe($_POST['id']);
+		$username =safe($_POST['username']);
+		$fullname =safe($_POST['fullname']);
+		$role = safe($_POST['role']);
 		$accessed_products = stripslashes($_POST['accessed_products']);
 		
 		if($id==0)

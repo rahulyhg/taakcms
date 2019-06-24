@@ -40,17 +40,17 @@ class category_controller extends controller
    }
    public function save() 
    { 
-	   $id  =$_POST['id'];
-	   $title =$_POST['title'];
-      $contetn_fieldset_id = intval($_POST['content_fieldset']);
-      $has_audio = $this->getBool($_POST,'has_audio');
-      $has_video = $this->getBool($_POST,'has_video');
-      $has_image = $this->getBool($_POST,'has_image');
+	   $id  = safe($_POST['id']);
+	   $title = safe($_POST['title']);
+      $contetn_fieldset_id = intval(safe($_POST['content_fieldset']));
+      $has_audio = $this->getBool(safe($_POST,'has_audio'));
+      $has_video = $this->getBool(safe($_POST,'has_video'));
+      $has_image = $this->getBool(safe($_POST,'has_image'));
 
-      $has_subcategory = $this->getBool($_POST,'has_subcategory');
+      $has_subcategory = $this->getBool(safe($_POST,'has_subcategory'));
       $subcategory_fieldset_id = 0;
       if (isset($_POST['subcategory_fieldset'])){
-         $subcategory_fieldset_id = intval($_POST['subcategory_fieldset']);
+         $subcategory_fieldset_id = intval(safe($_POST['subcategory_fieldset']));
       }
 
       $product_id = $_SESSION['product_id'];

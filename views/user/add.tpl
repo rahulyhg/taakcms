@@ -45,7 +45,6 @@
   </div>
 </div>
 <script>
-$("input[required]").parent().children(0).addClass("required");
 function cancel(){
   window.location.href = 'index.php?id=user/index';
 }

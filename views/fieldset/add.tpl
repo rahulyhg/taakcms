@@ -16,11 +16,7 @@
                 <input type="hidden" name="id" readonly="readonly" value="0"></td>
                 <div class="form-group">
                     <div class="form-group-first"><?php echo tr('title') ?> </div>
-                    <div class="form-group-last"><input name='title' class="form-control" /></div>
-                </div>
-                <div class="form-group">
-                    <div class="form-group-first"><?php echo tr('display_title') ?> </div>
-                    <div class="form-group-last"><input name='display_title' class="form-control" /></div>
+                    <div class="form-group-last"><input required="required" name='title' class="form-control" /></div>
                 </div>
                 <div class="content-row" style="margin-top:10px">
                     <?php 

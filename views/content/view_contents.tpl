@@ -46,7 +46,7 @@
                         <td class="col-sm-3" ><?php echo $row['create_date']; ?></td>
                         <td class="col-sm-2" >
                             <a class="fas fa-edit" onclick="edit(<?php echo $row['id']; ?>)" ></a>
-                            <a class="fas fa-trash-alt"  onclick="delete(<?php echo $row['id']; ?>);" ></a>
+                            <a class="fas fa-trash-alt"  onclick="delete_content(<?php echo $row['id']; ?>);" ></a>
                         </td>
                     </tr>
                     <?php } ?>
@@ -63,7 +63,9 @@
     function edit(id){
         window.location.href = "index.php?id=content/edit/"+ id;
     }
-    
+    function delete_content(id){
+        window.location.href = "index.php?id=content/delete/"+ id;
+    }
     function add_new_content(){
         window.location.href = "index.php?id=content/add";
     }

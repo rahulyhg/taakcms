@@ -105,7 +105,7 @@ class subcategory_model extends model
 		$sql2 = "SELECT * FROM tbl_fieldsets WHERE id = $fieldset_id"; 
 		$fieldset = $this->getRow($sql2); 
 
-		return $fieldset['display_title']; 
+		return $fieldset['title']; 
 	}
 	public function getContentTitle($category_id,$subcategory_id){
 		$sql = "SELECT * FROM tbl_categories WHERE id = $category_id"; 
@@ -127,7 +127,7 @@ class subcategory_model extends model
 		$sql2 = "SELECT * FROM tbl_fieldsets WHERE id = $fieldset_id"; 
 		$fieldset = $this->getRow($sql2); 
 		
-		return $fieldset['display_title']; 
+		return $fieldset['title']; 
 	}
 
 	public function getNewOrderIndex(){

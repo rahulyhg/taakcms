@@ -126,22 +126,29 @@ class content_controller extends controller
         }
         return json_encode($newdata,JSON_UNESCAPED_UNICODE);
       }else{
-        return $_POST[$title];
+        return safe($_POST[$title]);
       }
     }
     return "";
   }
-
+  public function delete($id) 
+  {  
+    $category_id = $_SESSION['active_category_id'];
+    $sub_category_id = $_SESSION['active_subcategory_id'];
+    $id= intval($id);
+    $this->_model->delete($id); 
+    return $this->view_contents($category_id,$sub_category_id); 
+  } 
   public function save()
   {
     $category_id = $_SESSION['active_category_id'];
     $sub_category_id = $_SESSION['active_subcategory_id'];
     $fields = $this->_model->getFieldsByCategoryId($category_id);
-    $id=$_POST['id'];
-    $title=$_POST['title'];
+    $id=safe($_POST['id']);
+    $title=safe($_POST['title']);
     $date=date('Y-m-d h:i:s');
-    $row_index=$_POST['row_index'];
-    $last_row_index=$_POST['last_row_index'];
+    $row_index=safe($_POST['row_index']);
+    $last_row_index=safe($_POST['last_row_index']);
 
     $details;
     foreach($fields as $field){
@@ -157,19 +164,19 @@ class content_controller extends controller
   }
 
   public function uploadimage(){
-    $id=$_POST['id'];
+    $id=safe($_POST['id']);
     $image = $this->_upload_file($_FILES["image"]);
     $this->_model->saveImage($id,$image);
     echo $image;
   }
   public function uploadaudio(){
-    $id=$_POST['id'];
+    $id=safe($_POST['id']);
     $audio = $this->_upload_file($_FILES["audio"]);
     $this->_model->saveAudio($id,$audio);
     echo $audio;
   }
   public function uploadvideo(){
-    $id=$_POST['id'];
+    $id=safe($_POST['id']);
     $video = $this->_upload_file($_FILES["video"]);
     $this->_model->saveVideo($id,$video);
     echo $video;

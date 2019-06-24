@@ -25,4 +25,11 @@ function tr($key){
     else 
         return $key;
 }
+
+function safe($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
 ?>

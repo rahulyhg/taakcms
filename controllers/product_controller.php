@@ -41,16 +41,16 @@ class product_controller extends controller
  //............
    public function save() 
    { 
-	   $id  = $_POST['id'];
-      $title = $_POST['title'];
+	   $id  = safe($_POST['id']);
+      $title = safe($_POST['title']);
       $logo="";
       if (isset($_FILES["logo"]) && $_FILES["logo"]["name"] !== ""){
          $logo = $this->_upload_file($_FILES["logo"]);
       }
-	   $color = $_POST['color'];
-	   $terms_and_conditions = $_POST['terms_and_conditions'];
-	   $about = $_POST['about'];
-      $banner_id = intval($_POST['banner_id']);
+	   $color = safe($_POST['color']);
+	   $terms_and_conditions = safe($_POST['terms_and_conditions']);
+	   $about = safe($_POST['about']);
+      $banner_id = intval(safe($_POST['banner_id']));
       
 	   if($id==0)
 			$this->_model->insert($title , $logo, $color, $terms_and_conditions, $about, $banner_id  ); 

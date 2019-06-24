@@ -13,6 +13,9 @@
     width:100%;
     text-align:left;
 }
+tbody > tr:hover{
+    cursor:pointer;
+}
 </style>
 <div class="content" style="background-color:var(--background)">
     
@@ -39,7 +42,7 @@
                 </thead>
                 <tbody>
                     <?php foreach($subcategories as $row) { ?> 
-                    <tr class="d-flex" ondblclick="view_subcategory_contents(<?php echo $row['category_id']; ?>,<?php echo $row['id']; ?>)">
+                    <tr class="d-flex" onclick="view_subcategory_contents(<?php echo $row['category_id']; ?>,<?php echo $row['id']; ?>)">
                         <td style="display:none;"><?php echo $row['id']; ?></td>
                         <td class="col-sm-1" ><?php echo $row['row_index']; ?></td>
                         <td class="col-sm-6" style="text-align:right;" ><?php echo $row['title']; ?></td>
