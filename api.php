@@ -5,46 +5,40 @@ define ('DS', DIRECTORY_SEPARATOR);
 define ('HOME', dirname(__FILE__)); 
 require_once HOME . DS . 'config.php'; 
 
+$key = "rd01J0MVzScT7TzzQof3VQqE";
 
-$key = "example_key";
-$token = array(
-    "iss" => "http://example.org",
-    "aud" => "http://example.com",
-    "iat" => 1356999524,
-    "nbf" => 1357000000
-);
+$contents = file_get_contents("php://input");
+$contents = json_decode($contents);
 
-/**
- * IMPORTANT:
- * You must specify supported algorithms for your application. See
- * https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40
- * for a list of spec-compliant algorithms.
- */
-$jwt = JWT::encode($token, $key);
-
-print_r($jwt);
-$decoded = JWT::decode($jwt, $key, array('HS256'));
-
-print_r($decoded);
-
-if (isset($_POST['action'])) {
-    $action = strtolower($_POST['action']);
+if (array_key_exists('action',$contents)) {
+    $action = strtolower($contents->action);
+    if ($action == "login"){
+        echo login($contents->data);
+        return;
+    }
+    if (!array_key_exists('token',$contents)){
+        echo 'missing token';
+        return;
+    }
+    $token = $contents->token;
+    try{
+        $info = JWT::decode($token, $key, array('HS256'));
+    } catch(Exception $e){
+        echo 'invalid token!';
+        return;
+    }
     switch ($action){
         case "getcategories":
-            $data = json_decode($_POST['data'],true);
-            echo getCategories($data);
+            echo getCategories($contents->data,$info);
             break;
         case "getsubcategories":
-            $data = json_decode($_POST['data'],true);
-            echo getSubcategories($data);
+            echo getSubcategories($contents->data,$info);
             break;
         case "getcontents":
-            $data = json_decode($_POST['data'],true);
-            echo getContents($data);
+            echo getContents($contents->data,$info);
             break;
-        case "get":
-            $data = json_decode($_POST['data'],true);
-            echo getContent($data);
+        case "getContent":
+            echo getContent($contents->data,$info);
             break;
         default:
             echo 'invalid action';
@@ -53,44 +47,66 @@ if (isset($_POST['action'])) {
     echo 'invalid action';
 }
 
+function login($data){
+    if (!array_key_exists('apiKey',$data)){
+        return 'missing apiKey in data';
+    }
+    if (!array_key_exists('clientId',$data)){
+        return 'missing clientId in data';
+    }
+    $product = new product_model();
+    
+    $result = $product->isExistsApiKey($data->apiKey);
+    if ($result){
+        $token = array(
+            "cli" => $data->clientId,
+            "prd" => $data->apiKey,
+        );
+        global $key;
+        $jwt = JWT::encode($token, $key);
+        return $jwt;
+    }else{
+        return 'invalid apiKey';
+    }
+}
 
-function getCategories($data){
+function getCategories($data,$info){
     $category = new category_model();
-    if (!isset($data['product_id'])){
+    if (!array_key_exists('product_id',$data)){
         return 'missing product_id in data';
     }
-    $result = $category->getRows($data['product_id']);
+    $result = $category->getRows($data->product_id);
     return json_encode($result);
 }
 
-function getSubcategories($data){
+function getSubcategories($data,$info){
     $subcategory = new subcategory_model();
-    if (!isset($data['category_id'])){
+    if (!array_key_exists('category_id',$data)){
         return 'missing category_id in data';
     }
     $conditions=[];
-    if (isset($data['conditions'])){
-        $conditions =$data['conditions'];
+    if (array_key_exists('conditions',$data)){
+        $conditions = $data->conditions;
     }
-    $result = $subcategory->getSubcategoriesForApi($data['category_id'],$conditions);
+    $result = $subcategory->getSubcategoriesForApi($data->category_id,$conditions);
     return json_encode($result);
 }
 
-function getContents($data){
+function getContents($data,$info){
     $content = new content_model();
-    if (!isset($data['subcategory_id'])){
+    if (!array_key_exists('subcategory_id',$data)){
         return 'missing subcategory_id in data';
     }
-    $result = $content->getRowsBySubcategoryId($data['subcategory_id']);
+    $result = $content->getRowsBySubcategoryId($data->subcategory_id);
     return json_encode($result);
 }
 
-function getContent($data){
+function getContent($data,$info){
     $content = new content_model();
-    if (!isset($data['content_id'])){
+    if (!array_key_exists('content_id',$data)){
         return 'missing content_id in data';
     }
-    $result = $content->getRowByIdForApi($data['content_id']);
+    $result = $content->getRowByIdForApi($data->content_id);
     return json_encode($result);
 }
 

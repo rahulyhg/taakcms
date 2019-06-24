@@ -1,5 +1,9 @@
 <?php include('views/header.tpl');?>
-
+<style>
+.form-group-first{
+  width:30%;
+}
+</style>
 <div class="content">
   <div class="flexColumn">
     <div class="content-card" style="max-width:600px;width: 100%;">

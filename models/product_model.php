@@ -38,9 +38,10 @@ class product_model extends model
 //.................
 	public function insert($title,$logo,$color, $terms_and_conditions, $about, $banner_id)
 	{
-      $sql="INSERT INTO tbl_products(title,logo,color, terms_and_conditions, about, baner_contentId) 
-	  	VALUES('$title','$logo','$color', '$terms_and_conditions', '$about', $banner_id)";
-	  $this->execQuery($sql);
+		$newkey = generateRandomString(24);
+      	$sql="INSERT INTO tbl_products(title,logo,color, terms_and_conditions, about, baner_contentId, api_key) 
+	  	VALUES('$title','$logo','$color', '$terms_and_conditions', '$about', $banner_id,'$newkey')";
+	  	$this->execQuery($sql);
 	}
 //.................
 	public function update($title, $logo, $color, $terms_and_conditions, $about, $banner_id, $id)
@@ -64,6 +65,11 @@ class product_model extends model
 		$colors['cyan'] = 'cyan';
 		$colors['gray'] = 'gray';
 		return $colors;
+	}
+	function isExistsApiKey($apiKey){
+		$sql = "SELECT * FROM tbl_products WHERE api_key ='$apiKey'"; 
+		$row = $this->getRow($sql); 
+		return $row == null ? false : true; 
 	}
 }
 ?>

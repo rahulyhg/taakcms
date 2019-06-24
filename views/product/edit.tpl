@@ -5,6 +5,9 @@
   height: 60;
   background-size: cover;
 }
+.form-group-first{
+  width:30%;
+}
 </style>
 <div class="content">
   <div class="flexColumn">
@@ -39,6 +42,10 @@
           <div class="form-group">
             <label class="form-group-first" for="banner_id"><?php echo tr('banner_id')?>:</label>
             <input type="text" class="form-control border form-group-last" name="banner_id" value="<?php echo $row['baner_contentId'] ?>"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-group-first" for="banner_id">api key:</label>
+            <label class="form-control border form-group-last" ><?php echo $row['api_key']; ?></textarea>
           </div>
         </div>
         <div class="content-card-footer">
