@@ -32,8 +32,12 @@
         <ul class="navbar-nav ml-auto" style="margin-left: 0px !important;">
             <?php if (isAdmin()) { ?>
             <li class="nav-item">
+                <a class="nav-link" href="index.php?id=api/index">API<span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="index.php?id=user/index"><?php echo tr('users') ?> <span class="sr-only">(current)</span></a>
             </li>
+            
             <?php } ?>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?id=user/logout"><?php echo tr('logout') ?> <span class="sr-only">(current)</span></a>
