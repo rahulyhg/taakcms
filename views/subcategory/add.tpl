@@ -37,20 +37,17 @@
             </form>
         </div>
         <div class="content-card-footer">
-            <button class="btn btn-light btn-sm" id="btn_submit" type="submit" onclick="return validateSubmit();" ><?php echo tr('save')?></button>
+            <button class="btn btn-light btn-sm" id="btn_submit" type="submit" ><?php echo tr('save')?></button>
             <button class="btn btn-light btn-sm" type="button" onclick="cancel();"><?php echo tr('cancel')?></button>
         </div>
     </div>
     <script>
         
-        /**/
         $('#btn_submit').click(function(){
-            $('#mainform').submit();
+            if (validateRequiredFields()){
+                $('#mainform').submit();
+            }
         });
-
-        function validateSubmit(){
-            return true;
-        }
 
         function cancel(){
             window.location.href = 'index.php?id=subcategory/index/<?php echo $category_id ?>';

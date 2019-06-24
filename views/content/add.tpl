@@ -337,14 +337,19 @@
         }
         /**/
         $('#btn_submit').click(function(){
-            $('#mainform').submit();
-        });
-
-        function validateSubmit(){
             var table = $('#<?php echo $tableId; ?>');
             if (table.length){
                 table.val(getTableData());
             }
+            if (!validateRequiredFields()){
+                return false;
+            }else{
+                $('#mainform').submit();
+            }
+        });
+
+        function validateSubmit(){
+            
             return true;
         }
 

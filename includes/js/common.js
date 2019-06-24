@@ -8,8 +8,16 @@ function getFileNameFromPath(fullPath){
 }
 function validateRequiredFields(){
     var allInputs = $('input[required]');
-    for(var i =0;i< allInputs.length;i++){
-        var element = allInputs[i];
+    var allSelects = $('select[required]');
+    let valid=true;
+    valid = validate(allInputs) && valid;
+    valid = validate(allSelects) && valid;
+    return valid;
+}
+
+function validate(list){
+    for(var i =0;i< list.length;i++){
+        var element = list[i];
         if (element.value == ''){
             element.style.border = "1px solid red";
             return false;
@@ -19,3 +27,4 @@ function validateRequiredFields(){
     }
     return true;
 }
+

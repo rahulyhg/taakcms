@@ -195,3 +195,7 @@ a:not([href]):not([tabindex]):hover {
   tbody > tr:hover{
     background-color:white;
 }
+
+input[type='checkbox'] { 
+    width: auto;    
+}

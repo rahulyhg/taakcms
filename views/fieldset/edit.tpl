@@ -4,6 +4,9 @@
 .table-sm > thead{
     text-align:center;
 }
+.form-group-last{
+    width:100%;
+}
 </style>
 
 <div class="content">
@@ -15,8 +18,8 @@
             <form action="index.php?id=fieldset/save" method="post" class="taak_form" >
                 <input type="hidden" name="id" readonly="readonly" value="<?php echo $fieldset['id']; ?>"></td>
                 <div class="form-group">
-                    <div class="form-group-first"><?php echo tr('title') ?> </div>
-                    <div class="form-group-last"><input required="required" name='title' class="form-control" value="<?php echo $fieldset['title']; ?>" /></div>
+                    <label class="form-group-first" for="has_subcategory"><?php echo tr('title')?>:</label>
+                    <input required="required" name='title' class="form-control" value="<?php echo $fieldset['title']; ?>"/>
                 </div>
                 <div class="content-row" style="margin-top:10px">
                     <?php 
@@ -46,7 +49,7 @@
     <script>
         function validateSubmit(){
             $('#mytbl').val(getTableData());
-            return true;
+            return validateRequiredFields();
         }
 
         function cancel(){

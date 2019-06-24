@@ -18,7 +18,7 @@ foreach($fields as $field) {
     <?php } else if ($field['data_type'] == 'select'){?>
     <div class="form-group">
         <label class="form-group-first" for="<?php echo $field['title_latin']  ?>"><?php echo $field['title']  ?>:</label>
-        <select class="form-control form-group-last" name="<?php echo $field['title_latin']  ?>" value="<?php echo getvalue($field['title_latin'],$values);  ?>" >
+        <select class="form-control form-group-last form-control-sm" name="<?php echo $field['title_latin']  ?>" value="<?php echo getvalue($field['title_latin'],$values);  ?>" >
             <option value=''></option>
             <?php foreach(explode("/",$field['value']) as $opt){
                 echo "<option value='" . $opt . "' " . (getvalue($field['title_latin'],$values) == $opt ? "selected" : "")  . " >" . $opt . "</option>";

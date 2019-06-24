@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="content-card-footer">
-          <button class="btn btn-light btn-sm" type="submit" ><?php echo tr('save')?></button>
+          <button class="btn btn-light btn-sm" type="submit" onclick="return validateRequiredFields();" ><?php echo tr('save')?></button>
           <button class="btn btn-light btn-sm" type="button" onclick="cancel();"><?php echo tr('cancel')?></button>
         </div>
       </form>
@@ -76,6 +76,7 @@ $('.has_audio').prop('indeterminate', true)
 function cancel(){
   window.location.href = 'index.php?id=content/index/<?php echo $product_id; ?>';
 }
+
 </script>
 
 <?php include('views/footer.tpl');?>
