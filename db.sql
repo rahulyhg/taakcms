@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 22, 2019 at 03:54 AM
+-- Generation Time: Jun 24, 2019 at 02:58 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `tbl_categories` (
   `has_image` tinyint(1) NOT NULL,
   `subcategory_fieldset_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -51,13 +51,14 @@ CREATE TABLE IF NOT EXISTS `tbl_categories` (
 DROP TABLE IF EXISTS `tbl_contents`;
 CREATE TABLE IF NOT EXISTS `tbl_contents` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_date` datetime DEFAULT NULL,
   `title` varchar(45) COLLATE utf8_persian_ci DEFAULT NULL,
   `description` varchar(1000) COLLATE utf8_persian_ci DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
   `row_index` int(11) DEFAULT NULL,
   `subcategory_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -135,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `tbl_fieldsets` (
   `display_title` varchar(500) COLLATE utf8_persian_ci NOT NULL,
   `product_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -153,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `tbl_fieldset_details` (
   `value` varchar(500) COLLATE utf8_persian_ci DEFAULT NULL,
   `orderfield` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -171,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `tbl_products` (
   `baner_contentId` int(11) DEFAULT NULL,
   `color` varchar(45) COLLATE utf8_persian_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -186,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `tbl_subcategories` (
   `title` varchar(45) COLLATE utf8_persian_ci NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -201,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `tbl_subcategory_details` (
   `field_key` varchar(100) COLLATE utf8_persian_ci NOT NULL,
   `field_value` varchar(500) COLLATE utf8_persian_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -226,10 +227,34 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id`, `username`, `password`, `fullname`, `role`, `accessed_products`) VALUES
-(1, 'ali', '123', 'alireza', '', ''),
-(2, 'reza', '456', 'reza', '', ''),
+(1, 'ali', '123', 'alireza', 'admin', '[]'),
+(2, 'reza', '456', 'reza', 'user', '[{\"field_id\":\"-312\",\"product\":\"7\",\"row_status\":\"inserted\"}]'),
 (3, 'hasan', NULL, 'حسنی', 'user', 'Array'),
 (4, 'یب', NULL, 'شسی', 'user', '[{\"field_id\":\"-293\",\"product\":\"2\",\"row_status\":\"inserted\"},{\"field_id\":\"-518\",\"product\":\"6\",\"row_status\":\"inserted\"}]');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vw_subcategories`
+-- (See below for the actual view)
+--
+DROP VIEW IF EXISTS `vw_subcategories`;
+CREATE TABLE IF NOT EXISTS `vw_subcategories` (
+`id` int(11)
+,`row_index` int(11)
+,`title` varchar(45)
+,`category_id` int(11)
+,`content_count` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_subcategories`
+--
+DROP TABLE IF EXISTS `vw_subcategories`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_subcategories`  AS  select `tbl_subcategories`.`id` AS `id`,`tbl_subcategories`.`row_index` AS `row_index`,`tbl_subcategories`.`title` AS `title`,`tbl_subcategories`.`category_id` AS `category_id`,(select count(0) from `tbl_contents` where (`tbl_contents`.`subcategory_id` = `tbl_subcategories`.`id`)) AS `content_count` from `tbl_subcategories` ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
