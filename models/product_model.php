@@ -66,10 +66,14 @@ class product_model extends model
 		$colors['gray'] = 'gray';
 		return $colors;
 	}
-	function isExistsApiKey($apiKey){
+	function getProductIdByApiKey($apiKey){
 		$sql = "SELECT * FROM tbl_products WHERE api_key ='$apiKey'"; 
 		$row = $this->getRow($sql); 
-		return $row == null ? false : true; 
+		if ($row != null) {
+			return $row['id'];
+		} else{
+			return 0;
+		}
 	}
 }
 ?>

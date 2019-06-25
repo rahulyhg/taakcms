@@ -17,7 +17,7 @@
           </div>
           <div class="form-group">
             <label class="form-group-first" for="role"><?php echo tr('role')?>:</label>
-            <?php $dropdownName="role"; $disabled=false; $datasource=$roles; $dropdownValue=""; require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
+            <?php $dropdownName="role";$required=true; $disabled=false; $datasource=$roles; $dropdownValue=""; require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
           </div>
           <div class="form-group">
             <label class="form-group-first" for="accessed_products"><?php echo tr('accessed_products')  ?>:</label>

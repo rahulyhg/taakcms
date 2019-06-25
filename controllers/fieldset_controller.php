@@ -3,7 +3,7 @@ class fieldset_controller extends controller
 { 
   public function index()
   {
-    $product_id = $_SESSION['product_id'];
+    $product_id = decodeId($_SESSION['product_id']);
     $_SESSION['active_category_id'] = 0;
     $this->_setView("index");
     
@@ -42,7 +42,7 @@ class fieldset_controller extends controller
   {
     $id  =safe($_POST['id']);
     $title =safe($_POST['title']);
-    $product_id =$_SESSION['product_id'];
+    $product_id = decodeId($_SESSION['product_id']);
     $fields = json_decode(stripslashes($_POST['mytbl']));
     
     if($id==0)

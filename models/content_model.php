@@ -37,13 +37,25 @@ class content_model extends model
 		} 
 		
 		$sql3 = "SELECT * FROM tbl_content_images WHERE content_id =$id";
-		$row['images'] = $this->getAll($sql3); 
+		$images = $this->getAll($sql3);
+		foreach($images as $key => $image){
+			$images[$key]['url'] = getServerAddress() . "/uploads" . "/" . $image['filename'];
+		}
+		$row['images'] = $images; 
 		
 		$sql4 = "SELECT * FROM tbl_content_sounds WHERE content_id =$id";
-		$row['sounds'] = $this->getAll($sql4); 
+		$audios =  $this->getAll($sql4);
+		foreach($audios as $key => $audio){
+			$audios[$key]['url'] = getServerAddress() . "/uploads" . "/" . $audio['filename'];
+		}
+		$row['sounds'] =$audios; 
 
 		$sql5 = "SELECT * FROM tbl_content_videos WHERE content_id =$id";
-		$row['videos'] = $this->getAll($sql5); 
+		$videos =  $this->getAll($sql5);
+		foreach($videos as $key => $video){
+			$videos[$key]['url'] = getServerAddress() . "/uploads" . "/" . $video['filename'];
+		}
+		$row['videos'] = $videos; 
 
 		return $row; 
 	} 
@@ -133,8 +145,8 @@ class content_model extends model
 		$sql="INSERT INTO tbl_content_videos(content_id,title,filename) VALUES($id,'$title','$video')";
 		$this->execQuery($sql);
 	}
-	public function getNewOrderIndex(){
-		$sql = "SELECT * FROM tbl_contents ORDER BY row_index DESC"; 
+	public function getNewOrderIndex($subcategory_id){
+		$sql = "SELECT * FROM tbl_contents WHERE subcategory_id = $subcategory_id ORDER BY row_index DESC"; 
 		$subcategory = $this->getRow($sql); 
 		return $subcategory['row_index'] + 1; 
 	}

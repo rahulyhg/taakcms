@@ -17,7 +17,15 @@
           </div>
           <div class="form-group">
             <label class="form-group-first" for="role"><?php echo tr('role')?>:</label>
-            <?php $dropdownName="role"; $disabled=false; $datasource=$roles; $dropdownValue=$row['role']; require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
+            <?php $dropdownName="role";$required=true; $disabled=false; $datasource=$roles; $dropdownValue=$row['role']; require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
+          </div>
+          <div class="form-group">
+            <label class="form-group-first" for="password"><?php echo tr('password')?>:</label>
+            <input type="password" class="form-control form-group-last" name="password" >
+          </div>
+          <div class="form-group">
+            <label class="form-group-first" for="confirmpassword"><?php echo tr('confirmpassword')?>:</label>
+            <input type="password" class="form-control form-group-last" name="confirmpassword" >
           </div>
           <div class="form-group">
             <label class="form-group-first" for="accessed_products"><?php echo tr('accessed_products')  ?>:</label>

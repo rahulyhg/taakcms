@@ -24,7 +24,7 @@ class subcategory_controller extends controller
       $fields = $this->_model->getSubcategoryFields($category_id);
       $values['id']=rand(100, 999) * -1;
       $values['title']="";
-      $values['row_index']=$this->_model->getNewOrderIndex();
+      $values['row_index']=$this->_model->getNewOrderIndex($category_id);
       foreach($fields as $field){
          $item = array();
          $item['field_key'] = $field['title_latin'];
@@ -94,7 +94,7 @@ class subcategory_controller extends controller
       if($id<=0)
          $id = $this->_model->insert($title,$category_id, $row_index,$details); 
       else	 
-         $this->_model->update($id,$title, $row_index,$last_row_index,$details);		
+         $this->_model->update($id,$title,$category_id, $row_index,$last_row_index,$details);		
       
       return $this->index($category_id); 
    } 

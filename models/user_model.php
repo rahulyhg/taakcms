@@ -1,8 +1,9 @@
 <?php
 class user_model extends model 
 { 
-	public function getRowByUP($uname , $upass ) 
+	public function getRowByUP($uname , $upass) 
 	{ 
+		$upass = hash('sha256',$upass);
 		$sql = "SELECT * FROM tbl_users 
 		        WHERE  `username`='$uname' and `password`='$upass' "; 
 		$row = $this->getRow($sql); 
@@ -43,6 +44,11 @@ class user_model extends model
 
 	public function update($username ,$fullname, $role, $accessed_products,$id){
 		$sql="UPDATE tbl_users SET username='$username',fullname='$fullname',role='$role',accessed_products='$accessed_products' WHERE id=$id";
+		$this->execQuery($sql);
+	}
+	public function setPassword($id,$password){
+		$password = hash('sha256',$password);
+		$sql="UPDATE tbl_users SET password='$password' WHERE id=$id";
 		$this->execQuery($sql);
 	}
 

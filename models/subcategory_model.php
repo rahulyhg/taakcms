@@ -76,9 +76,9 @@ class subcategory_model extends model
 		}
 	}
 	//.................
-	public function update($id,$title,$row_index,$last_row_index,$details)
+	public function update($id,$title,$category_id,$row_index,$last_row_index,$details)
 	{
-		$sql="UPDATE tbl_subcategories SET row_index = row_index + 1 WHERE row_index >= $row_index and row_index < $last_row_index";
+		$sql="UPDATE tbl_subcategories SET row_index = row_index + 1 WHERE category_id = $category_id AND row_index >= $row_index and row_index < $last_row_index";
 		$this->execQuery($sql);
 
 		$sql="UPDATE tbl_subcategories SET title = '$title',row_index=$row_index WHERE id = $id";
@@ -132,8 +132,8 @@ class subcategory_model extends model
 		return $fieldset['title']; 
 	}
 
-	public function getNewOrderIndex(){
-		$sql = "SELECT * FROM tbl_subcategories ORDER BY row_index DESC"; 
+	public function getNewOrderIndex($category_id){
+		$sql = "SELECT * FROM tbl_subcategories WHERE category_id = $category_id ORDER BY row_index DESC"; 
 		$subcategory = $this->getRow($sql); 
 		return $subcategory['row_index'] + 1; 
 	}

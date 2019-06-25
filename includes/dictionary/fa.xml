@@ -7,6 +7,7 @@
     <string id="edit_product">ویرایش محصول جدید</string>
     <string id="username">نام کاربری</string>
     <string id="password">رمز ورود</string>
+    <string id="confirmpassword">تایید رمز ورود</string>
     <string id="enter">ورود</string>
     <string id="enter_taak_cms">ورود به پنل محتوای تاک</string>
     <string id="please_select_a_product">لطفاً یک سرویس را انتخاب نمایید</string>

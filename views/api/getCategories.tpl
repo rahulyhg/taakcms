@@ -26,10 +26,7 @@
 
 <h2>Example Data</h2><h3>Return categories for the specified product</h3><pre>{
     "token": "tokenAsGetFromLoginApi",
-    "action": "getcategories",
-    "data" : {
-        "product_id" : "12"
-    } 
+    "action": "getcategories"
 }</pre>
 
 <h3>Sample PHP code</h3>
@@ -41,11 +38,6 @@
 $post = array();
 $info["action"] = "getCategories";
 $info["token"] = "asokdpkasd";
-
-$data = array();
-$data["product_id"] = "8";
-
-$info["data"] = $data;
 
 $json = json_encode($post);
 

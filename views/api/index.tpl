@@ -52,22 +52,6 @@
     <br>
     <br>
     <br>
-
-
-    <h2>Common Error Codes</h2>
-    <table>
-        <tr><th>Error Code</th><th>Error Meaning</th></tr>
-        <tr><td> 1009 </td><td> Not allowed for this role </td></tr>
-        <tr><td> 1021 </td><td> Account has no credit </td></tr>
-        <tr><td> 1022 </td><td> Not whitelisted </td></tr>
-    </table>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <br>
     <br>
     <br>

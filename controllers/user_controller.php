@@ -79,6 +79,13 @@ class user_controller extends controller
 		else	 
 			$this->_model->update($username ,$fullname, $role, $accessed_products, $id);		
 
+		if (isset($_POST['password']) && isset($_POST['confirmpassword'])){
+			$password = safe($_POST['password']);
+			$confirmpassword = safe($_POST['confirmpassword']);
+			if ($confirmpassword == $password && strlen($password) > 0){
+				$this->_model->setPassword($id,$password);
+			}
+		}
 		return $this->index();
 	}
   

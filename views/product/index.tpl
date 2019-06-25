@@ -69,7 +69,7 @@
     <div class="app_container" >
 
         <?php foreach($rows as $row) { $color = $row['color'] == '' ? '#a8fcfc80' : $row['color']; ?> 
-          <div class="app_item" onclick="view_product(<?php echo $row['id']; ?>);">
+          <div class="app_item" onclick="view_product('<?php echo encodeId($row['id']); ?>');">
             <div class="app_logo" style="border:1px solid <?php echo $row['color']; ?>; background-image:url('uploads/<?php echo $row['logo'] ?>');" ></div>
             <div class="app_title"><?php echo $row['title']; ?></div>
             <div class="app_actions">

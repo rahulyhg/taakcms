@@ -40,8 +40,8 @@ div > form > *{
   <div class="login-container">
       <h1><?php echo tr('site-name');?></h1>
       <form action="index.php?id=user/check" method="post">
-          <input type="text" name="uname" class="form-control form-control-sm" placeholder="Username">
-          <input type="password" name="upass" class="form-control form-control-sm" placeholder="Password">
+          <input required="required" type="text" name="uname" class="form-control form-control-sm" placeholder="Username">
+          <input required="required" type="password" name="upass" class="form-control form-control-sm" placeholder="Password">
           <button class="btn btn-sm btn-light" type="submit"><?php echo tr('enter');?></button>
       </form>
   </div>

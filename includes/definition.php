@@ -68,5 +68,8 @@ define ('DataTypes', $data_types);
     function video_types(){
         return array('wmv','mp4','avi');
     }
+    function getServerAddress(){
+		return "http://" . $_SERVER['SERVER_NAME'] . "/mvc-php-with-login";
+    }
 
 ?>

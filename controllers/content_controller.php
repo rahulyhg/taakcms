@@ -3,6 +3,7 @@ class content_controller extends controller
 { 
   public function index($product_id)
   {
+    $product_id = decodeId($product_id);
     $product_model = new product_model(); 
     $product = $product_model->getRowById($product_id);
 
@@ -11,7 +12,7 @@ class content_controller extends controller
 
     $_SESSION['product_title'] = $product['title'];
     $_SESSION['product_color'] = $product['color'];
-    $_SESSION['product_id'] = $product_id;
+    $_SESSION['product_id'] = encodeId($product_id);
     $_SESSION['categories'] = $categories;
     $_SESSION['active_category_id'] = 0;
     $this->_setView("index");
@@ -54,7 +55,7 @@ class content_controller extends controller
 
     $values['id']=rand(100, 999) * -1;
     $values['title']="";
-    $values['row_index']=$this->_model->getNewOrderIndex();
+    $values['row_index']=$this->_model->getNewOrderIndex($subcategory_id);
     foreach($fields as $field){
       $item = array();
       $item['field_key'] = $field['title_latin'];

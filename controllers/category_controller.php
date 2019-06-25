@@ -6,7 +6,7 @@ class category_controller extends controller
       $product_id = $_SESSION['product_id'];
       $this->_setView("add");
       $fieldset_model = new fieldset_model(); 
-      $fieldsets = $fieldset_model->getRowsForDrowdown($product_id);
+      $fieldsets = $fieldset_model->getRowsForDrowdown(decodeId($product_id));
       $row = $this->_model->getCategory(0);
       $this->_view->set('page_title', tr('category')); 
       $this->_view->set('fieldsets', $fieldsets); 
@@ -21,7 +21,7 @@ class category_controller extends controller
       $this->_setView("add");
 
       $fieldset_model = new fieldset_model(); 
-      $fieldsets = $fieldset_model->getRowsForDrowdown($product_id);
+      $fieldsets = $fieldset_model->getRowsForDrowdown(decodeId($product_id));
       $row = $this->_model->getCategory($id);
       $this->_view->set('page_title', tr('category')); 
       $this->_view->set('fieldsets', $fieldsets); 
@@ -56,14 +56,14 @@ class category_controller extends controller
       $product_id = $_SESSION['product_id'];
 
       if($id==0){
-         $category_id = $this->_model->insert($title,$contetn_fieldset_id,$has_audio,$has_video,$has_image,$has_subcategory,$subcategory_fieldset_id,$product_id); 
+         $category_id = $this->_model->insert($title,$contetn_fieldset_id,$has_audio,$has_video,$has_image,$has_subcategory,$subcategory_fieldset_id,decodeId($product_id)); 
          if (!$has_subcategory && $category_id){
             $subcategory_model = new subcategory_model(); 
             $subcategory_model->insert($title,$category_id,0,[]);
          }
       }
       else	 
-         $this->_model->update($title,$contetn_fieldset_id,$has_audio,$has_video,$has_image,$has_subcategory,$subcategory_fieldset_id,$product_id,$id);	
+         $this->_model->update($title,$contetn_fieldset_id,$has_audio,$has_video,$has_image,$has_subcategory,$subcategory_fieldset_id,decodeId($product_id),$id);	
       
       header('location:index.php?id=content/index/' . $product_id);
    } 

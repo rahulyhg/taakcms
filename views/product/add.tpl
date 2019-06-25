@@ -17,7 +17,7 @@
           </div>
           <div class="form-group">
             <label class="form-group-first" for="color"><?php echo tr('color')?>:</label>
-            <?php $dropdownName="color"; $datasource=$colors; $dropdownValue="";$disabled=false; require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
+            <?php $dropdownName="color";$required=false; $datasource=$colors; $dropdownValue="";$disabled=false; require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' ?>
           </div>
           <div class="form-group">
             <label class="form-group-first" for="logo"><?php echo tr('logo')?>:</label>
