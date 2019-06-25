@@ -74,7 +74,7 @@ $('#has_subcategory').change(function(){
 
 $('.has_audio').prop('indeterminate', true)
 function cancel(){
-  window.location.href = 'index.php?id=content/index/<?php echo encodeId($product_id); ?>';
+  window.location.href = 'index.php?id=content/index/<?php echo $product_id; ?>';
 }
 
 </script>

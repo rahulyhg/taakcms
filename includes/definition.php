@@ -1,13 +1,14 @@
 <?php
-$data_types;
-$data_types['text']='text';
-$data_types['number']='number';
-$data_types['select']='select';
-$data_types['yesno']='yesno';
-$data_types['string_list']='string_list';
-$data_types['long_text']='long_text';
-
-define ('DataTypes', $data_types);
+    function getDataTypes(){
+        $data_types;
+        $data_types['text']='text';
+        $data_types['number']='number';
+        $data_types['select']='select';
+        $data_types['yesno']='yesno';
+        $data_types['string_list']='string_list';
+        $data_types['long_text']='long_text';
+        return $data_types;
+    }
 
     function isAdmin(){
         if (isset($_SESSION['admin']))

@@ -30,7 +30,7 @@
                             (object)['id'=>'field_order','type'=>'input','caption'=>tr('order')],
                             (object)['id'=>'field_title','type'=>'input','caption'=>tr('title')],
                             (object)['id'=>'field_title_latin','type'=>'input','caption'=>tr('title_latin')],
-                            (object)['id'=>'field_type','type'=>'select','caption'=>tr('type'),'options'=>DataTypes],
+                            (object)['id'=>'field_type','type'=>'select','caption'=>tr('type'),'options'=>getDataTypes()],
                             (object)['id'=>'field_value','type'=>'input','caption'=>tr('value')]);
                         
                         $data = $fieldset['details'];
