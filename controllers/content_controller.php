@@ -165,21 +165,38 @@ class content_controller extends controller
 
   public function uploadimage(){
     $id=safe($_POST['id']);
-    $image = $this->_upload_file($_FILES["image"]);
-    $this->_model->saveImage($id,$image);
-    echo $image;
+    $title=safe($_POST['title']);
+    $image = $this->_upload_file($_FILES["image"],image_types());
+    if ($image['result']){
+      $this->_model->saveImage($id,$image['message'],$title);
+    }
+    $image['title'] = $title;
+    echo json_encode($image);
   }
+  public function deleteImage(){
+    $id=safe($_POST['id']);
+  }
+
   public function uploadaudio(){
     $id=safe($_POST['id']);
-    $audio = $this->_upload_file($_FILES["audio"]);
-    $this->_model->saveAudio($id,$audio);
-    echo $audio;
+    $title=safe($_POST['title']);
+    $audio = $this->_upload_file($_FILES["audio"],audio_types());
+    if ($audio['result']){
+      $this->_model->saveAudio($id,$audio['message'],$title);
+    }
+    $audio['title'] = $title;
+    echo json_encode($audio);
   }
+
   public function uploadvideo(){
     $id=safe($_POST['id']);
-    $video = $this->_upload_file($_FILES["video"]);
-    $this->_model->saveVideo($id,$video);
-    echo $video;
+    $title=safe($_POST['title']);
+    $video = $this->_upload_file($_FILES["video"],video_types());
+    if ($video['result']){
+      $this->_model->saveVideo($id,$video['message'],$title);
+    }
+    $video['title'] = $title;
+    echo json_encode($video);
   }
 }	 
 	 

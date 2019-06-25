@@ -10,11 +10,17 @@ $data_types['long_text']='long_text';
 define ('DataTypes', $data_types);
 
     function isAdmin(){
-        return $_SESSION['admin'];
+        if (isset($_SESSION['admin']))
+            return $_SESSION['admin'];
+        else
+            return false;
     }
 
     function accessed_products(){
-        return $_SESSION['accessed_products'];
+        if (isset($_SESSION['accessed_products']))
+            return $_SESSION['accessed_products'];
+        else
+            return [];
     }
 
     function tr($key){
@@ -51,6 +57,16 @@ define ('DataTypes', $data_types);
     function decodeId($id){
         $id = base64_decode($id);
         return ( $id / 7 ) - 9;
+    }
+
+    function image_types(){
+        return array('jpg','jpeg','png');
+    }
+    function audio_types(){
+        return array('mp3');
+    }
+    function video_types(){
+        return array('wmv','mp4','avi');
     }
 
 ?>

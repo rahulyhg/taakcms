@@ -28,58 +28,39 @@ class controller
 		  else 	$this->_view->set('uname' , '' );   
 	  } 
 
-	  protected function _upload_file($file){
+	  protected function _upload_file($file,$valid_file_types){
 		$target_dir = "uploads/";
-		$target_file = $target_dir . basename($file["name"]);
-		$uploadOk = 1;
-		$fileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-  
-		/*
-		$check = getimagesize($file["tmp_name"]);
-		if($check !== false) {
-		   echo "File is an image - " . $check["mime"] . ".";
-		   $uploadOk = 1;
-		} else {
-		   echo "File is not an image.";
-		   $uploadOk = 0;
-		}*/
+		$fileType = pathinfo($file['name'], PATHINFO_EXTENSION);
+		$newfileName = generateRandomString(16);
+		$newfileFullName = $newfileName . "." . $fileType;
+		$target_file = $target_dir . $newfileFullName;
 
 		/*
-		// Check if file already exists
-		if (file_exists($target_file)) {
-		   echo "Sorry, file already exists.";
-		   $uploadOk = 0;
-		}
-		  */
-		  /*
 		// Check file size
 		if ($file["size"] > 500000) {
 		   echo "Sorry, your file is too large.";
 		   $uploadOk = 0;
 		}
-  */
-  /*
+		*/
+		
 		// Allow certain file formats
-		if($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg"
-		&& $fileType != "gif" ) {
-		   echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-		   $uploadOk = 0;
+		if(!in_array($fileType,$valid_file_types)){
+		   $message = "this file type does not allowed! Only " . implode(', ',$valid_file_types)  . " are allowed.";
+		   return $this->uploadResult(false,$message);
 		}
-  */
-		// Check if $uploadOk is set to 0 by an error
-		if ($uploadOk == 0) {
-		   echo "Sorry, your file was not uploaded.";
-		// if everything is ok, try to upload file
+  
+		if (move_uploaded_file($file["tmp_name"], $target_file)) {
+			return $this->uploadResult(true,$newfileFullName);
 		} else {
-		   if (move_uploaded_file($file["tmp_name"], $target_file)) {
-			  echo "The file ". basename( $file["name"]). " has been uploaded.";
-			  return basename( $file["name"]);
-		   } else {
-			  echo "Sorry, there was an error uploading your file.";
-			  return "";
-		   }
+			return $this->uploadResult(false,'unkhown error');
 		}
+	  }
 
+	  function uploadResult($result,$message){
+		$obj = array();
+		$obj['message'] = $message;
+		$obj['result'] = $result;
+		return $obj;
 	  }
 
 	  function getBool($post,$id){

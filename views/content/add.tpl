@@ -110,21 +110,23 @@
                         <div class="attachment-tab">
                             <div class="attachment-container" id="image-container">
                                 <?php foreach($values['images'] as $image) { ?>
-                                    <img class="attachment-item" onclick="handlePreviewImage(this,<?php echo $image['id'] ?>)"; src="./uploads/<?php echo $image['title'] ?>"></img>
+                                    <img class="attachment-item" data-title="<?php echo $image['title'] ?>" onclick="handlePreviewImage(this,<?php echo $image['id'] ?>)"; src="./uploads/<?php echo $image['filename'] ?>"></img>
                                 <?php } ?>
-                                <div class="attachment-add-button" onclick="handleAddImage();">
+                                <div class="attachment-add-button attachment-item" onclick="handleAddImage();">
                                     <button type="button" class="btn btn-light btn-sm"> <div class="fas fa-plus"></div></button>
                                 </div>
-
                             </div> 
                             <div id="image-preview" >
                                 <div class="attachment-bar"><span id="image-title" class="attachment-title"></span><button id="delete-image" type="button" class="btn btn-light btn-sm"><div class="fas fa-times"></div></button></div>
                                 <img src="" id='imagepreview' class="attachment-preview" />
                             </div> 
                             <div id="image-add" class="attachment-add">
-                                <form method="post" action="index.php?id=content/uploadimage" id="imageform" >
-                                    <input type="file" name="newimage" id="newimage" />
-                                    <button id="add_image" class="btn btn-light btn-sm" type="button"><div class="fas fa-upload" ></div></button>
+                                <form method="post" class="form-inline" action="index.php?id=content/uploadimage" id="imageform" >
+                                    <div class="form-group">
+                                        <input type="file" name="newimage" id="newimage" />
+                                        <input type="text" class="form-control form-control-sm" style="margin-right: 10px;" placeholder="title" name="titleimage" id="titleimage" />
+                                        <button id="add_image" class="btn btn-light btn-sm" style="margin-right: 10px;" type="button"><div class="fas fa-upload" ></div></button>
+                                    </div>
                                 </form>
                             </div> 
                         </div>
@@ -133,11 +135,11 @@
                         <div class="attachment-tab">
                             <div class="attachment-container" id="audio-container">
                                 <?php if (isset($values['sounds'])) foreach($values['sounds'] as $sound) { ?>
-                                    <div class="attachment-item" data-filepath="./uploads/<?php echo $sound['title'] ?>" onclick="handlePreviewAudio(this,<?php echo $sound['id'] ?>)"; >
+                                    <div class="attachment-item" data-title="<?php echo $sound['title'] ?>" data-filepath="./uploads/<?php echo $sound['filename'] ?>" onclick="handlePreviewAudio(this,<?php echo $sound['id'] ?>)"; >
                                         <div class="fas fa-music"></div>
                                     </div>
                                 <?php } ?>
-                                <div class="attachment-add-button" onclick="handleAddAudio();">
+                                <div class="attachment-add-button attachment-item" onclick="handleAddAudio();">
                                     <button type="button" class="btn btn-light btn-sm"> <div class="fas fa-plus"></div></button>
                                 </div>
                             </div> 
@@ -146,9 +148,12 @@
                                 <audio id="audiopreview" preload="none" src="" controls="controls" style="float: left;width: 100%;"></audio>
                             </div> 
                             <div id="audio-add" class="attachment-add">
-                                <form method="post" action="index.php?id=content/uploadAudio" id="audioform" >
-                                    <input type="file" name="newaudio" id="newaudio" />
-                                    <button id="add_audio" class="btn btn-light btn-sm" type="button"><div class="fas fa-upload" ></div></button>
+                                <form method="post" class="form-inline" action="index.php?id=content/uploadAudio" id="audioform" >
+                                    <div class="form-group">
+                                        <input type="file" name="newaudio" id="newaudio" />
+                                        <input type="text" class="form-control form-control-sm" style="margin-right: 10px;" placeholder="title" name="titleaudio" id="titleaudio" />
+                                        <button id="add_audio" class="btn btn-light btn-sm" style="margin-right: 10px;" type="button"><div class="fas fa-upload" ></div></button>
+                                    </div>
                                 </form>
                             </div> 
                         </div>
@@ -157,11 +162,11 @@
                         <div class="attachment-tab">
                             <div class="attachment-container" id="video-container">
                                 <?php if (isset($values['videos'])) foreach($values['videos'] as $video) { ?>
-                                    <div class="attachment-item" data-filepath="./uploads/<?php echo $video['title'] ?>" onclick="handlePreviewVideo(this,<?php echo $video['id'] ?>)";>
+                                    <div class="attachment-item" data-title="<?php echo $video['title'] ?>" data-filepath="./uploads/<?php echo $video['filename'] ?>" onclick="handlePreviewVideo(this,<?php echo $video['id'] ?>)";>
                                         <div class="fas fa-video"></div>
                                     </div>
                                 <?php } ?>
-                                <div class="attachment-add-button" onclick="handleAddVideo();">
+                                <div class="attachment-add-button attachment-item" onclick="handleAddVideo();">
                                     <button type="button" class="btn btn-light btn-sm"> <div class="fas fa-plus"></div></button>
                                 </div>
                             </div> 
@@ -170,9 +175,13 @@
                                 <video id="videopreview" preload="none" src="" controls="controls" style="float: left;width: 100%;"></video>
                             </div> 
                             <div id="video-add" class="attachment-add">
-                                <form method="post" action="index.php?id=content/uploadVideo" id="videoform" >
-                                    <input type="file" name="newvideo" id="newvideo" />
-                                    <button id="add_image" class="btn btn-light btn-sm" type="button"><div class="fas fa-upload" ></div></button>
+                            
+                                <form method="post" class="form-inline" action="index.php?id=content/uploadVideo" id="videoform" >
+                                    <div class="form-group">
+                                        <input type="file" name="newvideo" id="newvideo" />
+                                        <input type="text" class="form-control form-control-sm" style="margin-right: 10px;" placeholder="title" name="titlevideo" id="titlevideo" />
+                                        <button id="add_video" class="btn btn-light btn-sm" style="margin-right: 10px;" type="button"><div class="fas fa-upload" ></div></button>
+                                    </div>
                                 </form>
                             </div> 
                         </div>
@@ -204,35 +213,65 @@
             $('#image-preview').show();
             $('#image-add').hide();
             $('#imagepreview')[0].src = row.src;
-            $('#image-title').html(getFileNameFromPath(row.src));
+            $('#image-title').html(row.getAttribute("data-title"));
             $('#delete-image').click(function(){
-                xhr.open('POST', 'index.php?id=content/deleteImage/'+id, true);
+                deletefile(row.getAttribute("data-id"));
             });
+        }
+
+        function deletefile(id){
+            if (confirm('Are you sure you want to delete this file from the database?')){
+                return;
+            }
+            return;
         }
 
         
         $("#add_image").click(function (event) {
             xhr.onprogress = image_callback;
-            upload('image');
+            let title = $('#titleimage')[0];
+            let newimage = $('#newimage')[0];
+            if (title.value == ''){
+                title.style.border = '1px solid red';
+                return;
+            }else{
+                title.style.border = '1px solid #ced4da';
+            }
 
+            if (newimage.value == ''){
+                newimage.style.border = '1px solid red';
+                return;
+            }else{
+                newimage.style.border = '1px solid #ced4da';
+            }
+
+            upload('image');
         });
        
         
         function image_callback(event){
-            if (event.total === event.loaded){
+            if (event.total === event.loaded && event.target.status == '200'){
                 //unsetting in load 
-                var fileInput = document.getElementById('newimage');
-                let imageelement = document.createElement('img');
-                imageelement.className = "attachment-item";
-                imageelement.onclick = (function() {return function() {
-                        handlePreviewImage(this);
-                        }})();
-                imageelement.src = "./uploads/" + getFileNameFromPath(fileInput.value) ;
-                fileInput.value='';
-
-                $('#image-container .attachment-item:last').before(imageelement);
-                $("#add_image")[0].disabled = false;
-            }
+                const res = JSON.parse(event.target.response);
+                if (res.result){
+                    var fileInput = document.getElementById('newimage');
+                    let imageelement = document.createElement('img');
+                    imageelement.className = "attachment-item";
+                    imageelement.onclick = (function() {return function() {
+                            handlePreviewImage(this);
+                            }})();
+                    imageelement.setAttribute("data-title", res.title)
+                    imageelement.src = "./uploads/" + res.message ;
+                    $('#image-container .attachment-item:last').before(imageelement);
+                }else{
+                    alert(res.message);
+                }
+            }else{
+                alert(event.target.response);
+            } 
+            $("#add_image")[0].disabled = false;
+            $('#titleimage')[0].value="";
+            $('#newimage')[0].value="";
             console.log(event);
         }
 
@@ -241,9 +280,9 @@
             $('#audio-preview').show();
             $('#audio-add').hide();
             $('#audiopreview')[0].src = row.getAttribute("data-filepath");
-            $('#audio-title').html(getFileNameFromPath(row.getAttribute("data-filepath")));
+            $('#audio-title').html(row.getAttribute("data-title"));
             $('#delete-audio').click(function(){
-                xhr.open('POST', 'index.php?id=content/deleteAudio/'+id, true);
+                deletefile(row.getAttribute("data-id"));
             });
         }
         function handleAddAudio(){
@@ -253,27 +292,51 @@
 
         $("#add_audio").click(function (event) {
             xhr.onprogress = audio_callback;
+            let title = $('#titleaudio')[0];
+            let newaudio = $('#newaudio')[0];
+            if (title.value == ''){
+                title.style.border = '1px solid red';
+                return;
+            }else{
+                title.style.border = '1px solid #ced4da';
+            }
+
+            if (newaudio.value == ''){
+                newaudio.style.border = '1px solid red';
+                return;
+            }else{
+                newaudio.style.border = '1px solid #ced4da';
+            }
+
             upload('audio');
         });
         
         function audio_callback(event){
             console.log(event);
-            if (event.total === event.loaded){
+            if (event.total === event.loaded && event.target.status == '200'){
                 //unsetting in load 
-                var fileInput = document.getElementById('newaudio');
-                let element = document.createElement('img');
-                element.className = "attachment-item";
-                element.onclick = (function() {return function() {
-                        handlePreviewAudio(this);
-                        }})();
-                element.src = "./includes/img/audio-file.png";
-                element.setAttribute("data-filepath", "./uploads/" + getFileNameFromPath(fileInput.value))
-                fileInput.value='';
-
-                $('#audio-container .attachment-item:last').before(element);
-                $("#add_audio")[0].disabled = false;
-            }
-            
+                const res = JSON.parse(event.target.response);
+                if (res.result){
+                    var fileInput = document.getElementById('newaudio');
+                    let element = document.createElement('div');
+                    element.className = "attachment-item";
+                    element.onclick = (function() {return function() {
+                            handlePreviewAudio(this);
+                            }})();
+                    element.innerHTML = "<div class='fas fa-music'></div>";
+                    element.setAttribute("data-filepath", "./uploads/" + res.message)
+                    element.setAttribute("data-title", res.title)
+                    fileInput.value='';
+                    $('#audio-container .attachment-item:last').before(element);
+                }else{
+                    alert(res.message);
+                }
+            }else{
+                alert(event.target.response);
+            }   
+            $("#add_audio")[0].disabled = false;
+            $('#titleaudio')[0].value= "";
+            $('#newaudio')[0].value = "";       
         }
 
         /**/
@@ -282,9 +345,9 @@
             $('#video-preview').show();
             $('#video-add').hide();
             $('#videopreview')[0].src = row.getAttribute("data-filepath");
-            $('#video-title').html(getFileNameFromPath(row.getAttribute("data-filepath")));
+            $('#video-title').html(row.getAttribute("data-title"));
             $('#delete-video').click(function(){
-                xhr.open('POST', 'index.php?id=content/deleteVideo/'+id, true);
+                deletefile(row.getAttribute("data-id"));
             });
         }
         function handleAddVideo(){
@@ -294,27 +357,49 @@
 
         $("#add_video").click(function (event) {
             xhr.onprogress = video_callback;
+            let title = $('#titlevideo')[0];
+            let newvideo = $('#newvideo')[0];
+            if (title.value == ''){
+                title.style.border = '1px solid red';
+                return;
+            }else{
+                title.style.border = '1px solid #ced4da';
+            }
+
+            if (newvideo.value == ''){
+                newvideo.style.border = '1px solid red';
+                return;
+            }else{
+                newvideo.style.border = '1px solid #ced4da';
+            }
             upload('video');
         });
         
         function video_callback(event){
             console.log(event);
-            if (event.total === event.loaded){
+            if (event.total === event.loaded && event.target.status == '200'){
                 //unsetting in load 
-                var fileInput = document.getElementById('newvideo');
-                let element = document.createElement('img');
-                element.className = "attachment-item";
-                element.onclick = (function() {return function() {
-                        handlePreviewVideo(this);
-                        }})();
-                element.src = "./includes/img/video-file.png";
-                element.setAttribute("data-filepath", "./uploads/" + getFileNameFromPath(fileInput.value))
-                fileInput.value='';
-
-                $('#video-container .attachment-item:last').before(element);
-                $("#add_video")[0].disabled = false;
-            }
-            
+                const res = JSON.parse(event.target.response);
+                if (res.result){
+                    var fileInput = document.getElementById('newvideo');
+                    let element = document.createElement('div');
+                    element.className = "attachment-item";
+                    element.onclick = (function() {return function() {
+                            handlePreviewVideo(this);
+                            }})();
+                    element.innerHTML = "<div class='fas fa-video'></div>";
+                    element.setAttribute("data-filepath", "./uploads/" + res.message);
+                    element.setAttribute("data-title", res.title);
+                    $('#video-container .attachment-item:last').before(element);
+                }else{
+                    alert(res.message);
+                }
+            }else{
+                alert(event.target.response);
+            } 
+            $("#add_video")[0].disabled = false;
+            $('#titlevideo')[0].value="";
+            $('#newvideo')[0].value="";
         }
 
         /**/
@@ -322,11 +407,13 @@
         /**/
         function upload(type){
             var fileInput = document.getElementById('new' + type);
+            var titleInput = document.getElementById('title' + type);
             var id = document.getElementById('id');
             var file = fileInput.files[0];
             var formData = new FormData();
             formData.append(type, file);
             formData.append('id', id.value);
+            formData.append('title', titleInput.value);
             
             // Add any event handlers here...
             xhr.open('POST', 'index.php?id=content/upload'+type, true);

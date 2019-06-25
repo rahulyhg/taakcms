@@ -121,16 +121,16 @@ class content_model extends model
 		}
 	}
 
-	public function saveImage($id,$image){
-		$sql="INSERT INTO tbl_content_images(content_id,title) VALUES($id,'$image')";
+	public function saveImage($id,$image,$title){
+		$sql="INSERT INTO tbl_content_images(content_id,title,filename) VALUES($id,'$title','$image')";
 		$this->execQuery($sql);
 	}
-	public function saveAudio($id,$audio){
-		$sql="INSERT INTO tbl_content_sounds(content_id,title) VALUES($id,'$audio')";
+	public function saveAudio($id,$audio,$title){
+		$sql="INSERT INTO tbl_content_sounds(content_id,title,filename) VALUES($id,'$title','$audio')";
 		$this->execQuery($sql);
 	}
-	public function saveVideo($id,$video){
-		$sql="INSERT INTO tbl_content_videos(content_id,title) VALUES($id,'$video')";
+	public function saveVideo($id,$video,$title){
+		$sql="INSERT INTO tbl_content_videos(content_id,title,filename) VALUES($id,'$title','$video')";
 		$this->execQuery($sql);
 	}
 	public function getNewOrderIndex(){
