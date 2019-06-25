@@ -42,5 +42,15 @@ define ('DataTypes', $data_types);
         }
         return $randomString;
     }
+    
+    function encodeId($id){
+        $id = ( intval($id) + 9 ) * 7;
+        return base64_encode($id);
+    }
+    
+    function decodeId($id){
+        $id = base64_decode($id);
+        return ( $id / 7 ) - 9;
+    }
 
 ?>
