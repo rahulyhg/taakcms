@@ -148,7 +148,7 @@
                             <div id="audio-add" class="attachment-add">
                                 <form method="post" action="index.php?id=content/uploadAudio" id="audioform" >
                                     <input type="file" name="newaudio" id="newaudio" />
-                                    <button id="add_image" class="btn btn-light btn-sm" type="button"><div class="fas fa-upload" ></div></button>
+                                    <button id="add_audio" class="btn btn-light btn-sm" type="button"><div class="fas fa-upload" ></div></button>
                                 </form>
                             </div> 
                         </div>
