@@ -17,12 +17,14 @@ class subcategory_model extends model
 		$ids=[];
 		foreach ($conditions as $condition){
 			$sql = 'SELECT subcategory_id FROM tbl_subcategory_details 
-			WHERE field_key ="' . $condition['field'] . '" AND field_value = "' . $condition['value'] . '"';
+			WHERE field_key ="' . $condition->field . '" AND field_value = "' . $condition->value . '"';
 			$rows = $this->getAll($sql); 
 			$res = array_map(function ($object) { 
 				return $object['subcategory_id']; 
 			}, $rows);
-			array_push($ids, $res);
+			if (count($res) > 0){
+				array_push($ids, $res);
+			}
 		}
 		$whereContition="";
 		if (count($ids) > 0){

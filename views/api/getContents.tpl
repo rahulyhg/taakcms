@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>login JSON</title>
+    <title>getContents JSON</title>
 </head>
 <body>
     <a href="index.php?id=api/index">index</a>
-    <h1>login JSON</h1>
+    <h1>getContents JSON</h1>
     <form method="POST">
         <textarea name="json" style="width:400px;min-height:200px;"></textarea>
         <br>
@@ -13,20 +13,23 @@
     </form>
 
     <h1>Instructions</h1>
-    <h2>This api return a token based on apikey and clientid</h2>
+    <h2>This api returns all contents exists in a specific subcategory</h2>
     <p>
-        Post JSON data here to get token for a apikey and clientid. This information can be used to send other requests.
+        Post JSON data here to get contents for a subcategory. This information can be used to get a specific content.
     </p>
     <p>
-        The login requires two parameters: clientId and apiKey.
+        The getContents requires at least one parameter: subcategory_id.
+    </p>
+    <p>
+        token is required to authenticate access to this function.
     </p>
 
-<h2>Example Data</h2><h3>Return token for the specified info</h3><pre>{
-    "action": "login",
-    "data":{
-        "apiKey": "tokenAsGetFromLoginApi",
-        "clientId": "getcategories"
-    }
+<h2>Example Data</h2><h3>Return contents for the specified subcategory</h3><pre>{
+    "token": "tokenAsGetFromLoginApi",
+    "action": "getContents",
+    "data" : {
+        "subcategory_id" : "12"
+    } 
 }</pre>
 
 <h3>Sample PHP code</h3>
@@ -36,13 +39,13 @@
 &lt?php
 
 $post = array();
-$post["action"] = "login";
+$info["action"] = "getContents";
+$info["token"] = "asokdpkasd";
 
 $data = array();
-$data["apiKey"] = "asdasdasd";
-$data["clientId"] = "985618431";
+$data["subcategory_id"] = "8";
 
-$post["data"] = $data;
+$info["data"] = $data;
 
 $json = json_encode($post);
 

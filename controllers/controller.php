@@ -93,7 +93,7 @@ class controller
 
 	  function send_post($json){
 		$url = "http://" . $_SERVER['HTTP_HOST'] . "/taakcms/api.php";
-      
+		header('Content-type: application/json');
 		$ch=curl_init();
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

@@ -37,7 +37,7 @@ if (array_key_exists('action',$contents)) {
         case "getcontents":
             echo getContents($contents->data,$info);
             break;
-        case "getContent":
+        case "getcontent":
             echo getContent($contents->data,$info);
             break;
         default:
