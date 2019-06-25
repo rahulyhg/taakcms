@@ -60,9 +60,15 @@ tbody > tr:hover{
 </div>
 <script>
     function edit(id){
+        var e = window.event;
+        e.cancelBubble = true;
+        if (e.stopPropagation) e.stopPropagation();
         window.location.href = "index.php?id=subcategory/edit/"+ id;
     }
     function deleterow(id){
+        var e = window.event;
+        e.cancelBubble = true;
+        if (e.stopPropagation) e.stopPropagation();
         window.location.href = "index.php?id=subcategory/delete/"+ id;
     }
     function view_subcategory_contents(category_id,subcategory_id){

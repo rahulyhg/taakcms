@@ -45,7 +45,10 @@ class product_controller extends controller
       $title = safe($_POST['title']);
       $logo="";
       if (isset($_FILES["logo"]) && $_FILES["logo"]["name"] !== ""){
-         $logo = $this->_upload_file($_FILES["logo"]);
+         $result = $this->_upload_file($_FILES["logo"]);
+         if ($result['result']){
+            $logo = $result['message'];
+         }
       }
 	   $color = safe($_POST['color']);
 	   $terms_and_conditions = safe($_POST['terms_and_conditions']);
