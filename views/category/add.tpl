@@ -30,18 +30,7 @@
               require_once HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' 
             ?>
           </div>
-          <div class="form-group">
-            <label class="form-group-first" for="has_audio"><?php echo tr('has_audio')?>:</label>
-            <input type="checkbox" name="has_audio" id="has_audio" <?php echo ($row["has_audio"] == 1 ? "checked" : ""); ?> />
-          </div>
-          <div class="form-group">
-            <label class="form-group-first" for="has_video"><?php echo tr('has_video')?>:</label>
-            <input type="checkbox" name="has_video" id="has_video" <?php echo ($row["has_video"] == 1 ? "checked" : ""); ?> />
-          </div>
-          <div class="form-group">
-            <label class="form-group-first" for="has_image"><?php echo tr('has_image')?>:</label>
-            <input type="checkbox" name="has_image" id="has_image" <?php echo ($row["has_image"] == 1 ? "checked" : ""); ?> />
-          </div>
+          
           <div class="form-group">
             <label class="form-group-first" for="has_subcategory"><?php echo tr('has_subcategory')?>:</label>
             <input type="checkbox" name="has_subcategory" id="has_subcategory" <?php echo ($row["has_subcategory"] == 1 ? "checked" : ""); ?> />

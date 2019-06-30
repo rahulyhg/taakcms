@@ -36,18 +36,19 @@ if (array_key_exists('action',$contents)) {
         echo 'error: invalid token!';
         return;
     }
+    $newSecretKey=explode('.', $token)[1];
     switch ($action){
         case "getcategories":
-            echo getCategories($info);
+            echo getCategories($info,$newSecretKey);
             break;
         case "getsubcategories":
-            echo getSubcategories($contents->data,$info);
+            echo getSubcategories($contents->data,$newSecretKey);
             break;
         case "getcontents":
-            echo getContents($contents->data,$info);
+            echo getContents($contents->data,$info,$newSecretKey);
             break;
         case "getcontent":
-            echo getContent($contents->data,$info);
+            echo getContent($contents->data,$info,$newSecretKey);
             break;
         default:
             echo 'error: invalid action';
@@ -78,16 +79,16 @@ function login($data){
     }
 }
 
-function getCategories($info){
+function getCategories($info,$newSecretKey){
     $category = new category_model();
     if (!array_key_exists('pid',$info)){
         return 'error: token is broken';
     }
     $result = $category->getRows($info->pid);
-    return json_encode($result,JSON_UNESCAPED_UNICODE);
+    return encryptByKey(json_encode($result,JSON_UNESCAPED_UNICODE),$newSecretKey);
 }
 
-function getSubcategories($data,$info){
+function getSubcategories($data,$info,$newSecretKey){
     $subcategory = new subcategory_model();
     if (!array_key_exists('category_id',$data)){
         return 'error: missing category_id in data';
@@ -97,25 +98,25 @@ function getSubcategories($data,$info){
         $conditions = $data->conditions;
     }
     $result = $subcategory->getSubcategoriesForApi($data->category_id,$conditions);
-    return json_encode($result,JSON_UNESCAPED_UNICODE);
+    return encryptByKey(json_encode($result,JSON_UNESCAPED_UNICODE),$newSecretKey);
 }
 
-function getContents($data,$info){
+function getContents($data,$info,$newSecretKey){
     $content = new content_model();
     if (!array_key_exists('subcategory_id',$data)){
         return 'error: missing subcategory_id in data';
     }
     $result = $content->getRowsBySubcategoryId($data->subcategory_id);
-    return json_encode($result,JSON_UNESCAPED_UNICODE);
+    return encryptByKey(json_encode($result,JSON_UNESCAPED_UNICODE),$newSecretKey);
 }
 
-function getContent($data,$info){
+function getContent($data,$info,$newSecretKey){
     $content = new content_model();
     if (!array_key_exists('content_id',$data)){
         return 'error: missing content_id in data';
     }
     $result = $content->getRowByIdForApi($data->content_id);
-    return json_encode($result,JSON_UNESCAPED_UNICODE);
+    return encryptByKey(json_encode($result,JSON_UNESCAPED_UNICODE),$newSecretKey);
 }
 
 ?>

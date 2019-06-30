@@ -43,12 +43,15 @@ class fieldset_controller extends controller
     $id  =safe($_POST['id']);
     $title =safe($_POST['title']);
     $product_id = decodeId($_SESSION['product_id']);
+    $has_audio = $this->getBool($_POST,'has_audio');
+    $has_video = $this->getBool($_POST,'has_video');
+    $has_image = $this->getBool($_POST,'has_image');
     $fields = json_decode(stripslashes($_POST['mytbl']));
     
     if($id==0)
-        $id = $this->_model->insert($title , $product_id, $fields); 
+        $id = $this->_model->insert($title,$product_id,$has_audio,$has_video,$has_image,$fields); 
     else	 
-        $this->_model->update($title , $fields, $id);		
+        $this->_model->update($title,$has_audio,$has_video,$has_image,$fields,$id);		
 
     return $this->index();
   }

@@ -227,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id`, `username`, `password`, `fullname`, `role`, `accessed_products`) VALUES
-(1, 'ali', '123', 'alireza', 'admin', '[]'),
+(1, 'ali', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'alireza', 'admin', '[]'),
 (2, 'reza', '456', 'reza', 'user', '[{\"field_id\":\"-312\",\"product\":\"7\",\"row_status\":\"inserted\"}]'),
 (3, 'hasan', NULL, 'حسنی', 'user', 'Array'),
 (4, 'یب', NULL, 'شسی', 'user', '[{\"field_id\":\"-293\",\"product\":\"2\",\"row_status\":\"inserted\"},{\"field_id\":\"-518\",\"product\":\"6\",\"row_status\":\"inserted\"}]');

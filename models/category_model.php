@@ -29,26 +29,23 @@ class category_model extends model
 			$row['id'] = 0;
 			$row['title'] = '';
 			$row['content_fieldset_id'] = '';
-			$row['has_audio'] = "0";
-			$row['has_video'] = "0";
-			$row['has_image'] = "0";
 			$row['has_subcategory'] = "0";
 			$row['subcategory_fieldset_id'] = '';
 		}
 		return $row;
 	}
 
-    public function insert($title,$content_fieldset_id,$has_audio,$has_video,$has_image,$has_subcategory,$subcategory_fieldset_id,$product_id)
+    public function insert($title,$content_fieldset_id,$has_subcategory,$subcategory_fieldset_id,$product_id)
 	{
-      $sql="INSERT INTO tbl_categories(title,content_fieldset_id,has_audio,has_video,has_image,has_subcategory,subcategory_fieldset_id,product_id) 
-	  	VALUES('$title',$content_fieldset_id,$has_audio,$has_video,$has_image,$has_subcategory,$subcategory_fieldset_id,$product_id)";
+      $sql="INSERT INTO tbl_categories(title,content_fieldset_id,has_subcategory,subcategory_fieldset_id,product_id) 
+	  	VALUES('$title',$content_fieldset_id,$has_subcategory,$subcategory_fieldset_id,$product_id)";
 	  $this->execQuery($sql);
 	  return $this->insert_id();
 	}
 //.................
-	public function update($title,$content_fieldset_id,$has_audio,$has_video,$has_image,$has_subcategory,$subcategory_fieldset_id,$product_id, $id)
+	public function update($title,$content_fieldset_id,$has_subcategory,$subcategory_fieldset_id,$product_id, $id)
 	{
-       $sql="UPDATE tbl_categories SET title='$title',has_subcategory=$has_subcategory,content_fieldset_id=$content_fieldset_id,has_audio=$has_audio,has_video=$has_video,has_image=$has_image,subcategory_fieldset_id=$subcategory_fieldset_id WHERE id=$id";
+       $sql="UPDATE tbl_categories SET title='$title',has_subcategory=$has_subcategory,content_fieldset_id=$content_fieldset_id,subcategory_fieldset_id=$subcategory_fieldset_id WHERE id=$id";
 	   $this->execQuery($sql);
 	}
 	public function delete($id)

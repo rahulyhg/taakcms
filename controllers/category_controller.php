@@ -43,9 +43,7 @@ class category_controller extends controller
 	   $id  = safe($_POST['id']);
 	   $title = safe($_POST['title']);
       $contetn_fieldset_id = intval(safe($_POST['content_fieldset']));
-      $has_audio = $this->getBool($_POST,'has_audio');
-      $has_video = $this->getBool($_POST,'has_video');
-      $has_image = $this->getBool($_POST,'has_image');
+      
 
       $has_subcategory = $this->getBool($_POST,'has_subcategory');
       $subcategory_fieldset_id = 0;
@@ -56,14 +54,14 @@ class category_controller extends controller
       $product_id = $_SESSION['product_id'];
 
       if($id==0){
-         $category_id = $this->_model->insert($title,$contetn_fieldset_id,$has_audio,$has_video,$has_image,$has_subcategory,$subcategory_fieldset_id,decodeId($product_id)); 
+         $category_id = $this->_model->insert($title,$contetn_fieldset_id,$has_subcategory,$subcategory_fieldset_id,decodeId($product_id)); 
          if (!$has_subcategory && $category_id){
             $subcategory_model = new subcategory_model(); 
             $subcategory_model->insert($title,$category_id,0,[]);
          }
       }
       else	 
-         $this->_model->update($title,$contetn_fieldset_id,$has_audio,$has_video,$has_image,$has_subcategory,$subcategory_fieldset_id,decodeId($product_id),$id);	
+         $this->_model->update($title,$contetn_fieldset_id,$has_subcategory,$subcategory_fieldset_id,decodeId($product_id),$id);	
       
       header('location:index.php?id=content/index/' . $product_id);
    } 

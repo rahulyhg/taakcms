@@ -73,4 +73,9 @@
 		return "http://" . $_SERVER['SERVER_NAME'] . "/mvc-php-with-login";
     }
 
+    function encryptByKey($data,$key){
+        $cipher = "aes-128-gcm";
+        return openssl_encrypt($data, $cipher, $key, $options=0);
+    }
+
 ?>
