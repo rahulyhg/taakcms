@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 24, 2019 at 02:58 AM
+-- Generation Time: Jun 30, 2019 at 04:53 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -35,12 +35,9 @@ CREATE TABLE IF NOT EXISTS `tbl_categories` (
   `has_subcategory` tinyint(1) NOT NULL,
   `product_id` int(11) NOT NULL,
   `content_fieldset_id` int(11) NOT NULL,
-  `has_audio` tinyint(1) NOT NULL,
-  `has_video` tinyint(1) NOT NULL,
-  `has_image` tinyint(1) NOT NULL,
   `subcategory_fieldset_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -53,12 +50,10 @@ CREATE TABLE IF NOT EXISTS `tbl_contents` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `create_date` datetime DEFAULT NULL,
   `title` varchar(45) COLLATE utf8_persian_ci DEFAULT NULL,
-  `description` varchar(1000) COLLATE utf8_persian_ci DEFAULT NULL,
-  `active` tinyint(1) DEFAULT NULL,
   `row_index` int(11) DEFAULT NULL,
   `subcategory_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -87,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `tbl_content_images` (
   `title` varchar(500) COLLATE utf8_persian_ci NOT NULL,
   `filename` varchar(100) COLLATE utf8_persian_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -133,10 +128,12 @@ DROP TABLE IF EXISTS `tbl_fieldsets`;
 CREATE TABLE IF NOT EXISTS `tbl_fieldsets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) COLLATE utf8_persian_ci NOT NULL,
-  `display_title` varchar(500) COLLATE utf8_persian_ci NOT NULL,
   `product_id` int(11) NOT NULL,
+  `has_audio` tinyint(1) NOT NULL,
+  `has_video` tinyint(1) NOT NULL,
+  `has_image` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -154,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `tbl_fieldset_details` (
   `value` varchar(500) COLLATE utf8_persian_ci DEFAULT NULL,
   `orderfield` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -171,8 +168,9 @@ CREATE TABLE IF NOT EXISTS `tbl_products` (
   `about` varchar(1000) COLLATE utf8_persian_ci DEFAULT NULL,
   `baner_contentId` int(11) DEFAULT NULL,
   `color` varchar(45) COLLATE utf8_persian_ci DEFAULT NULL,
+  `api_key` varchar(24) COLLATE utf8_persian_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -187,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `tbl_subcategories` (
   `title` varchar(45) COLLATE utf8_persian_ci NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -202,7 +200,56 @@ CREATE TABLE IF NOT EXISTS `tbl_subcategory_details` (
   `field_key` varchar(100) COLLATE utf8_persian_ci NOT NULL,
   `field_value` varchar(500) COLLATE utf8_persian_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_subcategory_images`
+--
+
+DROP TABLE IF EXISTS `tbl_subcategory_images`;
+CREATE TABLE IF NOT EXISTS `tbl_subcategory_images` (
+  `subcategory_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(500) COLLATE utf8_persian_ci NOT NULL,
+  `filename` varchar(100) COLLATE utf8_persian_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_subcategory_sounds`
+--
+
+DROP TABLE IF EXISTS `tbl_subcategory_sounds`;
+CREATE TABLE IF NOT EXISTS `tbl_subcategory_sounds` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) COLLATE utf8_persian_ci DEFAULT NULL,
+  `duration` varchar(45) COLLATE utf8_persian_ci DEFAULT NULL,
+  `url` varchar(45) COLLATE utf8_persian_ci DEFAULT NULL,
+  `subcategory_id` int(11) DEFAULT NULL,
+  `filename` varchar(100) COLLATE utf8_persian_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_subcategory_videos`
+--
+
+DROP TABLE IF EXISTS `tbl_subcategory_videos`;
+CREATE TABLE IF NOT EXISTS `tbl_subcategory_videos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) COLLATE utf8_persian_ci DEFAULT NULL,
+  `subcategory_id` int(11) DEFAULT NULL,
+  `duration` int(11) DEFAULT NULL,
+  `url` varchar(45) COLLATE utf8_persian_ci DEFAULT NULL,
+  `filename` varchar(100) COLLATE utf8_persian_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 -- --------------------------------------------------------
 
@@ -214,7 +261,7 @@ DROP TABLE IF EXISTS `tbl_users`;
 CREATE TABLE IF NOT EXISTS `tbl_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) COLLATE utf8_persian_ci DEFAULT NULL,
-  `password` varchar(45) COLLATE utf8_persian_ci DEFAULT NULL,
+  `password` varchar(100) COLLATE utf8_persian_ci DEFAULT NULL,
   `fullname` varchar(45) COLLATE utf8_persian_ci DEFAULT NULL,
   `role` varchar(10) COLLATE utf8_persian_ci NOT NULL,
   `accessed_products` varchar(500) COLLATE utf8_persian_ci NOT NULL,
