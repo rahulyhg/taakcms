@@ -48,17 +48,15 @@ class content_controller extends controller
   {
     $subcategory_id = $_SESSION['active_subcategory_id'];
     $category_id = $_SESSION['active_category_id'];
-    $fields = $this->_model->getFieldsByCategoryId($category_id);
-
-    $category = new category_model();
-    $category_info = $category->getCategory($category_id);
+    $fieldset = $this->_model->getFieldsetDetails($category_id);
+    $fields = $fieldset['details'];
 
     $values['id']=rand(100, 999) * -1;
     $values['title']="";
     $values['row_index']=$this->_model->getNewOrderIndex($subcategory_id);
     foreach($fields as $field){
       $item = array();
-      $item['field_key'] = $field['title_latin'];
+      $item['field_key'] = $field['field_title_latin'];
       $item['field_value'] = '';
       $values['details'][] = $item;
     }
@@ -73,17 +71,17 @@ class content_controller extends controller
     $this->_view->set('subcategory_id', $subcategory_id); 
     $this->_view->set('category_id', $category_id); 
     
-    $this->_view->set('has_audio', $category_info['has_audio']); 
-    $this->_view->set('has_image', $category_info['has_image']); 
-    $this->_view->set('has_video', $category_info['has_video']); 
+    $this->_view->set('has_audio', $fieldset['has_audio']); 
+    $this->_view->set('has_image', $fieldset['has_image']); 
+    $this->_view->set('has_video', $fieldset['has_video']); 
 
 	 return $this->_view->output(); 
   }
 
   private function getTableId($fields){
     foreach($fields as $field){
-      if ($field['data_type'] == 'string_list')
-        return $field['title_latin'];
+      if ($field['field_type'] == 'string_list')
+        return $field['field_title_latin'];
     }
 
   }

@@ -39,9 +39,9 @@
             <label class="form-group-first" for="subcategory_fieldset"><?php echo tr('subcategory_fieldset')?>:</label>
             <?php 
               $dropdownName="subcategory_fieldset"; 
-              $disabled=true; 
+              $disabled=$row['id'] == 0 || $row['has_subcategory'] == 0; 
               $datasource=$fieldsets; 
-              $dropdownValue="";  
+              $dropdownValue=$row['subcategory_fieldset_id'] ;  
               $required=false;
               require HOME . DS . 'views' . DS . 'components' . DS . 'dropdown.php' 
             ?>

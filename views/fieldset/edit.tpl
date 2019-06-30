@@ -24,12 +24,10 @@
                 <div class="form-group">
                     <label class="form-group-first" for="has_audio"><?php echo tr('has_audio')?>:</label>
                     <input type="checkbox" name="has_audio" id="has_audio" <?php echo ($fieldset["has_audio"] == 1 ? "checked" : ""); ?> />
-                </div>
-                <div class="form-group">
+
                     <label class="form-group-first" for="has_video"><?php echo tr('has_video')?>:</label>
                     <input type="checkbox" name="has_video" id="has_video" <?php echo ($fieldset["has_video"] == 1 ? "checked" : ""); ?> />
-                </div>
-                <div class="form-group">
+
                     <label class="form-group-first" for="has_image"><?php echo tr('has_image')?>:</label>
                     <input type="checkbox" name="has_image" id="has_image" <?php echo ($fieldset["has_image"] == 1 ? "checked" : ""); ?> />
                 </div>

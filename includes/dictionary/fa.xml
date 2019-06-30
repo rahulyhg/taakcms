@@ -40,12 +40,12 @@
     <string id="users">کاربران</string>
     <string id="edit">ویرایش</string>
     <string id="fieldset">موجودیت ها</string>
-    <string id="has_subcategory">دارای زیرمجموعه</string>
+    <string id="has_subcategory">زیرمجموعه</string>
     <string id="category">دسته بندی</string>
     <string id="subcategory">زیر دسته بندی</string>
-    <string id="has_audio">دارای صدا</string>
-    <string id="has_video">دارای ویدئو</string>
-    <string id="has_image">دارای تصویر</string>
+    <string id="has_audio">صدا</string>
+    <string id="has_video">ویدئو</string>
+    <string id="has_image">تصویر</string>
     <string id="groups">گروه ها</string>
     <string id="content_fieldset">موجودیت محتوا</string>
     <string id="subcategory_fieldset">موجودیت دسته بندی</string>

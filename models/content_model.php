@@ -76,15 +76,13 @@ class content_model extends model
 		return $row; 
 	}
 
-	public function getFieldsByCategoryId($categoryId) 
-	{ 
-		$sql = "SELECT * FROM tbl_categories WHERE id =$categoryId"; 
-		$category = $this->getRow($sql); 
-		$fieldset_id = $category['content_fieldset_id'] ;
-		$sql = "SELECT * FROM tbl_fieldset_details WHERE fieldset_id = $fieldset_id";
-		$fields = $this->getAll($sql); 
-		return $fields; 
-	} 
+	public function getFieldsetDetails($categoryId){
+		$category_model = new category_model();
+		$fieldset_model = new fieldset_model();
+		$category = $category_model->getCategory($categoryId);
+		$fieldset = $fieldset_model->getRowById($category['content_fieldset_id']);
+		return $fieldset;
+	}
 
 	public function insert($oldId,$title,$subcategory_id,$row_index,$last_row_index,$date, $details){
 		

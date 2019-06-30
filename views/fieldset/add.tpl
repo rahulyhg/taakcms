@@ -24,15 +24,14 @@
                 <div class="form-group">
                     <label class="form-group-first" for="has_audio"><?php echo tr('has_audio')?>:</label>
                     <input type="checkbox" name="has_audio" id="has_audio" />
-                </div>
-                <div class="form-group">
+
                     <label class="form-group-first" for="has_video"><?php echo tr('has_video')?>:</label>
                     <input type="checkbox" name="has_video" id="has_video"  />
-                </div>
-                <div class="form-group">
+
                     <label class="form-group-first" for="has_image"><?php echo tr('has_image')?>:</label>
                     <input type="checkbox" name="has_image" id="has_image"  />
                 </div>
+                
                 <div class="content-row" style="margin-top:10px">
                     <?php 
 
