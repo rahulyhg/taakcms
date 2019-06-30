@@ -48,7 +48,8 @@ class content_controller extends controller
   {
     $subcategory_id = $_SESSION['active_subcategory_id'];
     $category_id = $_SESSION['active_category_id'];
-    $fieldset = $this->_model->getFieldsetDetails($category_id);
+    $fieldset_model = new fieldset_model();
+    $fieldset = $fieldset_model->getFieldsetDetails($category_id,'content_fieldset_id');
     $fields = $fieldset['details'];
 
     $values['id']=rand(100, 999) * -1;
@@ -83,18 +84,16 @@ class content_controller extends controller
       if ($field['field_type'] == 'string_list')
         return $field['field_title_latin'];
     }
-
   }
 
   public function edit($id)
   {
     $category_id = $_SESSION['active_category_id'];
     $subcategory_id = $_SESSION['active_subcategory_id'];
-    $fields = $this->_model->getFieldsByCategoryId($category_id);
+    $fieldset_model = new fieldset_model();
+    $fieldset = $fieldset_model->getFieldsetDetails($category_id,'content_fieldset_id');
+    $fields = $fieldset['details'];
     $values = $this->_model->getRowById($id);
-
-    $category = new category_model();
-    $category_info = $category->getCategory($category_id);
 
     $this->_setView("add");
 	
@@ -104,10 +103,9 @@ class content_controller extends controller
     $this->_view->set('tableId', $this->getTableId($fields)); 
     $this->_view->set('subcategory_id', $subcategory_id); 
     $this->_view->set('category_id', $category_id); 
-
-    $this->_view->set('has_audio', $category_info['has_audio']); 
-    $this->_view->set('has_image', $category_info['has_image']); 
-    $this->_view->set('has_video', $category_info['has_video']); 
+    $this->_view->set('has_audio', $fieldset['has_audio']); 
+    $this->_view->set('has_image', $fieldset['has_image']); 
+    $this->_view->set('has_video', $fieldset['has_video']); 
 	 return $this->_view->output(); 
   }
 
@@ -142,7 +140,9 @@ class content_controller extends controller
   {
     $category_id = $_SESSION['active_category_id'];
     $sub_category_id = $_SESSION['active_subcategory_id'];
-    $fields = $this->_model->getFieldsByCategoryId($category_id);
+    $fieldset_model = new fieldset_model();
+    $fieldset = $fieldset_model->getFieldsetDetails($category_id,'content_fieldset_id');
+    $fields = $fieldset['details'];
     $id=safe($_POST['id']);
     $title=safe($_POST['title']);
     $date=date('Y-m-d h:i:s');
@@ -151,7 +151,7 @@ class content_controller extends controller
 
     $details;
     foreach($fields as $field){
-      $details[$field['title_latin']] = $this->getValue($field['title_latin'],$field['data_type']);
+      $details[$field['field_title_latin']] = $this->getValue($field['field_title_latin'],$field['field_type']);
     }
 
     if($id<=0)

@@ -43,19 +43,18 @@ class subcategory_model extends model
 		$sql2 = "SELECT * FROM tbl_subcategory_details WHERE subcategory_id =$id"; 
 		$row['details'] = $this->getAll($sql2); 
 
+		$sql3 = "SELECT * FROM tbl_subcategory_images WHERE subcategory_id =$id";
+		$row['images'] = $this->getAll($sql3); 
+		
+		$sql4 = "SELECT * FROM tbl_subcategory_sounds WHERE subcategory_id =$id";
+		$row['sounds'] = $this->getAll($sql4); 
+
+		$sql5 = "SELECT * FROM tbl_subcategory_videos WHERE subcategory_id =$id";
+		$row['videos'] = $this->getAll($sql5); 
+
 		return $row; 
 	} 
-	public function getSubcategoryFields($category_id) 
-	{ 
-		$sql2 = "SELECT * FROM tbl_categories WHERE id =$category_id"; 
-		$category = $this->getRow($sql2); 
-
-		$fieldset_id = $category['subcategory_fieldset_id'];
-		$sql3  = "SELECT * FROM tbl_fieldset_details WHERE fieldset_id = $fieldset_id";
-		$fields = $this->getAll($sql3); 
-		return $fields; 
-	} 
-
+	
     public function insert($title,$category_id,$row_index,$details)
 	{
 		$sql="UPDATE tbl_subcategories SET row_index = row_index + 1 WHERE row_index >= $row_index ";
@@ -142,5 +141,17 @@ class subcategory_model extends model
        $sql="DELETE FROM tbl_subcategories WHERE id=$id";
 	   $this->execQuery($sql);
 	}	
+	public function saveImage($id,$image,$title){
+		$sql="INSERT INTO tbl_subcategory_images(subcategory_id,title,filename) VALUES($id,'$title','$image')";
+		$this->execQuery($sql);
+	}
+	public function saveAudio($id,$audio,$title){
+		$sql="INSERT INTO tbl_subcategory_sounds(subcategory_id,title,filename) VALUES($id,'$title','$audio')";
+		$this->execQuery($sql);
+	}
+	public function saveVideo($id,$video,$title){
+		$sql="INSERT INTO tbl_subcategory_videos(subcategory_id,title,filename) VALUES($id,'$title','$video')";
+		$this->execQuery($sql);
+	}
 }
 ?>

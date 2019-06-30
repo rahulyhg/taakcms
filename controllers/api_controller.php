@@ -29,12 +29,12 @@ class api_controller extends controller
 
   public function getSubcategories()
   {
-    $this->view('getsubcategories');
+    $this->view('getSubcategories');
   }
 
   public function getContents()
   {
-    $this->view('getcontents');
+    $this->view('getContents');
   }
 
   public function getContent()

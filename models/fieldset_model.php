@@ -16,6 +16,14 @@ class fieldset_model extends model
 
 		return $fieldsets; 
 	}
+	public function getFieldsetDetails($categoryId,$type){
+		$category_model = new category_model();
+		$category = $category_model->getCategory($categoryId);
+
+		$fieldset = $this->getRowById($category[$type]);
+		
+		return $fieldset;
+	}
     public function getRowById($id) 
 	{ 
 		$sql = "SELECT * FROM tbl_fieldsets WHERE id =$id"; 
