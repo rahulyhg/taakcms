@@ -75,6 +75,7 @@
 
     function encryptByKey($data,$key){
         $cipher = "aes-128-gcm";
+        return $data;
         return openssl_encrypt($data, $cipher, $key, $options=0);
     }
 

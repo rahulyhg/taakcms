@@ -32,6 +32,24 @@ class subcategory_model extends model
 		}
 		$sql = "SELECT * FROM tbl_subcategories WHERE category_id = $category_id " . $whereContition ." ORDER BY row_index"; 
 		$rows = $this->getAll($sql); 
+
+		$counter=0;
+		foreach($rows as $subcategory){
+			$subcategory_id = $subcategory['id'];
+			$sql2 = "SELECT * FROM tbl_subcategory_details WHERE subcategory_id =$subcategory_id"; 
+			foreach ($this->getAll($sql2) as $detail){
+				$rows[$counter][$detail['field_key']] = $detail['field_value'];
+			} 
+
+			$sql4 = "SELECT * FROM tbl_subcategory_sounds WHERE subcategory_id =$subcategory_id";
+			$audios =  $this->getAll($sql4);
+			foreach($audios as $key => $audio){
+				$audios[$key]['url'] = getServerAddress() . "/uploads" . "/" . $audio['filename'];
+			}
+			$rows[$counter]['sounds'] =$audios; 
+			$counter++;
+		}
+
 		return $rows;
 	}
 
