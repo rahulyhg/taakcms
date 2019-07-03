@@ -33,8 +33,12 @@ function deletefile(id){
 
 $("#add_image").click(function (event) {
     $('.msg').text('');
+    $('.myprogress').text('0%');
+    $('.myprogress').css('width', '0%');
     $('.progress').hide();
-    xhr.onprogress = image_callback;
+    xhr.upload.addEventListener("progress",progressCallback);
+    xhr.addEventListener("load", imageTransferComplete);
+    xhr.addEventListener("error", transferFailed);
     let title = $('#titleimage')[0];
     let newimage = $('#newimage')[0];
     if (title.value == ''){
@@ -55,22 +59,21 @@ $("#add_image").click(function (event) {
 });
 
 
-function image_callback(event){
-    $('.progress').show();
-    if (event.lengthComputable) {
-        var percentComplete = event.loaded / event.total;
-        percentComplete = parseInt(percentComplete * 100);
-        $('.myprogress').text(percentComplete + '%');
-        $('.myprogress').css('width', percentComplete + '%');
-        if (percentComplete == 100){
-            setTimeout(function(){ 
-                $('.progress').hide();
-            },1000);
-        }
-    }
-    if (event.total === event.loaded && event.target.status == '200'){
+function imageTransferComplete(event){
+    if (event.target.status && event.target.status == '200'){
         //unsetting in load 
-        const res = JSON.parse(event.target.response);
+        let res;
+        try {
+            res = JSON.parse(event.target.response);
+        }
+        catch(err) {
+            alert(event.target.response);
+            $('.msg').text('<?php echo tr('errorOnUpload'); ?>');
+            $("#add_image")[0].disabled = false;
+            $('#titleimage')[0].value="";
+            $('#newimage')[0].value="";
+            return;
+        }
         if (res.result){
             var fileInput = document.getElementById('newimage');
             let imageelement = document.createElement('img');
@@ -86,13 +89,12 @@ function image_callback(event){
             $('.msg').text('<?php echo tr('errorOnUpload'); ?>');
             alert(res.message);
         }
-    }else{
+    }else if (event.target.status && event.target.status != '200'){
         alert(event.target.response);
     } 
     $("#add_image")[0].disabled = false;
     $('#titleimage')[0].value="";
     $('#newimage')[0].value="";
-    console.log(event);
 }
 
 /*Audio*/
@@ -112,8 +114,12 @@ function handleAddAudio(){
 
 $("#add_audio").click(function (event) {
     $('.msg').text('');
+    $('.myprogress').text('0%');
+    $('.myprogress').css('width', '0%');
     $('.progress').hide();
-    xhr.onprogress = audio_callback;
+    xhr.upload.addEventListener("progress",progressCallback);
+    xhr.addEventListener("load", audioTransferComplete);
+    xhr.addEventListener("error", transferFailed);
     let title = $('#titleaudio')[0];
     let newaudio = $('#newaudio')[0];
     if (title.value == ''){
@@ -133,24 +139,21 @@ $("#add_audio").click(function (event) {
     upload('audio');
 });
 
-function audio_callback(event){
-    console.log(event);
-    $('.progress').show();
-    if (event.lengthComputable) {
-        var percentComplete = event.loaded / event.total;
-        percentComplete = parseInt(percentComplete * 100);
-        $('.myprogress').text(percentComplete + '%');
-        $('.myprogress').css('width', percentComplete + '%');
-        if (percentComplete == 100){
-            setTimeout(function(){ 
-                $('.progress').hide();
-            },1000);
-        }
-    }
-
-    if (event.total === event.loaded && event.target.status == '200'){
+function audioTransferComplete(event){
+    if (event.target.status && event.target.status == '200'){
         //unsetting in load 
-        const res = JSON.parse(event.target.response);
+        let res;
+        try {
+            res = JSON.parse(event.target.response);
+        }
+        catch(err) {
+            alert(event.target.response);
+            $('.msg').text('<?php echo tr('errorOnUpload'); ?>');
+            $("#add_audio")[0].disabled = false;
+            $('#titleaudio')[0].value= "";
+            $('#newaudio')[0].value = "";       
+            return;
+        }
         if (res.result){
             var fileInput = document.getElementById('newaudio');
             let element = document.createElement('div');
@@ -168,7 +171,7 @@ function audio_callback(event){
             $('.msg').text('<?php echo tr('errorOnUpload'); ?>');
             alert(res.message);
         }
-    }else{
+    }else if (event.target.status && event.target.status != '200'){
         alert(event.target.response);
     }   
     $("#add_audio")[0].disabled = false;
@@ -194,8 +197,13 @@ function handleAddVideo(){
 
 $("#add_video").click(function (event) {
     $('.msg').text('');
+    $('.myprogress').text('0%');
+    $('.myprogress').css('width', '0%');
     $('.progress').hide();
-    xhr.onprogress = video_callback;
+    xhr.upload.addEventListener("progress",progressCallback);
+    xhr.addEventListener("load", videoTransferComplete);
+    xhr.addEventListener("error", transferFailed);
+
     let title = $('#titlevideo')[0];
     let newvideo = $('#newvideo')[0];
     if (title.value == ''){
@@ -214,24 +222,21 @@ $("#add_video").click(function (event) {
     upload('video');
 });
 
-function video_callback(event){
-    console.log(event);
-    $('.progress').show();
-    if (event.lengthComputable) {
-        var percentComplete = event.loaded / event.total;
-        percentComplete = parseInt(percentComplete * 100);
-        $('.myprogress').text(percentComplete + '%');
-        $('.myprogress').css('width', percentComplete + '%');
-        if (percentComplete == 100){
-            setTimeout(function(){ 
-                $('.progress').hide();
-            },1000);
+function videoTransferComplete(event){
+    if (event.target.status && event.target.status == '200'){
+        let res;
+        try {
+            res = JSON.parse(event.target.response);
         }
-    }
-    
-    if (event.total === event.loaded && event.target.status == '200'){
-        //unsetting in load 
-        const res = JSON.parse(event.target.response);
+        catch(err) {
+            $('.msg').text('<?php echo tr('errorOnUpload'); ?>');
+            $("#add_video")[0].disabled = false;
+            $('#titlevideo')[0].value="";
+            $('#newvideo')[0].value="";
+            alert(event.target.response);
+            return;
+        }
+        
         if (res.result){
             var fileInput = document.getElementById('newvideo');
             let element = document.createElement('div');
@@ -250,7 +255,7 @@ function video_callback(event){
         }
     }else{
         alert(event.target.response);
-    } 
+    }
     $("#add_video")[0].disabled = false;
     $('#titlevideo')[0].value="";
     $('#newvideo')[0].value="";
@@ -259,6 +264,26 @@ function video_callback(event){
 /**/
 
 /**/
+function transferFailed(e){
+    console.log(e);
+}
+function progressCallback(event){
+    console.log(event);
+    $('.progress').show();
+    if (event.lengthComputable) {
+        var percentComplete = event.loaded / event.total;
+        percentComplete = parseInt(percentComplete * 100);
+        $('.myprogress').text(percentComplete + '%');
+        $('.myprogress').css('width', percentComplete + '%');
+        if (percentComplete == 100){
+            setTimeout(function(){ 
+                $('.progress').hide();
+            },1000);
+        }
+    }
+    
+}
+
 function upload(type){
     var fileInput = document.getElementById('new' + type);
     var titleInput = document.getElementById('title' + type);
