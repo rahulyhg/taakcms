@@ -128,19 +128,41 @@ class content_model extends model
 	public function saveImage($id,$image,$title){
 		$sql="INSERT INTO tbl_content_images(content_id,title,filename) VALUES($id,'$title','$image')";
 		$this->execQuery($sql);
+		return $this->insert_id();
 	}
 	public function saveAudio($id,$audio,$title){
 		$sql="INSERT INTO tbl_content_sounds(content_id,title,filename) VALUES($id,'$title','$audio')";
 		$this->execQuery($sql);
+		return $this->insert_id();
 	}
 	public function saveVideo($id,$video,$title){
 		$sql="INSERT INTO tbl_content_videos(content_id,title,filename) VALUES($id,'$title','$video')";
 		$this->execQuery($sql);
+		return $this->insert_id();
 	}
 	public function getNewOrderIndex($subcategory_id){
 		$sql = "SELECT * FROM tbl_contents WHERE subcategory_id = $subcategory_id ORDER BY row_index DESC"; 
 		$subcategory = $this->getRow($sql); 
 		return $subcategory['row_index'] + 1; 
+	}
+
+	public function deleteFile($id,$type){
+		$table = "";
+		switch($type){
+			case 'audio':
+				$table='tbl_content_sounds';
+				break;
+			case 'video':
+				$table='tbl_content_videos';
+				break;
+			case 'image':
+				$table='tbl_content_images';
+				break;
+			default:
+				return;
+		}
+		$sql="DELETE FROM " . $table . " WHERE id = $id";
+		$this->execQuery($sql);
 	}
 	
 	

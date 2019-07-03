@@ -167,9 +167,10 @@ class content_controller extends controller
     $title=safe($_POST['title']);
     $image = $this->_upload_file($_FILES["image"],image_types());
     if ($image['result']){
-      $this->_model->saveImage($id,$image['message'],$title);
+      $imageId = $this->_model->saveImage($id,$image['message'],$title);
     }
     $image['title'] = $title;
+    $image['id'] = $imageId;
     echo json_encode($image);
   }
   public function deleteImage(){
@@ -181,9 +182,10 @@ class content_controller extends controller
     $title=safe($_POST['title']);
     $audio = $this->_upload_file($_FILES["audio"],audio_types());
     if ($audio['result']){
-      $this->_model->saveAudio($id,$audio['message'],$title);
+      $audioId = $this->_model->saveAudio($id,$audio['message'],$title);
     }
     $audio['title'] = $title;
+    $audio['id'] = $audioId;
     echo json_encode($audio);
   }
 
@@ -192,10 +194,19 @@ class content_controller extends controller
     $title=safe($_POST['title']);
     $video = $this->_upload_file($_FILES["video"],video_types());
     if ($video['result']){
-      $this->_model->saveVideo($id,$video['message'],$title);
+      $videoId = $this->_model->saveVideo($id,$video['message'],$title);
     }
     $video['title'] = $title;
+    $video['id'] = $videoId;
     echo json_encode($video);
+  }
+
+  public function deletefile(){
+    $content_model = new content_model();
+    $id=safe($_POST['id']);
+    $type=safe($_POST['type']);
+    $content_model->deleteFile($id,$type);
+    return true;
   }
 }	 
 	 

@@ -51,7 +51,7 @@
                         <div class="attachment-tab">
                             <div class="attachment-container" id="image-container">
                                 <?php foreach($values['images'] as $image) { ?>
-                                    <img class="attachment-item" data-title="<?php echo $image['title'] ?>" onclick="handlePreviewImage(this,<?php echo $image['id'] ?>)"; src="./uploads/<?php echo $image['filename'] ?>"></img>
+                                    <img class="attachment-item" data-id="image_<?php echo $image['id'] ?>" data-title="<?php echo $image['title'] ?>" onclick="handlePreviewImage(this,<?php echo $image['id'] ?>)"; src="./uploads/<?php echo $image['filename'] ?>"></img>
                                 <?php } ?>
                                 <div class="attachment-add-button attachment-item" onclick="handleAddImage();">
                                     <button type="button" class="btn btn-light btn-sm"> <div class="fas fa-plus"></div></button>
@@ -82,7 +82,7 @@
                         <div class="attachment-tab">
                             <div class="attachment-container" id="audio-container">
                                 <?php if (isset($values['sounds'])) foreach($values['sounds'] as $sound) { ?>
-                                    <div class="attachment-item" data-title="<?php echo $sound['title'] ?>" data-filepath="./uploads/<?php echo $sound['filename'] ?>" onclick="handlePreviewAudio(this,<?php echo $sound['id'] ?>)"; >
+                                    <div class="attachment-item" data-id="audio_<?php echo $sound['id'] ?>" data-title="<?php echo $sound['title'] ?>" data-filepath="./uploads/<?php echo $sound['filename'] ?>" onclick="handlePreviewAudio(this,<?php echo $sound['id'] ?>)"; >
                                         <div class="fas fa-music"></div>
                                     </div>
                                 <?php } ?>
@@ -115,7 +115,7 @@
                         <div class="attachment-tab">
                             <div class="attachment-container" id="video-container">
                                 <?php if (isset($values['videos'])) foreach($values['videos'] as $video) { ?>
-                                    <div class="attachment-item" data-title="<?php echo $video['title'] ?>" data-filepath="./uploads/<?php echo $video['filename'] ?>" onclick="handlePreviewVideo(this,<?php echo $video['id'] ?>)";>
+                                    <div class="attachment-item" data-id="video_<?php echo $video['id'] ?>" data-title="<?php echo $video['title'] ?>" data-filepath="./uploads/<?php echo $video['filename'] ?>" onclick="handlePreviewVideo(this,<?php echo $video['id'] ?>)";>
                                         <div class="fas fa-video"></div>
                                     </div>
                                 <?php } ?>

@@ -23,9 +23,18 @@ function handlePreviewImage(row,id){
     });
 }
 
-function deletefile(id){
+function deletefile(type_id){
     if (confirm('Are you sure you want to delete this file from the database?')){
-        return;
+        var formData = new FormData();
+        formData.append('id', type_id.split('_')[1]);
+        formData.append('type', type_id.split('_')[0]);
+        // Add any event handlers here...
+        xhr.open('POST', 'index.php?id=<?php echo $place;?>/deletefile', true);
+        xhr.send(formData);
+        $("*[data-id='" + type_id + "']").remove();
+        $('#image-preview').hide();
+        $('#audio-preview').hide();
+        $('#video-preview').hide();
     }
     return;
 }
@@ -82,6 +91,7 @@ function imageTransferComplete(event){
                     handlePreviewImage(this);
                     }})();
             imageelement.setAttribute("data-title", res.title)
+            imageelement.setAttribute("data-id", 'image_' + res.id)
             imageelement.src = "./uploads/" + res.message ;
             $('#image-container .attachment-item:last').before(imageelement);
             $('.msg').text('<?php echo tr('fileUploadedSuccessfully'); ?>');
@@ -164,6 +174,7 @@ function audioTransferComplete(event){
             element.innerHTML = "<div class='fas fa-music'></div>";
             element.setAttribute("data-filepath", "./uploads/" + res.message)
             element.setAttribute("data-title", res.title)
+            element.setAttribute("data-id", 'audio_' + res.id)
             fileInput.value='';
             $('.msg').text('<?php echo tr('fileUploadedSuccessfully'); ?>');
             $('#audio-container .attachment-item:last').before(element);
@@ -247,6 +258,7 @@ function videoTransferComplete(event){
             element.innerHTML = "<div class='fas fa-video'></div>";
             element.setAttribute("data-filepath", "./uploads/" + res.message);
             element.setAttribute("data-title", res.title);
+            element.setAttribute("data-id", 'video_' + res.id);
             $('.msg').text('<?php echo tr('fileUploadedSuccessfully'); ?>');
             $('#video-container .attachment-item:last').before(element);
         }else{
