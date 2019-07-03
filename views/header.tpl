@@ -12,11 +12,10 @@
     <link rel="stylesheet" href="./includes/css/bootstrap/rtl-bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="./includes/css/styles.css" crossorigin="anonymous">
     <link rel="stylesheet" href="./includes/css/fontawsome.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="./includes/css/jquery.dataTables.min.css" crossorigin="anonymous">
+    
     <script src="./includes/js/jquery.min.js"></script>
     <script src="./includes/js/popper.min.js"></script>
     <script src="./includes/js/bootstrap.min.js"></script>
-    <script src="./includes/js/jquery.dataTables.min.js"  crossorigin="anonymous"></script>
     <script src="./includes/js/common.js"></script>
 </head>
 <body class="mainBody">
