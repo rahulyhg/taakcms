@@ -30,7 +30,7 @@ class controller
 
 	  protected function _upload_file($file,$valid_file_types){
 		$target_dir = "uploads/";
-		$fileType = pathinfo($file['name'], PATHINFO_EXTENSION);
+		$fileType = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
 		$newfileName = generateRandomString(16);
 		$newfileFullName = $newfileName . "." . $fileType;
 		$target_file = $target_dir . $newfileFullName;

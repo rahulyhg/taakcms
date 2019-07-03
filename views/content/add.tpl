@@ -68,6 +68,12 @@
                                         <input type="text" class="form-control form-control-sm" style="margin-right: 10px;" placeholder="title" name="titleimage" id="titleimage" />
                                         <button id="add_image" class="btn btn-light btn-sm" style="margin-right: 10px;" type="button"><div class="fas fa-upload" ></div></button>
                                     </div>
+                                    <div class="form-group">
+                                        <div class="progress" style="display:none">
+                                            <div class="progress-bar progress-bar-success myprogress" role="progressbar" style="width:0%">0%</div>
+                                        </div>
+                                        <div class="msg"></div>
+                                    </div>
                                 </form>
                             </div> 
                         </div>
@@ -94,6 +100,12 @@
                                         <input type="file" name="newaudio" id="newaudio" />
                                         <input type="text" class="form-control form-control-sm" style="margin-right: 10px;" placeholder="title" name="titleaudio" id="titleaudio" />
                                         <button id="add_audio" class="btn btn-light btn-sm" style="margin-right: 10px;" type="button"><div class="fas fa-upload" ></div></button>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="progress" style="display:none">
+                                            <div class="progress-bar progress-bar-success myprogress" role="progressbar" style="width:0%">0%</div>
+                                        </div>
+                                        <div class="msg"></div>
                                     </div>
                                 </form>
                             </div> 
@@ -122,6 +134,12 @@
                                         <input type="file" name="newvideo" id="newvideo" />
                                         <input type="text" class="form-control form-control-sm" style="margin-right: 10px;" placeholder="title" name="titlevideo" id="titlevideo" />
                                         <button id="add_video" class="btn btn-light btn-sm" style="margin-right: 10px;" type="button"><div class="fas fa-upload" ></div></button>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="progress" style="display:none">
+                                            <div class="progress-bar progress-bar-success myprogress" role="progressbar" style="width:0%">0%</div>
+                                        </div>
+                                        <div class="msg"></div>
                                     </div>
                                 </form>
                             </div> 

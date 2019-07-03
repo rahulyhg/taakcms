@@ -32,6 +32,8 @@ function deletefile(id){
 
 
 $("#add_image").click(function (event) {
+    $('.msg').text('');
+    $('.progress').hide();
     xhr.onprogress = image_callback;
     let title = $('#titleimage')[0];
     let newimage = $('#newimage')[0];
@@ -54,6 +56,18 @@ $("#add_image").click(function (event) {
 
 
 function image_callback(event){
+    $('.progress').show();
+    if (event.lengthComputable) {
+        var percentComplete = event.loaded / event.total;
+        percentComplete = parseInt(percentComplete * 100);
+        $('.myprogress').text(percentComplete + '%');
+        $('.myprogress').css('width', percentComplete + '%');
+        if (percentComplete == 100){
+            setTimeout(function(){ 
+                $('.progress').hide();
+            },1000);
+        }
+    }
     if (event.total === event.loaded && event.target.status == '200'){
         //unsetting in load 
         const res = JSON.parse(event.target.response);
@@ -67,7 +81,9 @@ function image_callback(event){
             imageelement.setAttribute("data-title", res.title)
             imageelement.src = "./uploads/" + res.message ;
             $('#image-container .attachment-item:last').before(imageelement);
+            $('.msg').text('<?php echo tr('fileUploadedSuccessfully'); ?>');
         }else{
+            $('.msg').text('<?php echo tr('errorOnUpload'); ?>');
             alert(res.message);
         }
     }else{
@@ -95,6 +111,8 @@ function handleAddAudio(){
 }
 
 $("#add_audio").click(function (event) {
+    $('.msg').text('');
+    $('.progress').hide();
     xhr.onprogress = audio_callback;
     let title = $('#titleaudio')[0];
     let newaudio = $('#newaudio')[0];
@@ -117,6 +135,19 @@ $("#add_audio").click(function (event) {
 
 function audio_callback(event){
     console.log(event);
+    $('.progress').show();
+    if (event.lengthComputable) {
+        var percentComplete = event.loaded / event.total;
+        percentComplete = parseInt(percentComplete * 100);
+        $('.myprogress').text(percentComplete + '%');
+        $('.myprogress').css('width', percentComplete + '%');
+        if (percentComplete == 100){
+            setTimeout(function(){ 
+                $('.progress').hide();
+            },1000);
+        }
+    }
+
     if (event.total === event.loaded && event.target.status == '200'){
         //unsetting in load 
         const res = JSON.parse(event.target.response);
@@ -131,8 +162,10 @@ function audio_callback(event){
             element.setAttribute("data-filepath", "./uploads/" + res.message)
             element.setAttribute("data-title", res.title)
             fileInput.value='';
+            $('.msg').text('<?php echo tr('fileUploadedSuccessfully'); ?>');
             $('#audio-container .attachment-item:last').before(element);
         }else{
+            $('.msg').text('<?php echo tr('errorOnUpload'); ?>');
             alert(res.message);
         }
     }else{
@@ -160,6 +193,8 @@ function handleAddVideo(){
 }
 
 $("#add_video").click(function (event) {
+    $('.msg').text('');
+    $('.progress').hide();
     xhr.onprogress = video_callback;
     let title = $('#titlevideo')[0];
     let newvideo = $('#newvideo')[0];
@@ -181,6 +216,19 @@ $("#add_video").click(function (event) {
 
 function video_callback(event){
     console.log(event);
+    $('.progress').show();
+    if (event.lengthComputable) {
+        var percentComplete = event.loaded / event.total;
+        percentComplete = parseInt(percentComplete * 100);
+        $('.myprogress').text(percentComplete + '%');
+        $('.myprogress').css('width', percentComplete + '%');
+        if (percentComplete == 100){
+            setTimeout(function(){ 
+                $('.progress').hide();
+            },1000);
+        }
+    }
+    
     if (event.total === event.loaded && event.target.status == '200'){
         //unsetting in load 
         const res = JSON.parse(event.target.response);
@@ -194,8 +242,10 @@ function video_callback(event){
             element.innerHTML = "<div class='fas fa-video'></div>";
             element.setAttribute("data-filepath", "./uploads/" + res.message);
             element.setAttribute("data-title", res.title);
+            $('.msg').text('<?php echo tr('fileUploadedSuccessfully'); ?>');
             $('#video-container .attachment-item:last').before(element);
         }else{
+            $('.msg').text('<?php echo tr('errorOnUpload'); ?>');
             alert(res.message);
         }
     }else{

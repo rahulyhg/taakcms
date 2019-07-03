@@ -58,4 +58,6 @@
     <string id="edit_user">ویرایش کاربر</string>
     <string id="row_index">ردیف</string>
     <string id="count">تعداد</string>
+    <string id="fileUploadedSuccessfully">فایل با موفقیت بارگذاری شد.</string>
+    <string id="errorOnUpload">در بارگذاری فایل خطایی رخ داده است.</string>
 </keyword>

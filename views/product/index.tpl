@@ -41,8 +41,8 @@
 }
 
 .app_logo{
-    width: 70px;
-    height: 70px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     margin: auto; 
     text-align: center;
@@ -50,8 +50,8 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     
 }
 .fas{
