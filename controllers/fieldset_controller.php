@@ -55,6 +55,13 @@ class fieldset_controller extends controller
 
     return $this->index();
   }
+  public function delete($id) 
+   {  
+      
+      $id=intval($id);
+      $this->_model->delete($id); 
+      $this->index();
+   } 
 }	 
 	 
 ?>

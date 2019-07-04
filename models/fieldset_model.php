@@ -95,5 +95,10 @@ class fieldset_model extends model
 			}
 		}
 	}
+
+	public function delete($id){
+		$sql="DELETE FROM tbl_fieldsets WHERE id = $id";
+		$this->execQuery($sql);
+	}
 }
 ?>

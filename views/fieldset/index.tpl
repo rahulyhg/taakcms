@@ -53,7 +53,7 @@
                         <td><?php echo $row['title']; ?></td>
                         <td>
                             <button class="btn btn-sm btn-light" onclick="edit(<?php echo $row['id']; ?>)"><div class="fas fa-edit"></div></button>
-                            <button class="btn btn-sm btn-light" onclick="delete(<?php echo $row['id']; ?>)"><div class="fas fa-trash"></div></button>
+                            <button class="btn btn-sm btn-light" onclick="delete_fieldset(<?php echo $row['id']; ?>)"><div class="fas fa-trash"></div></button>
                         </td>
                     </tr>
                     <?php } ?>
@@ -70,6 +70,10 @@
     }
     function add(){
         window.location.href = "index.php?id=fieldset/add";
+    }
+    
+    function delete_fieldset(id){
+        window.location.href = "index.php?id=fieldset/delete/"+id;
     }
 </script>
 <?php include('views/footer.tpl');?>
