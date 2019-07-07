@@ -5,6 +5,29 @@ class content_model extends model
         $sql = "SELECT * FROM tbl_contents WHERE subcategory_id = $subcategory_id ORDER BY row_index"; 
 		$rows = $this->getAll($sql); 
 		return $rows; 
+	}
+	
+    public function getFullRowsBySubcategoryId($subcategory_id){
+        $sql = "SELECT * FROM tbl_contents WHERE subcategory_id = $subcategory_id ORDER BY row_index"; 
+		$rows = $this->getAll($sql);
+		$counter=0;
+		foreach($rows as $row){
+			$content_id = $row['id'];
+			$sql2 = "SELECT * FROM tbl_content_details WHERE content_id =$content_id"; 
+			foreach ($this->getAll($sql2) as $detail){
+				$rows[$counter][$detail['field_key']] = $detail['field_value'];
+			} 
+
+			$sql4 = "SELECT * FROM tbl_content_sounds WHERE content_id =$content_id";
+			$audios =  $this->getAll($sql4);
+			foreach($audios as $key => $audio){
+				$audios[$key]['url'] = getServerAddress() . "/uploads" . "/" . $audio['filename'];
+			}
+			$rows[$counter]['sounds'] =$audios; 
+			$counter++;
+		}
+
+		return $rows; 
     }
 
     public function getRowById($id) 

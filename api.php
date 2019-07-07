@@ -42,10 +42,13 @@ if (array_key_exists('action',$contents)) {
             echo getCategories($info,$newSecretKey);
             break;
         case "getsubcategories":
-            echo getSubcategories($contents->data,$newSecretKey);
+            echo getSubcategories($contents->data,$info,$newSecretKey);
             break;
         case "getcontents":
             echo getContents($contents->data,$info,$newSecretKey);
+            break;
+        case "getfullcontents":
+            echo getFullContents($contents->data,$info,$newSecretKey);
             break;
         case "getcontent":
             echo getContent($contents->data,$info,$newSecretKey);
@@ -107,6 +110,15 @@ function getContents($data,$info,$newSecretKey){
         return 'error: missing subcategory_id in data';
     }
     $result = $content->getRowsBySubcategoryId($data->subcategory_id);
+    return encryptByKey(json_encode($result,JSON_UNESCAPED_UNICODE),$newSecretKey);
+}
+
+function getFullContents($data,$info,$newSecretKey){
+    $content = new content_model();
+    if (!array_key_exists('subcategory_id',$data)){
+        return 'error: missing subcategory_id in data';
+    }
+    $result = $content->getFullRowsBySubcategoryId($data->subcategory_id);
     return encryptByKey(json_encode($result,JSON_UNESCAPED_UNICODE),$newSecretKey);
 }
 
