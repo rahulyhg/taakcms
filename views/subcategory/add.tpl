@@ -141,10 +141,12 @@
     ;?>
     <script>
         $('#btn_submit').click(function(){
-            var table = $('#<?php echo $tableId; ?>');
-            if (table.length){
-                table.val(getTableData());
-            }
+            try{
+                var table = $('#<?php echo $tableId; ?>');
+                if (table.length){
+                    table.val(getTableData());
+                }
+            }catch{}
             if (!validateRequiredFields()){
                 return false;
             }else{
