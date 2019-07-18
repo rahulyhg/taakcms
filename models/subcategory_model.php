@@ -47,6 +47,21 @@ class subcategory_model extends model
 				$audios[$key]['url'] = getServerAddress() . "/uploads" . "/" . $audio['filename'];
 			}
 			$rows[$counter]['sounds'] =$audios; 
+
+			$sql4 = "SELECT * FROM tbl_subcategory_images WHERE subcategory_id =$subcategory_id";
+			$images =  $this->getAll($sql4);
+			foreach($images as $key => $image){
+				$images[$key]['url'] = getServerAddress() . "/uploads" . "/" . $image['filename'];
+			}
+			$rows[$counter]['images'] =$images; 
+
+			$sql4 = "SELECT * FROM tbl_subcategory_videos WHERE subcategory_id =$subcategory_id";
+			$videos =  $this->getAll($sql4);
+			foreach($videos as $key => $video){
+				$videos[$key]['url'] = getServerAddress() . "/uploads" . "/" . $video['filename'];
+			}
+			$rows[$counter]['videos'] =$videos; 
+			
 			$counter++;
 		}
 

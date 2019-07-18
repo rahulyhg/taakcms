@@ -58,7 +58,8 @@
     </div>
     <script>
         function validateSubmit(){
-            $('#mytbl').val(getTableData());
+            try{$('#mytbl').val(getTableData());}
+            catch{}
             return validateRequiredFields();
         }
         function cancel(){

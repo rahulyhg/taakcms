@@ -37,6 +37,11 @@ class api_controller extends controller
     $this->view('getContents');
   }
 
+  public function getFullContents()
+  {
+    $this->view('getFullContents');
+  }
+
   public function getContent()
   {
     $this->view('getContent');

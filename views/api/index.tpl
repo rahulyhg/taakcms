@@ -46,6 +46,9 @@
         <a href="index.php?id=api/getContents">getContents</a>
     </div>
     <div>
+        <a href="index.php?id=api/getFullContents">getFullContents</a>
+    </div>
+    <div>
         <a href="index.php?id=api/getContent">getContent</a>
     </div>
 

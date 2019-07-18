@@ -5,6 +5,44 @@ class content_model extends model
         $sql = "SELECT * FROM tbl_contents WHERE subcategory_id = $subcategory_id ORDER BY row_index"; 
 		$rows = $this->getAll($sql); 
 		return $rows; 
+	}
+	
+    public function getFullRowsBySubcategoryId($subcategory_id){
+        $sql = "SELECT * FROM tbl_contents WHERE subcategory_id = $subcategory_id ORDER BY row_index"; 
+		$rows = $this->getAll($sql);
+		$counter=0;
+		foreach($rows as $row){
+			$content_id = $row['id'];
+			$sql2 = "SELECT * FROM tbl_content_details WHERE content_id =$content_id"; 
+			foreach ($this->getAll($sql2) as $detail){
+				$rows[$counter][$detail['field_key']] = $detail['field_value'];
+			} 
+
+			$sql4 = "SELECT * FROM tbl_content_sounds WHERE content_id =$content_id";
+			$audios =  $this->getAll($sql4);
+			foreach($audios as $key => $audio){
+				$audios[$key]['url'] = getServerAddress() . "/uploads" . "/" . $audio['filename'];
+			}
+			$rows[$counter]['sounds'] =$audios; 
+
+			$sql4 = "SELECT * FROM tbl_content_images WHERE content_id =$content_id";
+			$images =  $this->getAll($sql4);
+			foreach($images as $key => $image){
+				$images[$key]['url'] = getServerAddress() . "/uploads" . "/" . $image['filename'];
+			}
+			$rows[$counter]['images'] =$images; 
+
+			$sql4 = "SELECT * FROM tbl_content_videos WHERE content_id =$content_id";
+			$videos =  $this->getAll($sql4);
+			foreach($videos as $key => $video){
+				$videos[$key]['url'] = getServerAddress() . "/uploads" . "/" . $video['filename'];
+			}
+			$rows[$counter]['videos'] =$videos; 
+
+			$counter++;
+		}
+
+		return $rows; 
     }
 
     public function getRowById($id) 
